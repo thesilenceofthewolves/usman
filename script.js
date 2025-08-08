@@ -1,11 +1,10 @@
-// Load particles with transparent background so PNG shows
 tsParticles.load("tsparticles", {
   fullScreen: {
     enable: true,
     zIndex: -1
   },
   background: {
-    color: "transparent"
+    color: "transparent" // transparent so your PNG background shows through
   },
   particles: {
     number: {
@@ -16,12 +15,12 @@ tsParticles.load("tsparticles", {
       }
     },
     color: {
-      value: "#999"
+      value: "#222"  // dark gray particles for contrast
     },
     links: {
       enable: true,
       distance: 200,
-      color: "#999",
+      color: "#222",  // dark gray lines
       opacity: 0.5,
       width: 1
     },
@@ -64,12 +63,4 @@ tsParticles.load("tsparticles", {
   }
 });
 
-// Set footer date dynamically
-const date = new Date();
-const formatted = date.toLocaleDateString(undefined, {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric'
-});
-document.getElementById('date').textContent = formatted;
 
