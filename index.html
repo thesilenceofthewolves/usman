@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Particles Working Example</title>
+  <title>Particles Network Test</title>
 
   <style>
     html, body {
@@ -13,6 +13,7 @@
       background-color: #000;
       overflow: hidden;
     }
+
     #tsparticles {
       position: absolute;
       width: 100%;
@@ -21,7 +22,6 @@
     }
   </style>
 
-  <!-- tsparticles bundle -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
 </head>
 <body>
@@ -29,35 +29,14 @@
 
   <script>
     tsParticles.load("tsparticles", {
-      fullScreen: {
-        enable: false,
-        zIndex: -1
-      },
-      background: {
-        color: "#000000"
-      },
+      fullScreen: { enable: false, zIndex: -1 },
+      background: { color: "#000000" },
       particles: {
-        number: {
-          value: 80,
-          density: {
-            enable: true,
-            area: 800
-          }
-        },
-        color: {
-          value: "#00ffff"
-        },
-        shape: {
-          type: "circle"
-        },
-        opacity: {
-          value: 0.5,
-          random: false
-        },
-        size: {
-          value: 3,
-          random: { enable: true, minimumValue: 1 }
-        },
+        number: { value: 80, density: { enable: true, area: 800 } },
+        color: { value: "#00ffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 3, random: true },
         links: {
           enable: true,
           distance: 150,
@@ -69,35 +48,18 @@
           enable: true,
           speed: 2,
           direction: "none",
-          random: false,
-          straight: false,
-          outModes: {
-            default: "bounce"
-          }
+          outModes: { default: "bounce" }
         }
       },
       interactivity: {
         events: {
-          onHover: {
-            enable: true,
-            mode: "grab"
-          },
-          onClick: {
-            enable: true,
-            mode: "push"
-          },
+          onHover: { enable: true, mode: "grab" },
+          onClick: { enable: true, mode: "push" },
           resize: true
         },
         modes: {
-          grab: {
-            distance: 180,
-            links: {
-              opacity: 0.6
-            }
-          },
-          push: {
-            quantity: 4
-          }
+          grab: { distance: 180, links: { opacity: 0.6 } },
+          push: { quantity: 4 }
         }
       },
       detectRetina: true
