@@ -1,146 +1,95 @@
-/* === Reset and Base === */
+/* Base styling resets */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
-
 html, body {
   height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #000;
-  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  color: #222;
+  background: #fff;
   overflow-x: hidden;
-  position: relative;
 }
 
-/* === Particle Background Layer === */
-#tsparticles {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -2;
+/* Background layers */
+#background-image {
+  position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -3;
   background: url('network-bg.png') center center / cover no-repeat;
-  background-color: #000;
+  opacity: 0.3;
+}
+#tsparticles {
+  position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -2;
 }
 
-/* === Navigation === */
-.navbar {
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.75);
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  padding: 10px 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
-}
-
-.nav-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #00adb5;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 25px;
-}
-
-.nav-links a {
-  color: #eee;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #00adb5;
-}
-
-/* === Hero Section === */
+/* Hero section */
 .hero {
-  padding-top: 80px; /* Leave space for navbar */
-  height: 300px;
+  position: relative;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
-
-.hero-content h2 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  color: #00adb5;
+.nav {
+  position: absolute;
+  top: 20px; right: 40px;
+}
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+.nav-list a {
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.nav-list a:hover {
+  color: teal;
 }
 
+/* Hero content styling */
+.hero-content h1 {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
 .hero-content p {
   font-size: 1.2rem;
-  font-weight: 300;
+  opacity: 0.8;
 }
 
-/* === Shared Section Container === */
-.container {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 8px;
-  box-shadow: 0 0 10px #00adb5aa;
+/* About & project sections */
+section {
+  padding: 60px 20px;
+  max-width: 800px;
+  margin: auto;
 }
-
-h2 {
-  margin-bottom: 15px;
-  color: #00adb5;
-}
-
-/* === Project Card === */
-.project-card {
-  background-color: rgba(30, 30, 30, 0.7);
-  padding: 20px;
-  border-radius: 8px;
-}
-
-.project-card h3 {
-  margin-top: 0;
-  color: #00adb5;
-}
-
-.project-card p {
-  margin-bottom: 10px;
-}
-
-.project-card a {
-  color: #00adb5;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease;
-}
-
-.project-card a:hover {
-  text-decoration: underline;
-  color: #00cfd5;
-}
-
-/* === Footer === */
-footer {
+#project {
   text-align: center;
-  padding: 20px;
-  font-size: 0.9rem;
-  color: #888;
-  position: relative;
-  z-index: 5;
+}
+.btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: none;
+  border: 2px solid teal;
+  color: teal;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+.btn:hover {
+  background: teal;
+  color: #fff;
 }
 
-
+/* Footer */
+footer {
+  padding: 40px 0;
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+}
