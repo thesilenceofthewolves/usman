@@ -1,22 +1,22 @@
 /* Reset & Base styles */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+margin: 0;
+padding: 0;
+box-sizing: border-box;
 }
 
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #fff;
   color: #222;
-  line-height: 1.6;
+line-height: 1.6;
   overflow-x: hidden;
 }
 
 /* Layout */
 #outer {
-  position: relative;
-  z-index: 1;
+position: relative;
+z-index: 1;
   padding: 2rem;
   max-width: 1000px;
   margin: auto;
@@ -24,9 +24,9 @@ body {
 
 /* Particles layer behind everything */
 #tsparticles {
-  position: fixed;
-  width: 100%;
-  height: 100%;
+position: fixed;
+width: 100%;
+height: 100%;
   z-index: 0;
   top: 0;
   left: 0;
@@ -34,9 +34,9 @@ body {
 
 /* Navigation */
 .navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+display: flex;
+justify-content: space-between;
+align-items: center;
   margin-bottom: 3rem;
 }
 
@@ -52,9 +52,9 @@ body {
 }
 
 .navbar a {
-  text-decoration: none;
+text-decoration: none;
   color: #555;
-  font-weight: bold;
+font-weight: bold;
 }
 
 .navbar a:hover {
@@ -79,8 +79,8 @@ body {
 /* Section cards */
 .section-card {
   background: #f8f9fa;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+padding: 1.5rem;
+margin-bottom: 2rem;
   border-left: 4px solid #007bff;
   border-radius: 5px;
 }
@@ -93,7 +93,7 @@ body {
 /* Project card */
 .project-card {
   background: #eee;
-  padding: 1rem;
+padding: 1rem;
   border-radius: 5px;
 }
 
@@ -136,7 +136,7 @@ body {
 
 /* Footer */
 footer {
-  margin-top: 4rem;
+margin-top: 4rem;
   text-align: center;
   font-size: 0.9rem;
   color: #555;
@@ -146,6 +146,9 @@ footer a {
   color: #007bff;
   text-decoration: none;
 }
+
+
+
 
 
 
