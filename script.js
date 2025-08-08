@@ -4,35 +4,48 @@ tsParticles.load("tsparticles", {
     zIndex: -1
   },
   background: {
-    color: "#000000"  // black background for particles layer
+    color: "#000000"  // black background
   },
   particles: {
     number: {
-      value: 60,
+      value: 80,
       density: {
         enable: true,
         area: 800
       }
     },
     color: {
-      value: "#00ffff"  // cyan particles to match theme
+      value: "#00ffff"  // cyan particles
     },
     shape: {
       type: "circle"
     },
     opacity: {
       value: 0.5,
-      random: true
+      random: false
     },
     size: {
-      value: { min: 1, max: 4 }
+      value: 3,
+      random: { enable: true, minimumValue: 1 }
+    },
+    links: {   // <-- this enables the networking lines
+      enable: true,
+      distance: 150,
+      color: "#00ffff",
+      opacity: 0.4,
+      width: 1
     },
     move: {
       enable: true,
-      speed: 1,
+      speed: 2,
       direction: "none",
+      random: false,
+      straight: false,
       outModes: {
         default: "bounce"
+      },
+      attract: {
+        enable: false
       }
     }
   },
@@ -40,13 +53,25 @@ tsParticles.load("tsparticles", {
     events: {
       onHover: {
         enable: true,
-        mode: "repulse"
-      }
+        mode: "grab"   // changed from repulse to grab for line interaction
+      },
+      onClick: {
+        enable: true,
+        mode: "push"
+      },
+      resize: true
     },
     modes: {
-      repulse: {
-        distance: 100
+      grab: {
+        distance: 180,
+        links: {
+          opacity: 0.6
+        }
+      },
+      push: {
+        quantity: 4
       }
     }
-  }
+  },
+  detectRetina: true
 });
