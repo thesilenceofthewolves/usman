@@ -1,57 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Usman Waxun | Healthcare Data Analyst</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usman Waxun - Portfolio</title>
+
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- tsParticles CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
 </head>
 <body>
-  <div id="background-image"></div>
-  <div id="tsparticles"></div>
+  <div id="outer">
+    <!-- Background PNG layer -->
+    <div id="background-image"></div>
 
-  <nav class="navbar">
-    <div class="nav-container">
-      <h1 class="logo">Usman Waxun</h1>
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#project">Portfolio</a></li>
-      </ul>
-    </div>
-  </nav>
+    <!-- Particles animation layer -->
+    <div id="tsparticles"></div>
 
-  <section class="hero">
-    <div class="hero-content">
+    <!-- Main content -->
+    <header class="navbar">
+      <h1>Usman Waxun</h1>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="hero">
       <h2>Future Healthcare Analyst</h2>
       <p>Data Enthusiast | American Football & Rugby Fan</p>
-    </div>
-  </section>
+    </section>
 
-  <section class="about" id="about">
-    <div class="container">
-      <h2>About Me</h2>
-      <p>I'm passionate about turning data into patient care insights...</p>
-    </div>
-  </section>
+    <section id="about" class="section-card">
+      <h3>About Me</h3>
+      <p> I’m passionate about turning data into meaningful insights.
+      I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.
+      Outside data, American Football and Rugby are my go-to inspirations.</p>
+    </section>
 
-  <section class="portfolio" id="project">
-    <div class="container">
-      <h2>Featured Project</h2>
+    <section id="portfolio" class="section-card">
+      <h3>Featured Project</h3>
       <div class="project-card">
-        <h3>Car Deal Data Analysis</h3>
-        <p>Car data trends via Python & Pandas.</p>
-        <a href="https://...">View Project</a>
+        <h4>Car Deal Data Analysis</h4>
+        <p>Car sales trends using Python & Pandas.</p>
+        <a href="#">View Project</a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>
-    <p id="date"></p>
-  </footer>
+    <footer>
+      <p>8 August 2025</p>
+    </footer>
+  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+  <!-- Link to your JS -->
   <script src="script.js"></script>
 </body>
 </html>
+
 
 
