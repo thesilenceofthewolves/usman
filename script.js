@@ -4,7 +4,7 @@ tsParticles.load("tsparticles", {
     zIndex: -1
   },
   background: {
-    color: "#000000"  // black background
+    color: "#000000"
   },
   particles: {
     number: {
@@ -15,7 +15,7 @@ tsParticles.load("tsparticles", {
       }
     },
     color: {
-      value: "#00ffff"  // cyan particles
+      value: "#00ffff"
     },
     shape: {
       type: "circle"
@@ -28,7 +28,7 @@ tsParticles.load("tsparticles", {
       value: 3,
       random: { enable: true, minimumValue: 1 }
     },
-    links: {   // <-- this enables the networking lines
+    links: {
       enable: true,
       distance: 150,
       color: "#00ffff",
@@ -43,9 +43,6 @@ tsParticles.load("tsparticles", {
       straight: false,
       outModes: {
         default: "bounce"
-      },
-      attract: {
-        enable: false
       }
     }
   },
@@ -53,7 +50,7 @@ tsParticles.load("tsparticles", {
     events: {
       onHover: {
         enable: true,
-        mode: "grab"   // changed from repulse to grab for line interaction
+        mode: "grab"
       },
       onClick: {
         enable: true,
