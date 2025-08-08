@@ -1,4 +1,4 @@
-/* Reset and base styles */
+/* Reset and base */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,13 +7,26 @@
 
 html, body {
   height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #000;
   color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
+  position: relative;
 }
 
-/* Particle & Background container */
+/* Background image layer */
+#background-image {
+  background: url('network-bg.png') center center / cover no-repeat;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -3;
+  opacity: 1;
+}
+
+/* Particle background */
 #tsparticles {
   position: fixed;
   top: 0;
@@ -21,25 +34,18 @@ html, body {
   width: 100vw;
   height: 100vh;
   z-index: -2;
-
-  /* White network image as background */
-  background-image: url("network-bg.png"); /* replace with correct path */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: #000; /* fallback */
 }
 
 /* Navigation */
 .navbar {
   width: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
   position: fixed;
   top: 0;
   left: 0;
   z-index: 10;
   padding: 10px 20px;
-  background-color: rgba(0, 0, 0, 0.8);
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.7);
 }
 
 .nav-container {
@@ -60,6 +66,8 @@ html, body {
   list-style: none;
   display: flex;
   gap: 25px;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-links a {
@@ -75,7 +83,7 @@ html, body {
 
 /* Hero Section */
 .hero {
-  padding-top: 80px; /* space for navbar */
+  padding-top: 100px;
   height: 300px;
   display: flex;
   justify-content: center;
@@ -94,14 +102,14 @@ html, body {
   font-weight: 300;
 }
 
-/* Content container (About + Portfolio) */
+/* Common container for about and portfolio */
 .container {
   max-width: 900px;
   margin: 40px auto;
   padding: 20px;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 8px;
-  box-shadow: 0 0 10px #00adb588;
+  box-shadow: 0 0 10px #00adb5aa;
 }
 
 h2 {
@@ -109,9 +117,9 @@ h2 {
   color: #00adb5;
 }
 
-/* Project Card */
+/* Project card */
 .project-card {
-  background-color: rgba(20, 20, 20, 0.85);
+  background-color: rgba(30, 30, 30, 0.8);
   padding: 20px;
   border-radius: 8px;
 }
@@ -133,8 +141,8 @@ h2 {
 }
 
 .project-card a:hover {
-  color: #00cfd5;
   text-decoration: underline;
+  color: #00cfd5;
 }
 
 /* Footer */
@@ -143,6 +151,7 @@ footer {
   padding: 20px;
   font-size: 0.9rem;
   color: #888;
-  z-index: 5;
   position: relative;
+  z-index: 5;
 }
+
