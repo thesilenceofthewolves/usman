@@ -8,8 +8,8 @@
 body, html {
   height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #ffffff;
-  color: #111;
+  background: #000000; /* Changed to black */
+  color: #ffffff;      /* Changed text to white */
   overflow-x: hidden;
 }
 
@@ -21,7 +21,7 @@ body, html {
 }
 
 /* Layout */
-.content {
+.container {
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem;
@@ -36,72 +36,92 @@ body, html {
 
 .navbar h1 {
   font-size: 1.8rem;
-  color: #111;
+  color: #00ffff; /* bright cyan */
+  font-weight: bold;
 }
 
 .navbar ul {
-  list-style: none;
+  list-style: none; /* Remove bullets */
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
+  color: #ffffff;
 }
 
 .navbar a {
   text-decoration: none;
-  color: #333;
+  color: #ffffff;
   font-weight: bold;
+  cursor: pointer;
 }
 
-/* Hero Section */
+.navbar a:hover {
+  color: #00ffff;
+}
+
+/* Hero Section - NO box */
 .hero {
-  text-align: center;
+  text-align: left;
   padding: 3rem 0;
+  margin-bottom: 2rem;
 }
 
 .hero h2 {
   font-size: 2rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
 }
 
 .hero p {
-  color: #666;
-  margin-bottom: 1rem;
+  color: #aaa;
+  font-size: 1.1rem;
 }
 
-.hero button {
-  padding: 10px 20px;
-  border: 2px solid #007BFF;
-  background: none;
-  color: #007BFF;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s, color 0.3s;
-}
-
-.hero button:hover {
-  background: #007BFF;
-  color: white;
-}
-
-/* Sections */
+/* Sections with boxes */
 .section-card {
-  background: rgba(240, 240, 240, 0.95);
+  background: transparent; /* Remove solid background */
+  border: 1px solid #00ffff; /* Thin cyan border */
   padding: 1.5rem;
-  border-left: 4px solid #007BFF;
   margin-bottom: 2rem;
-  border-radius: 5px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px #00ffff33; /* subtle glow */
+}
+
+/* About section styles */
+#about {
+  /* same as section-card */
+}
+
+/* Portfolio renamed to Project and simplified */
+#portfolio {
+  /* same as section-card */
 }
 
 .project-card {
-  background: #eee;
-  padding: 1rem;
-  border-radius: 5px;
+  background: transparent;
+  padding: 0;
   margin-top: 1rem;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.project-card h4 {
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.project-card p {
+  margin-bottom: 0.3rem;
+  color: #ccc;
 }
 
 .project-card a {
-  color: #007BFF;
-  text-decoration: none;
-  font-weight: bold;
+  color: #aa88ff;
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.project-card a:hover {
+  color: #ffaa00;
 }
 
 /* Footer */
@@ -109,16 +129,6 @@ footer {
   text-align: center;
   margin-top: 3rem;
   padding: 1rem 0;
-  border-top: 1px solid #ccc;
-}
-
-footer a {
-  text-decoration: none;
-  color: #007BFF;
-}
-
-.footer-date {
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
+  border-top: 1px solid #444;
   color: #666;
 }
