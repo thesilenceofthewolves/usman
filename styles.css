@@ -20,9 +20,11 @@ html, body {
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  background: url('0db69ffb-67e0-4966-a1d1-91fa720e3758.png') center center / cover no-repeat;
-  background-color: #000;
+  background: url('network-bg.png') center center / cover no-repeat;
+  background-color: rgba(0, 0, 0, 0.85); /* Slightly transparent black */
+  background-blend-mode: multiply; /* Darkens the image to fit theme */
 }
+
 
 /* Navigation */
 .navbar {
