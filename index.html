@@ -5,54 +5,57 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Usman Waxun - Portfolio</title>
 
-<!-- ✅ Only ONE CSS file (use the correct filename) -->
-  <link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css" />
 
-<!-- ✅ Use only ONE version of tsparticles (2.11.1 is stable) -->
+<!-- tsparticles v2.11.1 -->
 <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
 
-<!-- ✅ Load your JS last and defer -->
-<!-- ✅<script src="script.js" defer></script>-->
+<script src="script.js" defer></script>
 </head>
 
 <body>
-<!-- ✅ Particles Background Layer -->
+<!-- Particles Background -->
 <div id="tsparticles"></div>
 
-<!-- ✅ Main Content -->
+<!-- Main Content -->
 <div class="container">
-<header class="navbar">
-<h1>Usman Waxun</h1>
-<nav>
-<ul>
-<li><a href="#about">About</a></li>
-<li><a href="#portfolio">Portfolio</a></li>
-</ul>
-</nav>
-</header>
+  <header class="navbar">
+    <h1>Usman Waxun</h1>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<section class="hero">
-<h2>Future Healthcare Analyst</h2>
-<p>Data Enthusiast | American Football & Rugby Fan</p>
-</section>
+  <!-- Hero section WITHOUT box -->
+  <section class="hero">
+    <h2>Future Healthcare Analyst</h2>
+    <p>Data Enthusiast | American Football & Rugby Fan</p>
+  </section>
 
-<section id="about" class="section-card">
-<h3>About Me</h3>
-<p>I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions. Outside data, American Football and Rugby are my go-to inspirations.</p>
-</section>
+  <!-- About section WITH cyan border box -->
+  <section id="about" class="section-card">
+    <h3>About Me</h3>
+    <p>
+      I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions. Outside data, American Football and Rugby are my go-to inspirations.
+    </p>
+  </section>
 
-<section id="portfolio" class="section-card">
-<h3>Featured Project</h3>
-<div class="project-card">
-<h4>Car Deal Data Analysis</h4>
-<p>Car sales trends using Python & Pandas.</p>
-<a href="#">View Project</a>
-</div>
-</section>
+  <!-- Project section WITH cyan border box -->
+  <section id="portfolio" class="section-card">
+    <h3>Project</h3>
+    <div class="project-card">
+      <h4>Car Deal Data Analysis</h4>
+      <p>Car sales trends using Python & Pandas.</p>
+      <a href="#">View Project</a>
+    </div>
+  </section>
 
-<footer>
-<p>8 August 2025</p>
-</footer>
+  <footer>
+    <p>8 August 2025</p>
+  </footer>
 </div>
 </body>
 </html>
