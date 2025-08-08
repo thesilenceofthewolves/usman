@@ -1,70 +1,77 @@
-/* Make sure the body and html take up full height */
+/* Full page black background */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  background-color: #000; /* solid black background */
+  color: white;           /* white text */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #ffffff;
-  position: relative;
-  z-index: 1;
+  overflow-x: hidden;
 }
 
-/* This is the container for tsParticles */
+/* tsParticles container */
 #tsparticles {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: -1;
   background: url('network-bg.png') center center / cover no-repeat;
+  background-color: #000; /* fallback black */
 }
 
-/* Main content styling */
+/* Main content area, centered */
 .main {
+  max-width: 900px;
+  margin: 80px auto 40px auto;
+  padding: 20px;
   text-align: center;
-  padding: 100px 20px;
-  max-width: 800px;
-  margin: auto;
+  z-index: 1; /* Above particles */
+  position: relative;
 }
 
-/* Heading style */
+/* Headings */
 h1 {
-  font-size: 2.5em;
-  margin-bottom: 0.5em;
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Paragraphs */
 p {
-  font-size: 1.2em;
-  line-height: 1.6;
-  margin-bottom: 1.5em;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-/* Button linking to your car deal portfolio */
+/* Button style */
 a.button {
   display: inline-block;
-  padding: 10px 20px;
-  background: #00adb5;
+  background-color: #00adb5;
   color: white;
+  padding: 12px 25px;
   text-decoration: none;
-  border-radius: 5px;
-  transition: background 0.3s ease;
+  border-radius: 6px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
 }
 
 a.button:hover {
-  background: #007e85;
+  background-color: #008c93;
 }
 
-/* Simple footer */
+/* Footer */
 footer {
-  position: fixed;
-  bottom: 10px;
-  width: 100%;
   text-align: center;
-  color: #aaa;
-  font-size: 0.9em;
+  color: #888;
+  font-size: 0.9rem;
+  padding-bottom: 15px;
+  position: relative;
+  z-index: 1;
 }
+
 
 
 
