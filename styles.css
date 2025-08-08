@@ -1,4 +1,4 @@
-/* Reset some default styles */
+/* Reset & Base styles */
 * {
   margin: 0;
   padding: 0;
@@ -6,80 +6,146 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #000;
-  color: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff;
+  color: #222;
   line-height: 1.6;
-  position: relative;
-  z-index: 1;
+  overflow-x: hidden;
 }
 
-/* tsParticles background container */
+/* Layout */
+#outer {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+  max-width: 1000px;
+  margin: auto;
+}
+
+/* Particles layer behind everything */
 #tsparticles {
   position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 0;
+  top: 0;
+  left: 0;
 }
 
-/* Main content */
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
-  position: relative;
-  z-index: 1;
-}
-
-/* Header */
-header {
+/* Navigation */
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
-header h1 {
-  color: cyan;
-  font-size: 1.8rem;
+.navbar h1 {
+  font-size: 2rem;
+  color: #111;
 }
 
-nav a {
-  color: #fff;
-  margin-left: 1.5rem;
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.navbar a {
   text-decoration: none;
+  color: #555;
   font-weight: bold;
 }
 
-nav a:hover {
-  color: cyan;
+.navbar a:hover {
+  color: #007bff;
 }
 
-/* Section */
-section {
-  background-color: rgba(0, 0, 0, 0.6);
-  border: 1px solid cyan;
-  border-radius: 10px;
+/* Hero section */
+.hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.hero h2 {
+  font-size: 2rem;
+  color: #222;
+}
+
+.hero p {
+  color: #555;
+}
+
+/* Section cards */
+.section-card {
+  background: #f8f9fa;
   padding: 1.5rem;
   margin-bottom: 2rem;
-  box-shadow: 0 0 10px #00ffff33;
+  border-left: 4px solid #007bff;
+  border-radius: 5px;
 }
 
-/* Featured project box inside section */
-.project-box {
-  background-color: rgba(255, 255, 255, 0.05);
+.section-card h3 {
+  color: #007bff;
+  margin-bottom: 0.5rem;
+}
+
+/* Project card */
+.project-card {
+  background: #eee;
   padding: 1rem;
-  border-radius: 6px;
+  border-radius: 5px;
+}
+
+.project-card h4 {
+  color: #007bff;
+}
+
+.project-card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.project-card a:hover {
+  text-decoration: underline;
+}
+
+/* Contact box */
+.contact-box {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.contact-button {
+  background: transparent;
+  color: #007bff;
+  border: 2px solid #007bff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-button:hover {
+  background: #007bff;
+  color: white;
 }
 
 /* Footer */
 footer {
-  text-align: center;
-  color: gray;
-  font-size: 0.8rem;
   margin-top: 4rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #555;
 }
+
+footer a {
+  color: #007bff;
+  text-decoration: none;
+}
+
 
 
