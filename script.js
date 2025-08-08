@@ -1,6 +1,6 @@
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
-<script src="particles.js"></script>
-<script src="script.js"></script>
+//<script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+//<script src="particles.js"></script>
+//<script src="script.js"></script>
 tsParticles.load("tsparticles", {
   fullScreen: {
     enable: true,
