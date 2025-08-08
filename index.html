@@ -1,70 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Particles Network Test</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Usman Waxun - Portfolio</title>
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: #000;
-      overflow: hidden;
-    }
+<!-- CSS file -->
+<link rel="stylesheet" href="styles.css" />
 
-    #tsparticles {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-    }
-  </style>
+<!-- tsparticles bundle -->
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
 
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+<!-- Your JS, defer to load after DOM -->
+<script src="script.js" defer></script>
 </head>
 <body>
-  <div id="tsparticles"></div>
 
-  <script>
-    tsParticles.load("tsparticles", {
-      fullScreen: { enable: false, zIndex: -1 },
-      background: { color: "#000000" },
-      particles: {
-        number: { value: 80, density: { enable: true, area: 800 } },
-        color: { value: "#00ffff" },
-        shape: { type: "circle" },
-        opacity: { value: 0.5 },
-        size: { value: 3, random: true },
-        links: {
-          enable: true,
-          distance: 150,
-          color: "#00ffff",
-          opacity: 0.4,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 2,
-          direction: "none",
-          outModes: { default: "bounce" }
-        }
-      },
-      interactivity: {
-        events: {
-          onHover: { enable: true, mode: "grab" },
-          onClick: { enable: true, mode: "push" },
-          resize: true
-        },
-        modes: {
-          grab: { distance: 180, links: { opacity: 0.6 } },
-          push: { quantity: 4 }
-        }
-      },
-      detectRetina: true
-    });
-  </script>
+<!-- Particles background container -->
+<div id="tsparticles" style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -1;"></div>
+
+<!-- Main content container -->
+<div class="container">
+  <header class="navbar">
+    <h1>Usman Waxun</h1>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section: simple text without box -->
+  <section class="hero">
+    <h2>Future Healthcare Analyst</h2>
+    <p>Data Enthusiast | American Football & Rugby Fan</p>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="section-card">
+    <h3>About Me</h3>
+    <p>I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions. Outside data, American Football and Rugby are my go-to inspirations.</p>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="section-card">
+    <h3>Project</h3>
+    <div class="project-card">
+      <h4>Car Deal Data Analysis</h4>
+      <p>Car sales trends using Python & Pandas.</p>
+      <a href="#">View Project</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>8 August 2025</p>
+  </footer>
+</div>
+
 </body>
 </html>
-
