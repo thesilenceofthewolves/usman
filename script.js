@@ -11,10 +11,11 @@ tsParticles.load("tsparticles", {
     opacity: { value: 0.6 }
   },
   interactivity: {
-    events: { onHover: { enable: true, mode: "grab" } },
-    modes: { grab: { distance: 120, links: { opacity: 0.6 } } }
+    events: { onHover: { enable: false }, onClick: { enable: false } },
+    modes: {}
   }
 });
+
 
 // Footer date
 const date = new Date();
