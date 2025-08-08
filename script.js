@@ -1,25 +1,31 @@
+// Initialize particles
 tsParticles.load("tsparticles", {
   fullScreen: {
     enable: true,
-    zIndex: -1
+    zIndex: -2
+  },
+  background: {
+    color: {
+      value: "transparent"
+    }
   },
   particles: {
     number: {
-      value: 40,
+      value: 50,
       density: {
         enable: true,
-        area: 1200
+        area: 1000
       }
     },
     color: {
-      value: "#bbb"  // lighter grey for better contrast with white background lines
+      value: "#ffffff"
     },
     links: {
       enable: true,
-      distance: 220,
-      color: "#bbb",
-      opacity: 0.6,
-      width: 1.2
+      distance: 150,
+      color: "#ffffff",
+      opacity: 0.4,
+      width: 1
     },
     collisions: {
       enable: false
@@ -28,18 +34,20 @@ tsParticles.load("tsparticles", {
       enable: true,
       speed: 0.6,
       direction: "none",
-      random: true,
+      random: false,
       straight: false,
-      outModes: "bounce"
+      outModes: {
+        default: "bounce"
+      }
     },
     opacity: {
-      value: 0.7
+      value: 0.6
     },
     shape: {
       type: "circle"
     },
     size: {
-      value: 2.5
+      value: 2
     }
   },
   interactivity: {
@@ -51,14 +59,24 @@ tsParticles.load("tsparticles", {
     },
     modes: {
       grab: {
-        distance: 150,
+        distance: 120,
         links: {
-          opacity: 0.8
+          opacity: 0.6
         }
       }
     }
   }
 });
+
+// Set date in footer
+const date = new Date();
+const formatted = date.toLocaleDateString(undefined, {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+});
+document.getElementById('date').textContent = formatted;
+
 
 
 
