@@ -5,22 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Usman Waxun - Portfolio</title>
 
-  <!-- ✅ Only ONE CSS file (use the correct filename) -->
+  <!-- Styles -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- ✅ Use only ONE version of tsparticles (2.11.1 is stable) -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <!-- tsParticles CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
 
-  <!-- ✅ Load your JS last and defer -->
+  <!-- JS -->
   <script src="script.js" defer></script>
 </head>
-
 <body>
-  <!-- ✅ Particles Background Layer -->
-  <div id="tsparticles"></div>
+  <div id="outer">
+    <!-- Particles Background -->
+    <div id="tsparticles"></div>
 
-  <!-- ✅ Main Content -->
-  <div class="container">
+    <!-- Header / Navigation -->
     <header class="navbar">
       <h1>Usman Waxun</h1>
       <nav>
@@ -31,16 +30,28 @@
       </nav>
     </header>
 
+    <!-- Hero -->
     <section class="hero">
       <h2>Future Healthcare Analyst</h2>
       <p>Data Enthusiast | American Football & Rugby Fan</p>
+
+      <!-- Contact Button -->
+      <div class="contact-box">
+        <button class="contact-button" onclick="document.getElementById('footer').scrollIntoView({ behavior: 'smooth' });">
+          Contact
+        </button>
+      </div>
     </section>
 
+    <!-- About Section -->
     <section id="about" class="section-card">
       <h3>About Me</h3>
-      <p>I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions. Outside data, American Football and Rugby are my go-to inspirations.</p>
+      <p>I’m passionate about turning data into meaningful insights.
+      I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.
+      Outside data, American Football and Rugby are my go-to inspirations.</p>
     </section>
 
+    <!-- Portfolio Section -->
     <section id="portfolio" class="section-card">
       <h3>Featured Project</h3>
       <div class="project-card">
@@ -50,9 +61,16 @@
       </div>
     </section>
 
-    <footer>
+    <!-- Footer -->
+    <footer id="footer">
+      <p>Let's connect:</p>
+      <p>
+        <a href="https://github.com/thesilenceofthewolves" target="_blank">GitHub</a> |
+        <a href="mailto:waxun@protonmail.com">Email Me</a>
+      </p>
       <p>8 August 2025</p>
     </footer>
   </div>
 </body>
 </html>
+
