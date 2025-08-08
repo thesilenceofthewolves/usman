@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Usman Waxun - Portfolio</title>
 
-  <!-- Link to external CSS -->
-  <link rel="stylesheet" href="styles.css">
+  <!-- ✅ Only ONE CSS file (use the correct filename) -->
+  <link rel="stylesheet" href="style.css" />
 
-  <!-- tsParticles CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
+  <!-- ✅ Use only ONE version of tsparticles (2.11.1 is stable) -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+
+  <!-- ✅ Load your JS last and defer -->
+  <script src="script.js" defer></script>
 </head>
+
 <body>
-  <div id="outer">
-    <!-- Background PNG layer -->
-    <div id="background-image"></div>
+  <!-- ✅ Particles Background Layer -->
+  <div id="tsparticles"></div>
 
-    <!-- Particles animation layer -->
-    <div id="tsparticles"></div>
-
-    <!-- Main content -->
+  <!-- ✅ Main Content -->
+  <div class="container">
     <header class="navbar">
       <h1>Usman Waxun</h1>
       <nav>
@@ -37,9 +38,7 @@
 
     <section id="about" class="section-card">
       <h3>About Me</h3>
-      <p> I’m passionate about turning data into meaningful insights.
-      I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.
-      Outside data, American Football and Rugby are my go-to inspirations.</p>
+      <p>I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions. Outside data, American Football and Rugby are my go-to inspirations.</p>
     </section>
 
     <section id="portfolio" class="section-card">
@@ -55,11 +54,5 @@
       <p>8 August 2025</p>
     </footer>
   </div>
-
-  <!-- Link to your JS -->
-  <script src="script.js"></script>
 </body>
 </html>
-
-
-
