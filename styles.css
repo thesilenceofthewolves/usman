@@ -1,16 +1,15 @@
-/* Reset & Base */
+/* Reset */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0; padding: 0; box-sizing: border-box;
 }
 
-body, html {
+html, body {
   height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #000000; /* Changed to black */
-  color: #ffffff;      /* Changed text to white */
+  background: #ffffff;
+  color: #111;
   overflow-x: hidden;
+  position: relative;
 }
 
 #tsparticles {
@@ -18,110 +17,78 @@ body, html {
   width: 100%;
   height: 100%;
   z-index: -1;
+  top: 0; left: 0;
 }
 
-/* Layout */
 .container {
   max-width: 900px;
   margin: 0 auto;
   padding: 2rem;
+  position: relative;
+  z-index: 1; /* Above particles */
 }
 
-/* Header */
+/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 2rem;
 }
 
 .navbar h1 {
   font-size: 1.8rem;
-  color: #00ffff; /* bright cyan */
-  font-weight: bold;
+  color: #111;
 }
 
 .navbar ul {
-  list-style: none; /* Remove bullets */
+  list-style: none;
   display: flex;
-  gap: 1.5rem;
-  color: #ffffff;
+  gap: 1rem;
 }
 
 .navbar a {
   text-decoration: none;
-  color: #ffffff;
+  color: #333;
   font-weight: bold;
-  cursor: pointer;
 }
 
-.navbar a:hover {
-  color: #00ffff;
-}
-
-/* Hero Section - NO box */
+/* Hero Section */
 .hero {
-  text-align: left;
-  padding: 3rem 0;
-  margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
 .hero h2 {
   font-size: 2rem;
-  margin-bottom: 0.3rem;
-  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
 .hero p {
-  color: #aaa;
+  color: #666;
   font-size: 1.1rem;
 }
 
-/* Sections with boxes */
+/* Sections */
 .section-card {
-  background: transparent; /* Remove solid background */
-  border: 1px solid #00ffff; /* Thin cyan border */
+  background: rgba(240, 240, 240, 0.95);
   padding: 1.5rem;
+  border-left: 4px solid #007BFF;
   margin-bottom: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 0 10px #00ffff33; /* subtle glow */
-}
-
-/* About section styles */
-#about {
-  /* same as section-card */
-}
-
-/* Portfolio renamed to Project and simplified */
-#portfolio {
-  /* same as section-card */
+  border-radius: 5px;
 }
 
 .project-card {
-  background: transparent;
-  padding: 0;
+  background: #eee;
+  padding: 1rem;
+  border-radius: 5px;
   margin-top: 1rem;
-  border-radius: 0;
-  box-shadow: none;
-}
-
-.project-card h4 {
-  font-weight: 700;
-  margin-bottom: 0.3rem;
-}
-
-.project-card p {
-  margin-bottom: 0.3rem;
-  color: #ccc;
 }
 
 .project-card a {
-  color: #aa88ff;
-  text-decoration: underline;
-  font-weight: 600;
-}
-
-.project-card a:hover {
-  color: #ffaa00;
+  color: #007BFF;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 /* Footer */
@@ -129,6 +96,7 @@ footer {
   text-align: center;
   margin-top: 3rem;
   padding: 1rem 0;
-  border-top: 1px solid #444;
+  border-top: 1px solid #ccc;
   color: #666;
+  font-size: 0.9rem;
 }
