@@ -3,22 +3,41 @@ tsParticles.load("tsparticles", {
   background: { color: "transparent" },
   particles: {
     number: { value: 40, density: { enable: true, area: 800 } },
-    color: { value: "#aaa" },
-    links: { enable: true, distance: 150, color: "#aaa", opacity: 0.4, width: 1 },
-    move: { enable: true, speed: 0.8, random: true, outModes: "bounce" },
+    color: { value: "#ffffff" },       // white dots
+    links: {
+      enable: true,
+      distance: 150,
+      color: "#ffffff",                // white lines
+      opacity: 0.4,
+      width: 1
+    },
+    move: {
+      enable: true,
+      speed: 1,
+      random: true,
+      outModes: "bounce"
+    },
     shape: { type: "circle" },
     size: { value: 2 },
     opacity: { value: 0.6 }
   },
   interactivity: {
-    events: { onHover: { enable: false }, onClick: { enable: false } },
-    modes: {}
-  }
+    events: {
+      onHover: {
+        enable: true,
+        mode: "grab"    // when mouse hovers, lines move toward mouse
+      },
+      onClick: {
+        enable: false
+      }
+    },
+    modes: {
+      grab: {
+        distance: 200,
+        links: { opacity: 0.7 }
+      }
+    }
+  },
+  detectRetina: true
 });
 
-
-// Footer date
-const date = new Date();
-document.getElementById('date').textContent = date.toLocaleDateString(undefined, {
-  year: 'numeric', month: 'long', day: 'numeric'
-});
