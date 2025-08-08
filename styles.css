@@ -1,95 +1,167 @@
-/* Base styling resets */
+/* Reset & Base */
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
+
 html, body {
   height: 100%;
-  font-family: 'Segoe UI', sans-serif;
-  color: #222;
-  background: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #000;
+  color: white;
   overflow-x: hidden;
-}
-
-/* Background layers */
-#background-image {
-  position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -3;
-  background: url('network-bg.png') center center / cover no-repeat;
-  opacity: 0.3;
-}
-#tsparticles {
-  position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: -2;
-}
-
-/* Hero section */
-.hero {
   position: relative;
-  min-height: 100vh;
+}
+
+/* Background Image Layer */
+#background-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: url('network-bg.png') center center / cover no-repeat;
+  opacity: 0.25; /* Slightly transparent */
+  z-index: -3;
+}
+
+/* Particle Layer */
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+}
+
+/* Navbar */
+.navbar {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.nav-container {
+  max-width: 1000px;
+  margin: 0 auto;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #00adb5;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: #eee;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #00adb5;
+}
+
+/* Hero Section */
+.hero {
+  padding-top: 100px; /* space for fixed navbar */
+  height: 300px;
+  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
 }
-.nav {
-  position: absolute;
-  top: 20px; right: 40px;
-}
-.nav-list {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-}
-.nav-list a {
-  text-decoration: none;
-  color: #222;
-  font-weight: 500;
-  transition: color 0.3s;
-}
-.nav-list a:hover {
-  color: teal;
+
+.hero-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #ffffff;
 }
 
-/* Hero content styling */
-.hero-content h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-}
 .hero-content p {
   font-size: 1.2rem;
-  opacity: 0.8;
+  font-weight: 300;
+  color: #cccccc;
 }
 
-/* About & project sections */
-section {
-  padding: 60px 20px;
-  max-width: 800px;
-  margin: auto;
+/* Common Container */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  box-shadow: 0 0 10px #00adb599;
 }
-#project {
-  text-align: center;
+
+/* Section Headings */
+h2 {
+  margin-bottom: 15px;
+  color: #00adb5;
 }
-.btn {
-  display: inline-block;
-  padding: 14px 28px;
-  background: none;
-  border: 2px solid teal;
-  color: teal;
-  border-radius: 4px;
-  font-weight: 600;
+
+/* About Paragraph */
+.about p {
+  line-height: 1.6;
+  color: #e0e0e0;
+}
+
+/* Portfolio Project Card */
+.project-card {
+  background-color: rgba(20, 20, 20, 0.7);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px #00adb5aa;
+}
+
+.project-card h3 {
+  margin-top: 0;
+  color: #00adb5;
+}
+
+.project-card p {
+  margin-bottom: 10px;
+  color: #cccccc;
+}
+
+.project-card a {
+  color: #00adb5;
   text-decoration: none;
-  transition: background 0.3s, color 0.3s;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
-.btn:hover {
-  background: teal;
-  color: #fff;
+
+.project-card a:hover {
+  text-decoration: underline;
+  color: #00cfd5;
 }
 
 /* Footer */
 footer {
-  padding: 40px 0;
   text-align: center;
-  color: #666;
+  padding: 20px;
   font-size: 0.9rem;
+  color: #888;
+  position: relative;
+  z-index: 2;
 }
+
