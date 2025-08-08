@@ -3,46 +3,43 @@ tsParticles.load("tsparticles", {
     enable: true,
     zIndex: -1
   },
-  background: {
-    color: "transparent" // transparent so your PNG background shows through
-  },
   particles: {
     number: {
-      value: 30,
+      value: 40,
       density: {
         enable: true,
-        area: 1000
+        area: 1200
       }
     },
     color: {
-      value: "#222"  // dark gray particles for contrast
+      value: "#bbb"  // lighter grey for better contrast with white background lines
     },
     links: {
       enable: true,
-      distance: 200,
-      color: "#222",  // dark gray lines
-      opacity: 0.5,
-      width: 1
+      distance: 220,
+      color: "#bbb",
+      opacity: 0.6,
+      width: 1.2
     },
     collisions: {
       enable: false
     },
     move: {
       enable: true,
-      speed: 0.5,
+      speed: 0.6,
       direction: "none",
       random: true,
       straight: false,
       outModes: "bounce"
     },
     opacity: {
-      value: 0.6
+      value: 0.7
     },
     shape: {
       type: "circle"
     },
     size: {
-      value: 2
+      value: 2.5
     }
   },
   interactivity: {
@@ -54,13 +51,14 @@ tsParticles.load("tsparticles", {
     },
     modes: {
       grab: {
-        distance: 140,
+        distance: 150,
         links: {
-          opacity: 0.7
+          opacity: 0.8
         }
       }
     }
   }
 });
+
 
 
