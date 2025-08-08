@@ -1,15 +1,19 @@
-/* Full page black background */
+/* Reset and base */
+* {
+  box-sizing: border-box;
+}
+
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  background-color: #000; /* solid black background */
-  color: white;           /* white text */
+  background-color: #000; /* solid black */
+  color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   overflow-x: hidden;
 }
 
-/* tsParticles container */
+/* Particle background */
 #tsparticles {
   position: fixed;
   top: 0; left: 0;
@@ -17,60 +21,127 @@ html, body {
   height: 100vh;
   z-index: -1;
   background: url('network-bg.png') center center / cover no-repeat;
-  background-color: #000; /* fallback black */
+  background-color: #000;
 }
 
-/* Main content area, centered */
-.main {
-  max-width: 900px;
-  margin: 80px auto 40px auto;
-  padding: 20px;
+/* Navigation */
+.navbar {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.7);
+}
+
+.nav-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #00adb5;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  color: #eee;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: #00adb5;
+}
+
+/* Hero Section */
+.hero {
+  padding-top: 80px; /* space for fixed navbar */
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  z-index: 1; /* Above particles */
-  position: relative;
 }
 
-/* Headings */
-h1 {
-  font-size: 3rem;
+.hero-content h2 {
+  font-size: 2.5rem;
   margin-bottom: 0.5rem;
 }
 
-/* Paragraphs */
-p {
+.hero-content p {
   font-size: 1.2rem;
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
-  max-width: 700px;
-  margin-left: auto;
-  margin-right: auto;
+  font-weight: 300;
 }
 
-/* Button style */
-a.button {
-  display: inline-block;
-  background-color: #00adb5;
-  color: white;
-  padding: 12px 25px;
+/* Common container for about and portfolio */
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 0 10px #00adb5aa;
+}
+
+h2 {
+  margin-bottom: 15px;
+  color: #00adb5;
+}
+
+/* Project card */
+.project-card {
+  background-color: rgba(30, 30, 30, 0.7);
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.project-card h3 {
+  margin-top: 0;
+  color: #00adb5;
+}
+
+.project-card p {
+  margin-bottom: 10px;
+}
+
+.project-card a {
+  color: #00adb5;
   text-decoration: none;
-  border-radius: 6px;
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition: color 0.3s ease;
 }
 
-a.button:hover {
-  background-color: #008c93;
+.project-card a:hover {
+  text-decoration: underline;
+  color: #00cfd5;
 }
 
 /* Footer */
 footer {
   text-align: center;
-  color: #888;
+  padding: 20px;
   font-size: 0.9rem;
-  padding-bottom: 15px;
+  color: #888;
   position: relative;
-  z-index: 1;
+  z-index: 5;
 }
+
 
 
 
