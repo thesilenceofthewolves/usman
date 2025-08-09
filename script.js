@@ -1,8 +1,7 @@
+console.log("✅ script.js loaded");
+
 tsParticles.load("tsparticles", {
-  fullScreen: {
-    enable: true,
-    zIndex: -1
-  },
+  fullScreen: { enable: true, zIndex: -1 },
   background: {
     color: "#ffffff"
   },
