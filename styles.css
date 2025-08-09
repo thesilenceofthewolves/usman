@@ -1,18 +1,19 @@
-/* Reset & Base Styles */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body, html {
+html, body {
   height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Arial, sans-serif;
   background-color: #ffffff;
   color: #111;
   overflow-x: hidden;
 }
 
+/* Particle background */
 #tsparticles {
   position: fixed;
   top: 0;
@@ -22,7 +23,7 @@ body, html {
   z-index: -1;
 }
 
-/* Layout */
+/* Container */
 .container {
   max-width: 900px;
   margin: 0 auto;
@@ -76,7 +77,7 @@ body, html {
   width: 100%;
 }
 
-/* Hero Section */
+/* Hero */
 .hero {
   text-align: center;
   padding: 3rem 0;
@@ -91,7 +92,7 @@ body, html {
   color: #666;
 }
 
-/* Section Cards */
+/* Section Card */
 .section-card {
   background: rgba(240, 240, 240, 0.95);
   padding: 1.5rem;
