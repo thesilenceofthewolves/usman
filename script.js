@@ -1,74 +1,62 @@
 tsParticles.load("tsparticles", {
   background: {
-    color: "#000000",
-  },
-  fpsLimit: 60,
-  particles: {
-    number: {
-      value: 60,
-      density: {
-        enable: true,
-        area: 900
-      }
-    },
-    color: { value: "#00e5ff" },
-    shape: {
-      type: "circle",
-    },
-    opacity: {
-      value: 0.5,
-      random: false,
-      anim: {
-        enable: false,
-      }
-    },
-    size: {
-      value: 3,
-      random: { enable: true, minimumValue: 1 }
-    },
-    links: {
-      enable: true,
-      distance: 150,
-      color: "#00e5ff",
-      opacity: 0.4,
-      width: 1
-    },
-    move: {
-      enable: true,
-      speed: 2,
-      direction: "none",
-      random: false,
-      straight: false,
-      outModes: {
-        default: "bounce"
-      },
-      attract: {
-        enable: false,
-      }
+    color: {
+      value: "#ffffff"
     }
   },
+  fpsLimit: 60,
   interactivity: {
     events: {
       onHover: {
         enable: true,
-        mode: "grab"
-      },
-      onClick: {
-        enable: true,
-        mode: "push"
+        mode: "repulse"
       },
       resize: true
     },
     modes: {
-      grab: {
-        distance: 140,
-        links: {
-          opacity: 0.7
-        }
-      },
-      push: {
-        quantity: 4
+      repulse: {
+        distance: 100,
+        duration: 0.4
       }
+    }
+  },
+  particles: {
+    color: {
+      value: "#aaaaaa"
+    },
+    links: {
+      color: "#cccccc",
+      distance: 150,
+      enable: true,
+      opacity: 0.3,
+      width: 1
+    },
+    collisions: {
+      enable: false
+    },
+    move: {
+      enable: true,
+      speed: 1,
+      direction: "none",
+      outModes: {
+        default: "bounce"
+      }
+    },
+    number: {
+      density: {
+        enable: true,
+        area: 800
+      },
+      value: 70
+    },
+    opacity: {
+      value: 0.5
+    },
+    shape: {
+      type: "circle"
+    },
+    size: {
+      value: { min: 1, max: 3 }
     }
   },
   detectRetina: true
