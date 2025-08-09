@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width">
+  <title>Particles Test</title>
+  <style>
+    html, body {margin: 0; height: 100%; overflow: hidden;}
+    #tsparticles {position: fixed;top:0;left:0;width:100%;height:100%;z-index:-1;}
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+</head>
+<body>
+  <div id="tsparticles"></div>
+  <script>
+    tsParticles.load("tsparticles", {
+      fullScreen: { enable: true, zIndex: -1 },
+      background: { color: "#ffffff" },
+      particles: {
+        number: { value: 80, density: { enable: true, area: 800 } },
+        color: { value: "#999" },
+        links: { enable: true, distance: 120, color: "#ccc", opacity: 0.4, width: 1 },
+        move: { enable: true, speed: 1 },
+        size: { value: 3 },
+        opacity: { value: 0.5 }
+      },
+      interactivity: {
+        events: { onHover: { enable: true, mode: "repulse" }, resize: true },
+        modes: { repulse: { distance: 100 } }
+      },
+      detectRetina: true
+    });
+  </script>
+</body>
+</html>
