@@ -3,11 +3,6 @@ tsParticles.load("tsparticles", {
     enable: true,
     zIndex: -1
   },
-  background: {
-    color: {
-      value: "#ffffff"
-    }
-  },
   particles: {
     number: {
       value: 60,
@@ -17,58 +12,46 @@ tsParticles.load("tsparticles", {
       }
     },
     color: {
-      value: "#ccc"
-    },
-    shape: {
-      type: "circle"
-    },
-    opacity: {
-      value: 0.5,
-      random: false
-    },
-    size: {
-      value: 3,
-      random: true
+      value: "#888888"
     },
     links: {
       enable: true,
       distance: 150,
-      color: "#aaa",
+      color: "#888888",
       opacity: 0.4,
       width: 1
     },
     move: {
       enable: true,
-      speed: 2,
+      speed: 1.5,
       direction: "none",
       outModes: {
-        default: "bounce"
+        default: "out"
       }
+    },
+    size: {
+      value: { min: 1, max: 3 }
+    },
+    opacity: {
+      value: 0.6
     }
   },
   interactivity: {
     events: {
       onHover: {
         enable: true,
-        mode: "grab"
-      },
-      onClick: {
-        enable: true,
-        mode: "push"
+        mode: "repulse"
       },
       resize: true
     },
     modes: {
-      grab: {
-        distance: 140,
-        links: {
-          opacity: 0.7
-        }
-      },
-      push: {
-        quantity: 4
+      repulse: {
+        distance: 100,
+        duration: 0.4
       }
     }
   },
-  detectRetina: true
+  background: {
+    color: "#ffffff"
+  }
 });
