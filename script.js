@@ -22,17 +22,14 @@ tsParticles.load("tsparticles", {
   },
   particles: {
     color: {
-      value: "#aaaaaa"
+      value: "#999999"
     },
     links: {
       color: "#cccccc",
-      distance: 150,
+      distance: 140,
       enable: true,
-      opacity: 0.3,
+      opacity: 0.4,
       width: 1
-    },
-    collisions: {
-      enable: false
     },
     move: {
       enable: true,
@@ -43,11 +40,11 @@ tsParticles.load("tsparticles", {
       }
     },
     number: {
+      value: 70,
       density: {
         enable: true,
         area: 800
-      },
-      value: 70
+      }
     },
     opacity: {
       value: 0.5
