@@ -4,31 +4,32 @@ tsParticles.load("tsparticles", {
     zIndex: -1
   },
   background: {
-    color: {
-      value: "#ffffff" // white background
-    }
+    color: "#ffffff" // white background
   },
   particles: {
     number: {
-      value: 60,
+      value: 80,
       density: {
         enable: true,
         area: 800
       }
     },
     color: {
-      value: "#999999" // grey particles
+      value: "#999999" // gray particle color
     },
     links: {
       enable: true,
-      distance: 150,
-      color: "#999999", // grey links
+      distance: 120,
+      color: "#cccccc", // gray link color
       opacity: 0.4,
       width: 1
     },
     move: {
       enable: true,
-      speed: 1.5,
+      speed: 1,
+      direction: "none",
+      random: false,
+      straight: false,
       outModes: {
         default: "bounce"
       }
@@ -37,7 +38,7 @@ tsParticles.load("tsparticles", {
       value: 3
     },
     opacity: {
-      value: 0.6
+      value: 0.5
     }
   },
   interactivity: {
