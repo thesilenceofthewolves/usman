@@ -7,7 +7,7 @@ tsParticles.load("tsparticles", {
   },
   particles: {
     number: {
-      value: 80,
+      value: 150, // More particles!
       density: {
         enable: true,
         area: 800
@@ -25,10 +25,17 @@ tsParticles.load("tsparticles", {
     },
     move: {
       enable: true,
-      speed: 1
+      speed: 4, // Much faster
+      direction: "none",
+      random: false,
+      straight: false,
+      outModes: {
+        default: "bounce"
+      }
     },
     size: {
-      value: 3
+      value: 3,
+      random: { enable: true, minimumValue: 1 }
     },
     opacity: {
       value: 0.5
@@ -44,7 +51,8 @@ tsParticles.load("tsparticles", {
     },
     modes: {
       repulse: {
-        distance: 100
+        distance: 150, // More dramatic repulsion
+        duration: 0.4
       }
     }
   },
