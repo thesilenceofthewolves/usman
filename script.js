@@ -1,6 +1,6 @@
 tsParticles.load("tsparticles", {
   background: {
-    color: "#000000",
+    color: "#ffffff"
   },
   fpsLimit: 60,
   particles: {
@@ -8,19 +8,13 @@ tsParticles.load("tsparticles", {
       value: 60,
       density: {
         enable: true,
-        area: 900
+        area: 800
       }
     },
-    color: { value: "#00e5ff" },
-    shape: {
-      type: "circle",
-    },
+    color: { value: "#999999" },
+    shape: { type: "circle" },
     opacity: {
-      value: 0.5,
-      random: false,
-      anim: {
-        enable: false,
-      }
+      value: 0.5
     },
     size: {
       value: 3,
@@ -29,22 +23,17 @@ tsParticles.load("tsparticles", {
     links: {
       enable: true,
       distance: 150,
-      color: "#00e5ff",
+      color: "#ccc",
       opacity: 0.4,
       width: 1
     },
     move: {
       enable: true,
-      speed: 2,
+      speed: 1,
       direction: "none",
       random: false,
       straight: false,
-      outModes: {
-        default: "bounce"
-      },
-      attract: {
-        enable: false,
-      }
+      outModes: { default: "bounce" }
     }
   },
   interactivity: {
@@ -61,9 +50,9 @@ tsParticles.load("tsparticles", {
     },
     modes: {
       grab: {
-        distance: 140,
+        distance: 120,
         links: {
-          opacity: 0.7
+          opacity: 0.5
         }
       },
       push: {
