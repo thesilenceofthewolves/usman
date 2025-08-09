@@ -4,7 +4,7 @@ tsParticles.load("tsparticles", {
     zIndex: -1
   },
   background: {
-    color: "#ffffff" // white background
+    color: "#ffffff"
   },
   particles: {
     number: {
@@ -15,12 +15,12 @@ tsParticles.load("tsparticles", {
       }
     },
     color: {
-      value: "#999999" // gray particle color
+      value: "#999999"
     },
     links: {
       enable: true,
       distance: 120,
-      color: "#cccccc", // gray link color
+      color: "#cccccc",
       opacity: 0.4,
       width: 1
     },
@@ -28,8 +28,6 @@ tsParticles.load("tsparticles", {
       enable: true,
       speed: 1,
       direction: "none",
-      random: false,
-      straight: false,
       outModes: {
         default: "bounce"
       }
@@ -47,18 +45,11 @@ tsParticles.load("tsparticles", {
         enable: true,
         mode: "repulse"
       },
-      onClick: {
-        enable: true,
-        mode: "push"
-      },
       resize: true
     },
     modes: {
       repulse: {
         distance: 100
-      },
-      push: {
-        quantity: 4
       }
     }
   },
