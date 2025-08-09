@@ -1,75 +1,102 @@
-tsParticles.load("tsparticles", {
-  background: {
-    color: "#000000",
-  },
-  fpsLimit: 60,
-  particles: {
-    number: {
-      value: 60,
-      density: {
-        enable: true,
-        area: 900
-      }
-    },
-    color: { value: "#00e5ff" },
-    shape: {
-      type: "circle",
-    },
-    opacity: {
-      value: 0.5,
-      random: false,
-      anim: {
-        enable: false,
-      }
-    },
-    size: {
-      value: 3,
-      random: { enable: true, minimumValue: 1 }
-    },
-    links: {
-      enable: true,
-      distance: 150,
-      color: "#00e5ff",
-      opacity: 0.4,
-      width: 1
-    },
-    move: {
-      enable: true,
-      speed: 2,
-      direction: "none",
-      random: false,
-      straight: false,
-      outModes: {
-        default: "bounce"
-      },
-      attract: {
-        enable: false,
-      }
-    }
-  },
-  interactivity: {
-    events: {
-      onHover: {
-        enable: true,
-        mode: "grab"
-      },
-      onClick: {
-        enable: true,
-        mode: "push"
-      },
-      resize: true
-    },
-    modes: {
-      grab: {
-        distance: 140,
-        links: {
-          opacity: 0.7
-        }
-      },
-      push: {
-        quantity: 4
-      }
-    }
-  },
-  detectRetina: true
-});
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #ffffff;
+  color: #111;
+  overflow-x: hidden;
+  position: relative;
+  z-index: 0;
+}
+#tsparticles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: #000000; /* black background for contrast */
+}
+
+/* Layout container */
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Header */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.navbar h1 {
+  font-size: 1.8rem;
+  color: #00e5ff;
+  font-weight: bold;
+}
+.navbar ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: white;
+}
+.hero h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.hero p {
+  color: #bbb;
+  margin-bottom: 1rem;
+}
+
+/* Sections */
+.section-card {
+  background: rgba(0, 0, 0, 0.6);
+  padding: 1.5rem;
+  border-left: 4px solid #00e5ff;
+  margin-bottom: 2rem;
+  border-radius: 5px;
+  color: white;
+}
+
+.project-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+.project-card a {
+  color: #aaccff;
+  text-decoration: none;
+  font-weight: bold;
+}
+.project-card a:hover {
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 1rem 0;
+  border-top: 1px solid #444;
+  color: #888;
+}
