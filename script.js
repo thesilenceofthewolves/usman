@@ -1,60 +1,76 @@
-console.log("✅ script.js loaded");
-
 tsParticles.load("tsparticles", {
-  fullScreen: { enable: true, zIndex: -1 },
   background: {
-    color: "#ffffff"
+    color: "#000000",
   },
+  fpsLimit: 60,
   particles: {
     number: {
-      value: 150, // More particles!
+      value: 60,
       density: {
         enable: true,
-        area: 800
+        area: 900
       }
     },
-    color: {
-      value: "#999999"
+    color: { value: "#00e5ff" },
+    shape: {
+      type: "circle",
     },
-    links: {
-      enable: true,
-      distance: 120,
-      color: "#cccccc",
-      opacity: 0.4,
-      width: 1
-    },
-    move: {
-      enable: true,
-      speed: 4, // Much faster
-      direction: "none",
+    opacity: {
+      value: 0.5,
       random: false,
-      straight: false,
-      outModes: {
-        default: "bounce"
+      anim: {
+        enable: false,
       }
     },
     size: {
       value: 3,
       random: { enable: true, minimumValue: 1 }
     },
-    opacity: {
-      value: 0.5
+    links: {
+      enable: true,
+      distance: 150,
+      color: "#00e5ff",
+      opacity: 0.4,
+      width: 1
+    },
+    move: {
+      enable: true,
+      speed: 2,
+      direction: "none",
+      random: false,
+      straight: false,
+      outModes: {
+        default: "bounce"
+      },
+      attract: {
+        enable: false,
+      }
     }
   },
   interactivity: {
     events: {
       onHover: {
         enable: true,
-        mode: "repulse"
+        mode: "grab"
+      },
+      onClick: {
+        enable: true,
+        mode: "push"
       },
       resize: true
     },
     modes: {
-      repulse: {
-        distance: 150, // More dramatic repulsion
-        duration: 0.4
+      grab: {
+        distance: 140,
+        links: {
+          opacity: 0.7
+        }
+      },
+      push: {
+        quantity: 4
       }
     }
   },
   detectRetina: true
 });
+
