@@ -4,38 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Usman Waxun - Portfolio</title>
-  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- tsParticles Library -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
 </head>
 <body>
 
-  <!-- Particles Background -->
+  <!-- Particle Background -->
   <div id="tsparticles"></div>
 
+  <!-- Main content -->
   <div class="container">
     <header class="navbar">
-      <h1>Usman Waxun</h1>
+      <div class="logo"><a href="#hero">HOME</a></div>
       <nav>
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#portfolio">Portfolio</a></li>
+        <ul class="nav-links">
+          <li><a href="#about">ABOUT</a></li>
+          <li><a href="#portfolio">PORTFOLIO</a></li>
+          <li><a href="#contact">CONTACT</a></li>
         </ul>
       </nav>
     </header>
 
-    <section class="hero">
-      <h2>Future Healthcare Analyst</h2>
-      <p>Data Enthusiast | American Football & Rugby Fan</p>
+    <section id="hero" class="hero">
+      <h1>Usman Waxun</h1>
+      <p>Future Healthcare Analyst<br>Data Enthusiast | American Football & Rugby Fan</p>
+
+      <div class="social-icons">
+        <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/yourusername" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      </div>
     </section>
 
     <section id="about" class="section-card">
-      <h3>About Me</h3>
+      <h2>About Me</h2>
       <p>
-        I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions. Outside data, American Football and Rugby are my go-to inspirations.
+        I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.
       </p>
     </section>
 
     <section id="portfolio" class="section-card">
-      <h3>Project</h3>
+      <h2>Project</h2>
       <div class="project-card">
         <strong>Car Deal Data Analysis</strong><br />
         Car sales trends using Python & Pandas.<br />
@@ -43,14 +58,17 @@
       </div>
     </section>
 
+    <section id="contact" class="section-card contact-box">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:usman@protonmail.com">usman@protonmail.com</a></p>
+    </section>
+
     <footer>
-      <p>8 August 2025</p>
+      <p>9 August 2025</p>
     </footer>
   </div>
 
-  <!-- tsparticles library -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
-  <!-- Your custom JS -->
+  <!-- JS config -->
   <script src="script.js"></script>
 </body>
 </html>
