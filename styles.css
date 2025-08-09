@@ -1,4 +1,4 @@
-/* Base layout */
+/* Basic Reset */
 * {
   margin: 0;
   padding: 0;
@@ -7,12 +7,12 @@
 
 html, body {
   height: 100%;
-  background-color: #ffffff;
   font-family: Arial, sans-serif;
-  overflow-x: hidden;
+  background: #ffffff;
+  color: #111;
 }
 
-/* Particles layer */
+/* Particles Container */
 #tsparticles {
   position: fixed;
   top: 0;
@@ -22,26 +22,25 @@ html, body {
   z-index: -1;
 }
 
-/* Container and structure */
+/* Layout */
 .container {
-  max-width: 900px;
-  margin: auto;
+  max-width: 960px;
+  margin: 0 auto;
   padding: 2rem;
-  position: relative;
-  z-index: 1;
 }
 
-/* Header */
+/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 2rem;
 }
 
 .logo {
-  font-size: 1.5rem;
-  font-weight: bold;
   color: green;
+  font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .nav-links {
@@ -58,14 +57,14 @@ html, body {
 }
 
 .nav-links a:hover {
-  color: green;
-  border-bottom: 2px solid green;
+  color: #007BFF;
+  border-bottom: 2px solid #007BFF;
 }
 
-/* Hero section */
+/* Hero Section */
 .hero {
   text-align: center;
-  margin: 3rem 0;
+  margin-bottom: 3rem;
 }
 
 .hero h2 {
@@ -74,20 +73,22 @@ html, body {
 }
 
 .hero p {
-  color: #666;
+  font-size: 1rem;
+  color: #555;
 }
 
-/* Card sections */
+/* Section Cards */
 .section-card {
-  background: rgba(240, 240, 240, 0.95);
+  background: rgba(245, 245, 245, 0.95);
   padding: 1.5rem;
   border-left: 4px solid #007BFF;
   margin-bottom: 2rem;
   border-radius: 5px;
 }
 
+/* Project Card */
 .project-card {
-  background: #eee;
+  background: #f0f0f0;
   padding: 1rem;
   border-radius: 5px;
   margin-top: 1rem;
@@ -102,13 +103,8 @@ html, body {
 /* Footer */
 footer {
   text-align: center;
-  font-size: 0.9rem;
-  margin-top: 3rem;
-  padding-top: 1rem;
+  margin-top: 2rem;
+  padding: 1rem 0;
   border-top: 1px solid #ccc;
-}
-
-footer a {
-  color: #007BFF;
-  text-decoration: none;
+  font-size: 0.9rem;
 }
