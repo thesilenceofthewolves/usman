@@ -1,10 +1,16 @@
-html, body {
+/* Base */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
   height: 100%;
-  overflow: hidden;
-  font-family: 'Segoe UI', sans-serif;
-  background: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fff;
+  color: #111;
+  overflow-x: hidden;
 }
 
 #tsparticles {
@@ -16,63 +22,48 @@ html, body {
   z-index: -1;
 }
 
+/* Layout */
 .container {
-  position: relative;
-  z-index: 1;
   max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1rem;
+  margin: 0 auto;
+  padding: 2rem;
 }
 
+/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
 }
 
 .logo {
   color: green;
-  font-size: 1.5rem;
   font-weight: bold;
+  font-size: 1.5rem;
 }
 
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .nav-links a {
   text-decoration: none;
   color: #333;
   font-weight: bold;
-  position: relative;
-  transition: color 0.3s;
+  transition: all 0.2s ease;
 }
 
 .nav-links a:hover {
   color: #007BFF;
+  text-decoration: underline;
 }
 
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0;
-  height: 2px;
-  background: #007BFF;
-  transition: width 0.3s;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
+/* Hero */
 .hero {
   text-align: center;
-  margin-bottom: 2rem;
+  padding: 3rem 0;
 }
 
 .hero h2 {
@@ -84,8 +75,9 @@ html, body {
   color: #666;
 }
 
+/* Section Cards */
 .section-card {
-  background: #f3f3f3;
+  background: rgba(240, 240, 240, 0.95);
   padding: 1.5rem;
   border-left: 4px solid #007BFF;
   margin-bottom: 2rem;
@@ -105,17 +97,17 @@ html, body {
   font-weight: bold;
 }
 
+/* Footer */
 footer {
   text-align: center;
   margin-top: 3rem;
   padding: 1rem 0;
   border-top: 1px solid #ccc;
-  font-size: 0.9rem;
 }
 
 footer a {
-  color: #007BFF;
   text-decoration: none;
+  color: #007BFF;
 }
 
 footer a:hover {
