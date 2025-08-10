@@ -1,3 +1,4 @@
+// Ayah counts per surah (114 surahs, total = 6236)
 const ayahCounts = [
   7, 286, 200, 176, 120, 165, 206, 75, 129, 109, 123, 111,
   43, 52, 99, 128, 111, 110, 98, 135, 112, 78, 118, 64,
@@ -22,6 +23,25 @@ function getSurahAyah(globalAyahNum) {
   throw new Error("Invalid ayah number");
 }
 
+async function fetchSurahName(surahNumber) {
+  const res = await fetch(`https://api.quran.com/api/v4/chapters/${surahNumber}`);
+  const data = await res.json();
+  return data.chapter.english_name;
+}
+
+async function fetchAyah(surah, ayah) {
+  const key = `${surah}:${ayah}`;
+  const res = await fetch(`https://api.quran.com/api/v4/verses/by_key/${key}?language=en&translations=131&words=false`);
+  const data = await res.json();
+
+  return {
+    arabic: data.verse.text_uthmani,
+    translation: data.verse.translations[0].text,
+    surah: data.verse.chapter_id,
+    ayah: data.verse.verse_number
+  };
+}
+
 async function getDailyAyah() {
   const totalAyahs = 6236;
   const today = new Date();
@@ -29,50 +49,23 @@ async function getDailyAyah() {
   const hash = [...seed].reduce((acc, c) => acc + c.charCodeAt(0), 0);
   const globalAyahNum = (hash * 17) % totalAyahs + 1;
 
-  function formatKey(surah, ayah) {
-    return `${surah}:${ayah}`;
-  }
-
-  async function fetchAyah(key) {
-    const response = await fetch(`https://api.quran.com/api/v4/verses/by_key/${key}?language=en&words=false`);
-    if (!response.ok) throw new Error(`Failed to fetch ayah ${key}: ${response.statusText}`);
-    const json = await response.json();
-    return {
-      arabic: json.verse.text_uthmani,
-      translation: json.translations?.[0]?.text || 'Translation missing',
-      verseKey: json.verse.verse_key,
-      surahNumber: json.verse.chapter_id,
-      ayahNumber: json.verse.verse_number
-    };
-  }
-
-  async function fetchSurahName(surahNumber) {
-    const res = await fetch(`https://api.quran.com/api/v4/chapters/${surahNumber}`);
-    if (!res.ok) throw new Error(`Failed to fetch surah ${surahNumber}: ${res.statusText}`);
-    const data = await res.json();
-    return data.chapter.english_name;
-  }
-
   try {
     const { surah, ayah } = getSurahAyah(globalAyahNum);
-    const key = formatKey(surah, ayah);
-    const v1 = await fetchAyah(key);
-    const surahName = await fetchSurahName(v1.surahNumber);
-    const wordsCount = v1.translation.trim().split(/\s+/).length;
+    const verse = await fetchAyah(surah, ayah);
+    const surahName = await fetchSurahName(surah);
 
-    let output = `${v1.arabic}\n${v1.translation}\n(${surahName} ${v1.ayahNumber})`;
+    let output = `${verse.arabic}\n${verse.translation}\n(${surahName} ${ayah})`;
 
-    if (wordsCount < 5 && v1.ayahNumber < ayahCounts[v1.surahNumber - 1]) {
-      const nextKey = formatKey(v1.surahNumber, v1.ayahNumber + 1);
-      const v2 = await fetchAyah(nextKey);
-      const surahName2 = await fetchSurahName(v2.surahNumber);
-
-      output += `\n\n${v2.arabic}\n${v2.translation}\n(${surahName2} ${v2.ayahNumber})`;
+    // Append next verse if short
+    const wordCount = verse.translation.trim().split(/\s+/).length;
+    if (wordCount < 5 && ayah < ayahCounts[surah - 1]) {
+      const nextVerse = await fetchAyah(surah, ayah + 1);
+      output += `\n\n${nextVerse.arabic}\n${nextVerse.translation}\n(${surahName} ${ayah + 1})`;
     }
 
     document.getElementById("ayah-text").textContent = output;
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error(error);
     document.getElementById("ayah-text").textContent = "Unable to load daily reflection.";
   }
 }
