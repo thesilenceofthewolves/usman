@@ -1,4 +1,3 @@
-// ✅ Verified ayah counts per surah (total: 6236)
 const ayahCounts = [
   7, 286, 200, 176, 120, 165, 206, 75, 129, 109,
   123, 111, 43, 52, 99, 128, 111, 110, 98, 135,
@@ -14,55 +13,56 @@ const ayahCounts = [
   5, 4, 5, 6
 ];
 
-// ✅ Converts a global ayah number (1–6236) to surah and ayah
+// ✅ Convert global ayah number to surah and ayah
 function getSurahAyah(globalAyahNum) {
   let count = 0;
   for (let i = 0; i < ayahCounts.length; i++) {
     if (globalAyahNum <= count + ayahCounts[i]) {
-      const surah = i + 1;
-      const ayah = globalAyahNum - count;
-      if (ayah > ayahCounts[i]) throw new Error(`Surah ${surah} has only ${ayahCounts[i]} ayat`);
-      return { surah, ayah };
+      return { surah: i + 1, ayah: globalAyahNum - count };
     }
     count += ayahCounts[i];
   }
-  throw new Error("Invalid global ayah number");
+  throw new Error("Invalid ayah number");
 }
 
-// ✅ Fetches the English surah name
+// ✅ Get surah name
 async function fetchSurahName(surahNumber) {
   const res = await fetch(`https://api.quran.com/api/v4/chapters/${surahNumber}`);
   const data = await res.json();
   return data.chapter?.english_name || `Surah ${surahNumber}`;
 }
 
-// ✅ Fetches an ayah in Arabic + Mustafa Khattab translation
-async function fetchAyah(surah, ayah) {
+// ✅ Fetch ayah with fallback from Khattab → Sahih
+async function fetchAyahWithFallback(surah, ayah) {
   const key = `${surah}:${ayah}`;
-  const url = `https://api.quran.com/api/v4/verses/by_key/${key}?language=en&translations=131&words=false`;
+  const primaryURL = `https://api.quran.com/api/v4/verses/by_key/${key}?language=en&translations=131&words=false`;
+  const fallbackURL = `https://api.quran.com/api/v4/verses/by_key/${key}?language=en&translations=20&words=false`;
 
-  const res = await fetch(url);
-  const data = await res.json();
+  async function tryFetch(url) {
+    const res = await fetch(url);
+    const data = await res.json();
+    if (!data.verse || !data.verse.text_uthmani) throw new Error("Invalid verse data");
 
-  if (!data.verse || !data.verse.text_uthmani) {
-    throw new Error(`Verse not found: ${key}`);
+    const translation = data.verse.translations?.[0]?.text || "Translation unavailable";
+    return {
+      arabic: data.verse.text_uthmani,
+      translation,
+      surah: data.verse.chapter_id,
+      ayah: data.verse.verse_number
+    };
   }
 
-  const translation = data.verse.translations?.[0]?.text || "Translation unavailable";
-
-  return {
-    arabic: data.verse.text_uthmani,
-    translation,
-    surah: data.verse.chapter_id,
-    ayah: data.verse.verse_number
-  };
+  try {
+    return await tryFetch(primaryURL); // Mustafa Khattab
+  } catch (err) {
+    console.warn(`⚠️ Falling back to Sahih for ${key}`);
+    return await tryFetch(fallbackURL);
+  }
 }
 
-// ✅ Main function to show daily reflection
+// ✅ Display daily ayah
 async function getDailyAyah() {
   const totalAyahs = 6236;
-
-  // 🔐 Deterministic "random" based on today's date
   const today = new Date();
   const seed = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
   const hash = [...seed].reduce((acc, c) => acc + c.charCodeAt(0), 0);
@@ -70,18 +70,16 @@ async function getDailyAyah() {
 
   try {
     const { surah, ayah } = getSurahAyah(globalAyahNum);
-    console.log(`📖 Fetching: Surah ${surah}, Ayah ${ayah}`);
-
-    const verse = await fetchAyah(surah, ayah);
+    const verse = await fetchAyahWithFallback(surah, ayah);
     const surahName = await fetchSurahName(surah);
 
     let output = `${verse.arabic}\n${verse.translation}\n(${surahName} ${ayah})`;
 
-    // ✅ If short, fetch and append the next ayah
+    // If short, append next ayah
     const wordCount = verse.translation.trim().split(/\s+/).length;
     if (wordCount < 5 && ayah < ayahCounts[surah - 1]) {
-      const next = await fetchAyah(surah, ayah + 1);
-      output += `\n\n${next.arabic}\n${next.translation}\n(${surahName} ${ayah + 1})`;
+      const nextVerse = await fetchAyahWithFallback(surah, ayah + 1);
+      output += `\n\n${nextVerse.arabic}\n${nextVerse.translation}\n(${surahName} ${ayah + 1})`;
     }
 
     document.getElementById("ayah-text").textContent = output;
@@ -91,5 +89,5 @@ async function getDailyAyah() {
   }
 }
 
-// ✅ Load on page
 getDailyAyah();
+
