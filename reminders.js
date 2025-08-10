@@ -1,4 +1,4 @@
-// Ayah counts per surah (114 surahs, total = 6236)
+// Ayah counts per surah (114 total, 6236 ayat)
 const ayahCounts = [
   7, 286, 200, 176, 120, 165, 206, 75, 129, 109, 123, 111,
   43, 52, 99, 128, 111, 110, 98, 135, 112, 78, 118, 64,
@@ -12,6 +12,7 @@ const ayahCounts = [
   3, 5, 4, 5, 6
 ];
 
+// Convert global ayah number to surah and ayah number
 function getSurahAyah(globalAyahNum) {
   let count = 0;
   for (let i = 0; i < ayahCounts.length; i++) {
@@ -23,25 +24,30 @@ function getSurahAyah(globalAyahNum) {
   throw new Error("Invalid ayah number");
 }
 
+// Fetch the surah name (e.g., "Al-Baqarah")
 async function fetchSurahName(surahNumber) {
   const res = await fetch(`https://api.quran.com/api/v4/chapters/${surahNumber}`);
   const data = await res.json();
   return data.chapter.english_name;
 }
 
+// Fetch a verse with its translation (Mustafa Khattab ID = 131)
 async function fetchAyah(surah, ayah) {
   const key = `${surah}:${ayah}`;
   const res = await fetch(`https://api.quran.com/api/v4/verses/by_key/${key}?language=en&translations=131&words=false`);
   const data = await res.json();
 
+  const translationObj = data.verse.translations?.[0];
+
   return {
     arabic: data.verse.text_uthmani,
-    translation: data.verse.translations[0].text,
+    translation: translationObj ? translationObj.text : 'Translation unavailable',
     surah: data.verse.chapter_id,
     ayah: data.verse.verse_number
   };
 }
 
+// Main function to load the daily ayah
 async function getDailyAyah() {
   const totalAyahs = 6236;
   const today = new Date();
@@ -56,7 +62,7 @@ async function getDailyAyah() {
 
     let output = `${verse.arabic}\n${verse.translation}\n(${surahName} ${ayah})`;
 
-    // Append next verse if short
+    // Append next verse if this one is short
     const wordCount = verse.translation.trim().split(/\s+/).length;
     if (wordCount < 5 && ayah < ayahCounts[surah - 1]) {
       const nextVerse = await fetchAyah(surah, ayah + 1);
@@ -70,4 +76,5 @@ async function getDailyAyah() {
   }
 }
 
+// Run it
 getDailyAyah();
