@@ -4,10 +4,8 @@ async function getDailyAyah() {
   const seed = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
   const hash = [...seed].reduce((acc, char) => acc + char.charCodeAt(0), 0);
 
-  const ayahNum1 = (hash * 17) % totalAyahs + 1;
-  const ayahNum2 = (hash * 23) % totalAyahs + 1;
-
-  const translation = "en.kat"; // Use "en.sahih" if you prefer Sahih International
+  const ayahNum = (hash * 17) % totalAyahs + 1; // Daily ayah number
+  const translation = "en.kat"; // or "en.sahih"
 
   async function fetchAyah(num) {
     const [arRes, enRes] = await Promise.all([
@@ -15,25 +13,40 @@ async function getDailyAyah() {
       fetch(`https://api.alquran.cloud/v1/ayah/${num}/${translation}`)
     ]);
 
-    const ar = await arRes.json();
-    const en = await enRes.json();
+    const arData = await arRes.json();
+    const enData = await enRes.json();
 
     return {
-      ar: ar.data.text,
-      en: en.data.text,
-      surah: en.data.surah.englishName,
-      number: en.data.numberInSurah,
-      wordCount: en.data.text.split(" ").length
+      ar: arData.data.text,
+      en: enData.data.text,
+      surah: enData.data.surah.englishName,
+      numberInSurah: enData.data.numberInSurah,
+      surahNumber: enData.data.surah.number,
+      wordCount: enData.data.text.trim().split(/\s+/).length
     };
   }
 
-  const ayah1 = await fetchAyah(ayahNum1);
+  let output = "";
+  const firstAyah = await fetchAyah(ayahNum);
 
-  let output = `${ayah1.ar}\n${ayah1.en} (${ayah1.surah} ${ayah1.number})`;
+  output += `${firstAyah.ar}\n${firstAyah.en} (${firstAyah.surah} ${firstAyah.numberInSurah})`;
 
-  if (ayah1.wordCount < 5) {
-    const ayah2 = await fetchAyah(ayahNum2);
-    output += `\n\n${ayah2.ar}\n${ayah2.en} (${ayah2.surah} ${ayah2.number})`;
+  // If it's a short ayah, fetch the next one from the same surah
+  if (firstAyah.wordCount < 5 && firstAyah.numberInSurah < 286) { // Prevent overflow in long surahs
+    const nextAyahNumber = `${firstAyah.surahNumber}:${firstAyah.numberInSurah + 1}`;
+    try {
+      const [arRes, enRes] = await Promise.all([
+        fetch(`https://api.alquran.cloud/v1/ayah/${nextAyahNumber}/ar`),
+        fetch(`https://api.alquran.cloud/v1/ayah/${nextAyahNumber}/${translation}`)
+      ]);
+
+      const arData = await arRes.json();
+      const enData = await enRes.json();
+
+      output += `\n\n${arData.data.text}\n${enData.data.text} (${enData.data.surah.englishName} ${enData.data.numberInSurah})`;
+    } catch (err) {
+      console.warn("Couldn't fetch second ayah:", err);
+    }
   }
 
   const container = document.getElementById("ayah-text");
