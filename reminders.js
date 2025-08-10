@@ -52,14 +52,6 @@ async function fetchAyah(surah, ayah) {
   };
 }
 
-// ✅ Fetch ayah from AlQuran Cloud (fallback if Quran.com fails)
-async function fetchAlQuranAyah(globalAyahNum) {
-  const res = await fetch(`https://api.alquran.cloud/v1/ayah/${globalAyahNum}/ar.en.kat`);
-  const data = await res.json();
-  if (data.code !== 200 || !data.data) throw new Error("AlQuran API error");
-  return data.data;
-}
-
 // ✅ Display daily ayah
 async function getDailyAyah() {
   const totalAyahs = 6236;
