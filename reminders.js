@@ -56,8 +56,16 @@ async function fetchAyahWithFallback(surah, ayah) {
     return await tryFetch(primaryURL); // Mustafa Khattab
   } catch (err) {
     console.warn(`⚠️ Falling back to Sahih for ${key}`);
-    return await tryFetch(fallbackURL);
+    return await tryFetch(fallbackURL); // Sahih International
   }
+}
+
+// ✅ Fetch ayah from AlQuran Cloud (fallback if Quran.com fails)
+async function fetchAlQuranAyah(globalAyahNum) {
+  const res = await fetch(`https://api.alquran.cloud/v1/ayah/${globalAyahNum}/ar.en.kat`);
+  const data = await res.json();
+  if (data.code !== 200 || !data.data) throw new Error("AlQuran API error");
+  return data.data;
 }
 
 // ✅ Display daily ayah
@@ -90,4 +98,3 @@ async function getDailyAyah() {
 }
 
 getDailyAyah();
-
