@@ -1,31 +1,39 @@
 async function getDailyAyah() {
   const totalAyahs = 6236;
-  // Generate a daily, consistent verse number
+
+  // Create a consistent number based on today’s date
   const today = new Date();
   const seed = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
   const hash = [...seed].reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  const globalAyahNum = (hash * 17) % totalAyahs + 1;
+  const ayahNum = (hash * 17) % totalAyahs + 1;
+
+  async function fetchVerse(num) {
+    const url = `https://cdn.jsdelivr.net/npm/quran-cloud@1.0.0/dist/verses/${num}.json`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("Failed to fetch");
+    return await res.json();
+  }
 
   try {
-    const res = await fetch(
-      `https://api.alquran.cloud/v1/ayah/${globalAyahNum}/en.kat`
-    );
-    const json = await res.json();
-    if (json.code !== 200 || !json.data) throw new Error("Verse not found");
+    const verse = await fetchVerse(ayahNum);
 
-    const data = json.data;
-    const surahName = data.surah.englishName;
-    const ayahNumber = data.numberInSurah;
-    const translation = data.text;
+    const surahName = verse.chapter_name_en || "Unknown Surah";
+    const ayahNumber = verse.verse_number || "?";
+    const arabic = verse.text || "";
+    const translation = verse.translations?.en || "";
+
+    const output = `📖 ${surahName} — Ayah ${ayahNumber}\n\n${arabic}\n\n${translation}`;
 
     const container = document.getElementById("ayah-text");
     if (container) {
-      container.textContent = `📖 ${surahName} — Ayah ${ayahNumber}\n\n${translation}`;
+      container.textContent = output;
     }
   } catch (err) {
-    console.error("Error loading ayah:", err);
+    console.error("Error fetching ayah:", err);
     const container = document.getElementById("ayah-text");
-    if (container) container.textContent = "Unable to load daily reflection.";
+    if (container) {
+      container.textContent = "Unable to load daily reflection at the moment.";
+    }
   }
 }
 
