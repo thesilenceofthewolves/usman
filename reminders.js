@@ -27,6 +27,25 @@ async function fetchAyah(surah, ayah) {
   }
 }
 
+// ✅ Fetch Surah name based on the Surah ID
+async function fetchSurahName(surahId) {
+  const url = `https://api.quran.com/api/v4/chapters/${surahId}`;
+
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+
+    if (!data.chapter || !data.chapter.name) {
+      throw new Error("Surah name not found");
+    }
+
+    return data.chapter.name;
+  } catch (error) {
+    console.error("❌ Error fetching Surah name:", error);
+    return "Unknown Surah";
+  }
+}
+
 // ✅ Get Surah and Ayah number based on the global number (hash)
 function getSurahAyah(globalAyahNum) {
   const surahAyahMap = [
@@ -134,59 +153,4 @@ function getSurahAyah(globalAyahNum) {
     { surah: 102, ayahCount: 8 },
     { surah: 103, ayahCount: 3 },
     { surah: 104, ayahCount: 9 },
-    { surah: 105, ayahCount: 5 },
-    { surah: 106, ayahCount: 4 },
-    { surah: 107, ayahCount: 7 },
-    { surah: 108, ayahCount: 3 },
-    { surah: 109, ayahCount: 6 },
-    { surah: 110, ayahCount: 3 },
-    { surah: 111, ayahCount: 5 },
-    { surah: 112, ayahCount: 4 },
-    { surah: 113, ayahCount: 5 },
-    { surah: 114, ayahCount: 6 },
-  ];
-
-  let sum = 0;
-  for (let i = 0; i < surahAyahMap.length; i++) {
-    sum += surahAyahMap[i].ayahCount;
-    if (globalAyahNum <= sum) {
-      const surah = surahAyahMap[i].surah;
-      const ayah = globalAyahNum - (sum - surahAyahMap[i].ayahCount);
-      return { surah, ayah };
-    }
-  }
-
-  throw new Error("Invalid global Ayah number");
-}
-
-// ✅ Display daily ayah
-async function getDailyAyah() {
-  const totalAyahs = 6236;
-  const today = new Date();
-  const seed = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
-  const hash = [...seed].reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  const globalAyahNum = (hash * 17) % totalAyahs + 1;
-
-  try {
-    const { surah, ayah } = getSurahAyah(globalAyahNum);
-    const verse = await fetchAyah(surah, ayah);
-    const surahName = await fetchSurahName(surah);
-
-    let output = `${verse.arabic}\n${verse.translation}\n(${surahName} ${ayah})`;
-
-    // If short, append next ayah
-    const wordCount = verse.translation.trim().split(/\s+/).length;
-    if (wordCount < 5 && ayah < ayahCounts[surah - 1]) {
-      const nextVerse = await fetchAyah(surah, ayah + 1);
-      output += `\n\n${nextVerse.arabic}\n${nextVerse.translation}\n(${surahName} ${ayah + 1})`;
-    }
-
-    document.getElementById("ayah-text").textContent = output;
-  } catch (error) {
-    console.error("❌ Error loading reflection:", error);
-    document.getElementById("ayah-text").textContent = `Unable to load daily reflection: ${error.message}`;
-  }
-}
-
-// Call the function to get the daily ayah
-getDailyAyah();
+    { surah: 105,
