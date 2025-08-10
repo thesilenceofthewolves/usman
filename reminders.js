@@ -1,27 +1,25 @@
-async function getDailyAyah() {
+async function getDailyAyahTranslation() {
   const totalAyahs = 6236;
   const today = new Date();
   const seed = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
   const hash = [...seed].reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  const globalAyahNum = (hash * 17) % totalAyahs + 1;
+  const ayahNum = (hash * 17) % totalAyahs + 1;
+
+  async function fetchVerse(num) {
+    const res = await fetch(`https://cdn.jsdelivr.net/npm/quran-cloud@1.0.0/dist/verses/${num}.json`);
+    if (!res.ok) throw new Error('Failed to fetch verse');
+    return await res.json();
+  }
 
   try {
-    const res = await fetch(`https://api.alquran.cloud/v1/ayah/${globalAyahNum}/en.sahih`);
-    const json = await res.json();
-    if (json.code !== 200 || !json.data) throw new Error("Verse not found");
+    const v = await fetchVerse(ayahNum);
+    const translation = v.translations.en;
 
-    const data = json.data;
-    const surahName = data.surah.englishName;
-    const ayahNumber = data.numberInSurah;
-    const arabicText = data.text;
-    const translation = data.editions.find(ed => ed.language === 'en' && ed.edition.identifier === 'en.sahih')?.text || '';
-
-    document.getElementById("ayah-text").textContent =
-      `📖 ${surahName} — Ayah ${ayahNumber}\n\n${arabicText}\n\n${translation}`;
+    document.getElementById("ayah-text").textContent = translation;
   } catch (err) {
-    console.error("Error loading ayah:", err);
-    document.getElementById("ayah-text").textContent = "Unable to load daily ayah.";
+    console.error("Error fetching translation:", err);
+    document.getElementById("ayah-text").textContent = "Unable to load translation.";
   }
 }
 
-getDailyAyah();
+getDailyAyahTranslation();
