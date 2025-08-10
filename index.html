@@ -64,7 +64,14 @@
     </section>
 
     <footer>
-      <p>9 August 2025</p>
+      <span id="current-date"></span>
+
+        <script>
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const today = new Date().toLocaleDateString(undefined, options);
+        document.getElementById('current-date').textContent = today;
+        </script>
+
     </footer>
   </div>
 
