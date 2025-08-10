@@ -1,58 +1,31 @@
 async function getDailyAyah() {
   const totalAyahs = 6236;
+
+  // Create a consistent "daily hash" based on today's date
   const today = new Date();
-  const seed = today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
-  const hash = [...seed].reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  const seed = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+  const hash = [...seed].reduce((acc, c) => acc + c.charCodeAt(0), 0);
+  const ayahNum = (hash * 17) % totalAyahs + 1;
 
-  const ayahNum = (hash * 17) % totalAyahs + 1; // Daily ayah number
-  const translation = "en.kat"; // or "en.sahih"
-
-  async function fetchAyah(num) {
-    const [arRes, enRes] = await Promise.all([
-      fetch(`https://api.alquran.cloud/v1/ayah/${num}/ar`),
-      fetch(`https://api.alquran.cloud/v1/ayah/${num}/${translation}`)
-    ]);
-
-    const arData = await arRes.json();
-    const enData = await enRes.json();
-
-    return {
-      ar: arData.data.text,
-      en: enData.data.text,
-      surah: enData.data.surah.englishName,
-      numberInSurah: enData.data.numberInSurah,
-      surahNumber: enData.data.surah.number,
-      wordCount: enData.data.text.trim().split(/\s+/).length
-    };
+  // Fetch a verse using jsDelivr Quran Cloud JSON
+  async function fetchVerse(num) {
+    const res = await fetch(`https://cdn.jsdelivr.net/npm/quran-cloud@1.0.0/dist/verses/${num}.json`);
+    if (!res.ok) throw new Error('Failed to fetch');
+    return await res.json();
   }
 
-  let output = "";
-  const firstAyah = await fetchAyah(ayahNum);
+  try {
+    const v1 = await fetchVerse(ayahNum);
+    const wordsCount = v1.translations.en.trim().split(/\s+/).length;
 
-  output += `${firstAyah.ar}\n${firstAyah.en} (${firstAyah.surah} ${firstAyah.numberInSurah})`;
+    let output = `${v1.text}\n${v1.translations.en}`;
 
-  // If it's a short ayah, fetch the next one from the same surah
-  if (firstAyah.wordCount < 5 && firstAyah.numberInSurah < 286) { // Prevent overflow in long surahs
-    const nextAyahNumber = `${firstAyah.surahNumber}:${firstAyah.numberInSurah + 1}`;
-    try {
-      const [arRes, enRes] = await Promise.all([
-        fetch(`https://api.alquran.cloud/v1/ayah/${nextAyahNumber}/ar`),
-        fetch(`https://api.alquran.cloud/v1/ayah/${nextAyahNumber}/${translation}`)
-      ]);
-
-      const arData = await arRes.json();
-      const enData = await enRes.json();
-
-      output += `\n\n${arData.data.text}\n${enData.data.text} (${enData.data.surah.englishName} ${enData.data.numberInSurah})`;
-    } catch (err) {
-      console.warn("Couldn't fetch second ayah:", err);
+    // If it's a short verse, include the next verse as well
+    if (wordsCount < 5 && ayahNum < totalAyahs) {
+      const v2 = await fetchVerse(ayahNum + 1);
+      output += `\n\n${v2.text}\n${v2.translations.en}`;
     }
-  }
 
-  const container = document.getElementById("ayah-text");
-  if (container) {
-    container.textContent = output;
-  }
-}
-
-getDailyAyah();
+    // Place into the DOM
+    const container = document.getElementById("ayah-text");
+    if (container) container.textContent = out
