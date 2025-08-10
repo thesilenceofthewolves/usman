@@ -25,7 +25,7 @@ function getSurahAyah(globalAyahNum) {
   throw new Error("Invalid ayah number");
 }
 
-// ✅ Get surah name
+// ✅ Get surah name from Quran API
 async function fetchSurahName(surahNumber) {
   const res = await fetch(`https://api.quran.com/api/v4/chapters/${surahNumber}`);
   const data = await res.json();
@@ -81,4 +81,6 @@ async function getDailyAyah() {
   }
 }
 
+// Call the function to get the daily ayah
 getDailyAyah();
+
