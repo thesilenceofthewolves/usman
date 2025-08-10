@@ -28,4 +28,14 @@ async function getDailyAyah() {
 
     // Place into the DOM
     const container = document.getElementById("ayah-text");
-    if (container) container.textContent = out
+    if (container) container.textContent = output;
+
+  } catch (err) {
+    console.error("Error fetching ayah:", err);
+    const container = document.getElementById("ayah-text");
+    if (container) container.textContent = "Unable to load daily reflection at the moment.";
+  }
+}
+
+getDailyAyah();
+
