@@ -1,41 +1,44 @@
 async function getDailyAyah() {
   const totalAyahs = 6236;
-
-  // Create a consistent "daily hash" based on today's date
   const today = new Date();
   const seed = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
   const hash = [...seed].reduce((acc, c) => acc + c.charCodeAt(0), 0);
   const ayahNum = (hash * 17) % totalAyahs + 1;
+  const translator = "en.kat"; // Mustafa Khattab
 
-  // Fetch a verse using jsDelivr Quran Cloud JSON
-  async function fetchVerse(num) {
-    const res = await fetch(`https://cdn.jsdelivr.net/npm/quran-cloud@1.0.0/dist/verses/${num}.json`);
-    if (!res.ok) throw new Error('Failed to fetch');
-    return await res.json();
+  async function fetchAyah(num) {
+    const [arRes, trRes] = await Promise.all([
+      fetch(`https://api.alquran.cloud/v1/ayah/${num}/ar`),
+      fetch(`https://api.alquran.cloud/v1/ayah/${num}/${translator}`)
+    ]);
+    const arData = await arRes.json();
+    const trData = await trRes.json();
+    return {
+      ar: arData.data.text,
+      tr: trData.data.text,
+      surah: trData.data.surah.englishName,
+      number: trData.data.numberInSurah,
+      wordCount: trData.data.text.trim().split(/\s+/).length
+    };
   }
 
   try {
-    const v1 = await fetchVerse(ayahNum);
-    const wordsCount = v1.translations.en.trim().split(/\s+/).length;
+    const v1 = await fetchAyah(ayahNum);
+    let output = `${v1.ar}\n${v1.tr}\n(${v1.surah} ${v1.number})`;
 
-    let output = `${v1.text}\n${v1.translations.en}`;
-
-    // If it's a short verse, include the next verse as well
-    if (wordsCount < 5 && ayahNum < totalAyahs) {
-      const v2 = await fetchVerse(ayahNum + 1);
-      output += `\n\n${v2.text}\n${v2.translations.en}`;
+    if (v1.wordCount < 5 && v1.number < 286) {
+      const nextNum = `${v1.surah}:${v1.number + 1}`;
+      const v2 = await fetchAyah(nextNum);
+      output += `\n\n${v2.ar}\n${v2.tr}\n(${v2.surah} ${v2.number})`;
     }
 
-    // Place into the DOM
     const container = document.getElementById("ayah-text");
     if (container) container.textContent = output;
-
   } catch (err) {
-    console.error("Error fetching ayah:", err);
+    console.error(err);
     const container = document.getElementById("ayah-text");
     if (container) container.textContent = "Unable to load daily reflection at the moment.";
   }
 }
 
 getDailyAyah();
-
