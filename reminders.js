@@ -1,25 +1,30 @@
-// ✅ Fetch ayah (Mustafa Khattab translation only)
+// ✅ Fetch ayah (Sahih International translation only)
 async function fetchAyah(surah, ayah) {
   const key = `${surah}:${ayah}`;
   const url = `https://api.quran.com/api/v4/verses/by_key/${key}?language=en&translations=131&words=false`;
 
-  const res = await fetch(url);
-  const data = await res.json();
-  
-  // Debug the API response
-  console.log("API Response:", data);
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
 
-  // Ensure that both Arabic and translation exist
-  if (!data.verse || !data.verse.text_uthmani || !data.verse.translations?.[0]?.text) {
-    throw new Error("Invalid verse data");
+    // Log the full API response for debugging
+    console.log("API Response:", data);
+
+    // Ensure that both Arabic and translation exist
+    if (!data.verse || !data.verse.text_uthmani || !data.verse.translations?.[0]?.text) {
+      throw new Error("Invalid verse data - Translation or Arabic text missing");
+    }
+
+    return {
+      arabic: data.verse.text_uthmani,
+      translation: data.verse.translations[0].text,
+      surah: data.verse.chapter_id,
+      ayah: data.verse.verse_number
+    };
+  } catch (error) {
+    console.error("❌ Error fetching verse:", error);
+    throw new Error("Error fetching verse");
   }
-
-  return {
-    arabic: data.verse.text_uthmani,
-    translation: data.verse.translations[0].text,
-    surah: data.verse.chapter_id,
-    ayah: data.verse.verse_number
-  };
 }
 
 // ✅ Display daily ayah
@@ -47,7 +52,7 @@ async function getDailyAyah() {
     document.getElementById("ayah-text").textContent = output;
   } catch (error) {
     console.error("❌ Error loading reflection:", error);
-    document.getElementById("ayah-text").textContent = "Unable to load daily reflection.";
+    document.getElementById("ayah-text").textContent = `Unable to load daily reflection: ${error.message}`;
   }
 }
 
