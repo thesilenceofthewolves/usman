@@ -1,39 +1,31 @@
 async function getDailyAyah() {
   const totalAyahs = 6236;
 
-  // Create a consistent number based on today’s date
+  // Generate consistent daily verse number
   const today = new Date();
   const seed = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
   const hash = [...seed].reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  const ayahNum = (hash * 17) % totalAyahs + 1;
-
-  async function fetchVerse(num) {
-    const url = `https://cdn.jsdelivr.net/npm/quran-cloud@1.0.0/dist/verses/${num}.json`;
-    const res = await fetch(url);
-    if (!res.ok) throw new Error("Failed to fetch");
-    return await res.json();
-  }
+  const globalAyahNum = (hash * 17) % totalAyahs + 1;
 
   try {
-    const verse = await fetchVerse(ayahNum);
+    const response = await fetch(`https://api.alquran.cloud/v1/ayah/${globalAyahNum}/en.kat`);
+    const json = await response.json();
+    if (json.code !== 200 || !json.data) throw new Error("Verse not found");
 
-    const surahName = verse.chapter_name_en || "Unknown Surah";
-    const ayahNumber = verse.verse_number || "?";
-    const arabic = verse.text || "";
-    const translation = verse.translations?.en || "";
-
-    const output = `📖 ${surahName} — Ayah ${ayahNumber}\n\n${arabic}\n\n${translation}`;
+    const data = json.data;
+    const surahName = data.surah.englishName;
+    const ayahNumber = data.numberInSurah;
+    const arabic = data.text;        // Arabic verse
+    const translation = data.text;   // Khattab translation (same field)
 
     const container = document.getElementById("ayah-text");
     if (container) {
-      container.textContent = output;
+      container.textContent = `📖 ${surahName} — Ayah ${ayahNumber}\n\n${arabic}\n\n${translation}`;
     }
   } catch (err) {
-    console.error("Error fetching ayah:", err);
+    console.error("Error loading ayah:", err);
     const container = document.getElementById("ayah-text");
-    if (container) {
-      container.textContent = "Unable to load daily reflection at the moment.";
-    }
+    if (container) container.textContent = "Unable to load daily reflection.";
   }
 }
 
