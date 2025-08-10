@@ -7,8 +7,7 @@ async function fetchAyah(surah, ayah) {
     const res = await fetch(url);
     const data = await res.json();
 
-    // Log the full API response for debugging
-    console.log("API Response:", data);
+    console.log("API Response:", data); // Debugging
 
     // Ensure that both Arabic and translation exist
     if (!data.verse || !data.verse.text_uthmani || !data.verse.translations?.[0]?.text) {
@@ -29,156 +28,54 @@ async function fetchAyah(surah, ayah) {
 
 // ✅ Fetch Surah name based on the Surah ID
 async function fetchSurahName(surahId) {
-  const url = `https://api.quran.com/api/v4/chapters/${surahId}`;
+  const url = `https://api.quran.com/api/v4/chapters/${surahId}?language=en`;
 
   try {
     const res = await fetch(url);
     const data = await res.json();
 
-    if (!data.chapter || !data.chapter.name) {
+    if (!data.chapter || !data.chapter.name_simple) {
       throw new Error("Surah name not found");
     }
 
-    return data.chapter.name;
+    return data.chapter.name_simple;
   } catch (error) {
     console.error("❌ Error fetching Surah name:", error);
     return "Unknown Surah";
   }
 }
 
-// ✅ Get Surah and Ayah number based on the global number (hash)
-function getSurahAyah(globalAyahNum) {
-  const surahAyahMap = [
-    { surah: 1, ayahCount: 7 },
-    { surah: 2, ayahCount: 286 },
-    { surah: 3, ayahCount: 200 },
-    { surah: 4, ayahCount: 176 },
-    { surah: 5, ayahCount: 120 },
-    { surah: 6, ayahCount: 165 },
-    { surah: 7, ayahCount: 206 },
-    { surah: 8, ayahCount: 75 },
-    { surah: 9, ayahCount: 129 },
-    { surah: 10, ayahCount: 109 },
-    { surah: 11, ayahCount: 123 },
-    { surah: 12, ayahCount: 111 },
-    { surah: 13, ayahCount: 43 },
-    { surah: 14, ayahCount: 52 },
-    { surah: 15, ayahCount: 99 },
-    { surah: 16, ayahCount: 128 },
-    { surah: 17, ayahCount: 111 },
-    { surah: 18, ayahCount: 110 },
-    { surah: 19, ayahCount: 98 },
-    { surah: 20, ayahCount: 135 },
-    { surah: 21, ayahCount: 112 },
-    { surah: 22, ayahCount: 78 },
-    { surah: 23, ayahCount: 118 },
-    { surah: 24, ayahCount: 64 },
-    { surah: 25, ayahCount: 77 },
-    { surah: 26, ayahCount: 227 },
-    { surah: 27, ayahCount: 55 },
-    { surah: 28, ayahCount: 88 },
-    { surah: 29, ayahCount: 69 },
-    { surah: 30, ayahCount: 37 },
-    { surah: 31, ayahCount: 34 },
-    { surah: 32, ayahCount: 30 },
-    { surah: 33, ayahCount: 73 },
-    { surah: 34, ayahCount: 54 },
-    { surah: 35, ayahCount: 45 },
-    { surah: 36, ayahCount: 27 },
-    { surah: 37, ayahCount: 182 },
-    { surah: 38, ayahCount: 88 },
-    { surah: 39, ayahCount: 75 },
-    { surah: 40, ayahCount: 85 },
-    { surah: 41, ayahCount: 54 },
-    { surah: 42, ayahCount: 53 },
-    { surah: 43, ayahCount: 89 },
-    { surah: 44, ayahCount: 59 },
-    { surah: 45, ayahCount: 37 },
-    { surah: 46, ayahCount: 35 },
-    { surah: 47, ayahCount: 38 },
-    { surah: 48, ayahCount: 29 },
-    { surah: 49, ayahCount: 18 },
-    { surah: 50, ayahCount: 45 },
-    { surah: 51, ayahCount: 60 },
-    { surah: 52, ayahCount: 49 },
-    { surah: 53, ayahCount: 62 },
-    { surah: 54, ayahCount: 55 },
-    { surah: 55, ayahCount: 78 },
-    { surah: 56, ayahCount: 96 },
-    { surah: 57, ayahCount: 29 },
-    { surah: 58, ayahCount: 22 },
-    { surah: 59, ayahCount: 24 },
-    { surah: 60, ayahCount: 13 },
-    { surah: 61, ayahCount: 14 },
-    { surah: 62, ayahCount: 11 },
-    { surah: 63, ayahCount: 11 },
-    { surah: 64, ayahCount: 18 },
-    { surah: 65, ayahCount: 12 },
-    { surah: 66, ayahCount: 12 },
-    { surah: 67, ayahCount: 30 },
-    { surah: 68, ayahCount: 52 },
-    { surah: 69, ayahCount: 52 },
-    { surah: 70, ayahCount: 44 },
-    { surah: 71, ayahCount: 28 },
-    { surah: 72, ayahCount: 28 },
-    { surah: 73, ayahCount: 20 },
-    { surah: 74, ayahCount: 56 },
-    { surah: 75, ayahCount: 40 },
-    { surah: 76, ayahCount: 31 },
-    { surah: 77, ayahCount: 50 },
-    { surah: 78, ayahCount: 40 },
-    { surah: 79, ayahCount: 46 },
-    { surah: 80, ayahCount: 42 },
-    { surah: 81, ayahCount: 29 },
-    { surah: 82, ayahCount: 19 },
-    { surah: 83, ayahCount: 36 },
-    { surah: 84, ayahCount: 25 },
-    { surah: 85, ayahCount: 22 },
-    { surah: 86, ayahCount: 17 },
-    { surah: 87, ayahCount: 19 },
-    { surah: 88, ayahCount: 26 },
-    { surah: 89, ayahCount: 30 },
-    { surah: 90, ayahCount: 20 },
-    { surah: 91, ayahCount: 15 },
-    { surah: 92, ayahCount: 21 },
-    { surah: 93, ayahCount: 11 },
-    { surah: 94, ayahCount: 8 },
-    { surah: 95, ayahCount: 8 },
-    { surah: 96, ayahCount: 19 },
-    { surah: 97, ayahCount: 5 },
-    { surah: 98, ayahCount: 8 },
-    { surah: 99, ayahCount: 8 },
-    { surah: 100, ayahCount: 11 },
-    { surah: 101, ayahCount: 11 },
-    { surah: 102, ayahCount: 8 },
-    { surah: 103, ayahCount: 3 },
-    { surah: 104, ayahCount: 9 },
-    { surah: 105, ayahCount: 5 },
-    { surah: 106, ayahCount: 4 },
-    { surah: 107, ayahCount: 7 },
-    { surah: 108, ayahCount: 3 },
-    { surah: 109, ayahCount: 6 },
-    { surah: 110, ayahCount: 3 },
-    { surah: 111, ayahCount: 5 },
-    { surah: 112, ayahCount: 4 },
-    { surah: 113, ayahCount: 5 },
-    { surah: 114, ayahCount: 6 },
-  ];
+// ✅ Ayah counts per surah (used to check if next ayah exists)
+const ayahCounts = [
+  7, 286, 200, 176, 120, 165, 206, 75, 129, 109,
+  123, 111, 43, 52, 99, 128, 111, 110, 98, 135,
+  112, 78, 118, 64, 77, 227, 93, 88, 69, 60,
+  34, 30, 73, 54, 45, 83, 182, 88, 75, 85,
+  54, 53, 89, 59, 37, 35, 38, 29, 18, 45,
+  60, 49, 62, 55, 78, 96, 29, 22, 24, 13,
+  14, 11, 11, 18, 12, 12, 30, 52, 52, 44,
+  28, 28, 20, 56, 40, 31, 50, 40, 46, 42,
+  29, 19, 36, 25, 22, 17, 19, 26, 30, 20,
+  15, 21, 11, 8, 8, 19, 5, 8, 8, 11,
+  11, 8, 3, 9, 5, 4, 7, 3, 6, 3,
+  5, 4, 5, 6
+];
 
+// ✅ Get Surah and Ayah number from global index
+function getSurahAyah(globalAyahNum) {
   let sum = 0;
-  for (let i = 0; i < surahAyahMap.length; i++) {
-    sum += surahAyahMap[i].ayahCount;
+  for (let i = 0; i < ayahCounts.length; i++) {
+    sum += ayahCounts[i];
     if (globalAyahNum <= sum) {
-      const surah = surahAyahMap[i].surah;
-      const ayah = globalAyahNum - (sum - surahAyahMap[i].ayahCount);
+      const surah = i + 1;
+      const ayah = globalAyahNum - (sum - ayahCounts[i]);
       return { surah, ayah };
     }
   }
-
   throw new Error("Invalid global Ayah number");
 }
 
-// ✅ Display daily ayah
+// ✅ Main function to display daily ayah
 async function getDailyAyah() {
   const totalAyahs = 6236;
   const today = new Date();
@@ -191,13 +88,13 @@ async function getDailyAyah() {
     const verse = await fetchAyah(surah, ayah);
     const surahName = await fetchSurahName(surah);
 
-    let output = `${surahName} - Ayah ${ayah}: ${verse.arabic}\n${verse.translation}`;
+    let output = `📖 ${surahName} - Ayah ${ayah}\n\n${verse.arabic}\n\n${verse.translation}`;
 
-    // If short, append the next ayah
+    // If short ayah (< 5 words), fetch and append next
     const wordCount = verse.translation.trim().split(/\s+/).length;
     if (wordCount < 5 && ayah < ayahCounts[surah - 1]) {
       const nextVerse = await fetchAyah(surah, ayah + 1);
-      output += `\n\n${nextVerse.arabic}\n${nextVerse.translation}\n(${surahName} ${ayah + 1})`;
+      output += `\n\n📖 ${surahName} - Ayah ${ayah + 1}\n\n${nextVerse.arabic}\n\n${nextVerse.translation}`;
     }
 
     document.getElementById("ayah-text").textContent = output;
@@ -207,5 +104,5 @@ async function getDailyAyah() {
   }
 }
 
-// Call the function to get the daily ayah
+// ✅ Run on load
 getDailyAyah();
