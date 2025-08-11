@@ -3,29 +3,25 @@ async function getDailyAyah() {
   const today = new Date();
   const seed = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
   const hash = [...seed].reduce((acc, c) => acc + c.charCodeAt(0), 0);
-  const globalAyahNum = (hash * 17) % totalAyahs + 1;
+  const ayahNum = (hash * 17) % totalAyahs + 1;
 
   try {
-    const res = await fetch(
-      `https://raw.githubusercontent.com/fawazahmed0/quran-api/1/editions/eng-mustafakhattab/${globalAyahNum}.json`
-    );
+    const res = await fetch(`https://api.alquran.cloud/v1/ayah/${ayahNum}/en.mustafakhattab`);
     const json = await res.json();
+    if (json.code !== 200 || !json.data) throw new Error("Verse not found");
 
-    const { text, surah, numberInSurah } = json;
-
-    const arabicRes = await fetch(
-      `https://raw.githubusercontent.com/fawazahmed0/quran-api/1/editions/ara-quranuthmani/${globalAyahNum}.json`
-    );
-    const arabicJson = await arabicRes.json();
-
-    const arabicText = arabicJson.text;
+    const data = json.data;
+    const surahName = data.surah.englishName;
+    const ayahNumber = data.numberInSurah;
+    const arabicText = data.text;
+    const translation = data.translation;
 
     const container = document.getElementById("ayah-text");
     if (container) {
-      container.textContent = `📖 ${surah.englishName} — Ayah ${numberInSurah}\n\n${arabicText}\n\n${text}`;
+      container.textContent = `📖 ${surahName} — Ayah ${ayahNumber}\n\n${arabicText}\n\n${translation}`;
     }
   } catch (err) {
-    console.error("Error fetching Ayah:", err);
+    console.error("Error loading ayah:", err);
     const container = document.getElementById("ayah-text");
     if (container) container.textContent = "Unable to load daily reflection.";
   }
