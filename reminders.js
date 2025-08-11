@@ -6,20 +6,24 @@ async function getDailyAyah() {
   const globalAyahNum = (hash * 17) % totalAyahs + 1;
 
   try {
-    // Use the latest version of the Fawaz API (remove @1)
-    const eng = await fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api/editions/eng-mustafakhattab/${globalAyahNum}.json`).then(r => r.json());
-    const ar = await fetch(`https://cdn.jsdelivr.net/gh/fawazahmed0/quran-api/editions/ara-uthmani/${globalAyahNum}.json`).then(r => r.json());
+    const res = await fetch(
+      `https://raw.githubusercontent.com/fawazahmed0/quran-api/1/editions/eng-mustafakhattab/${globalAyahNum}.json`
+    );
+    const json = await res.json();
 
-    const arabicText = ar.text;
-    const translation = eng.text;
-    const surahName = eng.surah.name;
-    const ayahNumber = eng.ayah;
+    const { text, surah, numberInSurah } = json;
+
+    const arabicRes = await fetch(
+      `https://raw.githubusercontent.com/fawazahmed0/quran-api/1/editions/ara-quranuthmani/${globalAyahNum}.json`
+    );
+    const arabicJson = await arabicRes.json();
+
+    const arabicText = arabicJson.text;
 
     const container = document.getElementById("ayah-text");
     if (container) {
-      container.textContent = `📖 ${surahName} — Ayah ${ayahNumber}\n\n${arabicText}\n\n${translation}`;
+      container.textContent = `📖 ${surah.englishName} — Ayah ${numberInSurah}\n\n${arabicText}\n\n${text}`;
     }
-
   } catch (err) {
     console.error("Error fetching Ayah:", err);
     const container = document.getElementById("ayah-text");
