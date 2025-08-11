@@ -1,9 +1,14 @@
 async function getDailyAyah() {
   const totalAyahs = 6236;
   const today = new Date();
-  const seed = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+  const seed = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
   const hash = [...seed].reduce((acc, c) => acc + c.charCodeAt(0), 0);
   const globalAyahNum = (hash * 17) % totalAyahs + 1;
+
+  const container = document.getElementById("ayah-text");
+  if (container) {
+    container.textContent = "Loading today's Ayah...";
+  }
 
   try {
     // Fetch Arabic
@@ -13,9 +18,10 @@ async function getDailyAyah() {
 
     const arabic = arabicJson.data.text;
     const surahName = arabicJson.data.surah.englishName;
+    const surahArabicName = arabicJson.data.surah.name;
     const ayahNumber = arabicJson.data.numberInSurah;
 
-    // Fetch English (Clear Quran)
+    // Fetch English
     const engRes = await fetch(`https://api.alquran.cloud/v1/ayah/${globalAyahNum}/en.clear`);
     const engJson = await engRes.json();
     if (engJson.code !== 200) throw new Error("English verse not found");
@@ -23,13 +29,11 @@ async function getDailyAyah() {
     const translation = engJson.data.text;
 
     // Display
-    const container = document.getElementById("ayah-text");
     if (container) {
-      container.textContent = `📖 ${surahName} — Ayah ${ayahNumber}\n\n${arabic}\n\n${translation}`;
+      container.textContent = `📖 ${surahArabicName} (${surahName}) — Ayah ${ayahNumber}\n\n${arabic}\n\n${translation}`;
     }
   } catch (err) {
     console.error("Error fetching Ayah:", err);
-    const container = document.getElementById("ayah-text");
     if (container) {
       container.textContent = "Unable to load daily reflection.";
     }
