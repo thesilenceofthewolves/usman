@@ -177,3 +177,95 @@ footer a:hover {
   display: block;
 }
 
+#portfolio {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: #f9fbfb;
+}
+
+#portfolio h2 {
+  font-weight: 400;
+  font-size: 2.5rem;
+  margin-bottom: 0.3rem;
+  letter-spacing: 1px;
+}
+
+#portfolio .subtitle {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.category-filters {
+  margin-bottom: 2rem;
+}
+
+.category-filters .filter-btn {
+  background: white;
+  border: 1px solid #7bb7af;
+  color: #4b9d8d;
+  padding: 0.5rem 1rem;
+  margin: 0 0.3rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.3s, color 0.3s;
+}
+
+.category-filters .filter-btn.active,
+.category-filters .filter-btn:hover {
+  background: #7bb7af;
+  color: white;
+}
+
+.projects-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.1);
+  padding: 1rem;
+  width: 220px;
+  text-align: left;
+  transition: transform 0.2s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+
+.project-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+.project-card p {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 0.7rem;
+}
+
+.project-card a {
+  font-weight: 600;
+  color: #2f786a;
+  text-decoration: none;
+}
+
+.project-card a:hover {
+  text-decoration: underline;
+}
+
