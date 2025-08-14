@@ -1,72 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Usman Waxun - Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Usman Waxun - Portfolio</title>
 
-<!-- Styles -->
-<link rel="stylesheet" href="styles.css" />
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
 
-<!-- Font Awesome for icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-<!-- tsParticles Library -->
-<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <!-- tsParticles Library -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
 </head>
 <body>
 
 <!-- Particle Background -->
 <div id="tsparticles"></div>
 
-<!-- Main content -->
-<div class="container">
+<!-- Main Content -->
 <header class="navbar">
-<div class="logo"><a href="#hero">Home</a></div>
-<nav>
-<ul class="nav-links">
-<li><a href="#about">ABOUT</a></li>
-
-<li class="dropdown">
-<a href="#portfolio" class="dropbtn">PORTFOLIO </a>
-<div class="dropdown-content">
-<a href="#portfolio-health">Health</a>
-<a href="#portfolio-finance">Finance</a>
-<a href="#portfolio-sport">Sport</a>
-<a href="#portfolio-fun">Fun Projects</a>
-</div>
-</li>
-
-<li><a href="#contact">CONTACT</a></li>
-</ul>
-</nav>
-
+  <div class="logo"><a href="#hero">Home</a></div>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="#about">ABOUT</a></li>
+      <li class="dropdown">
+        <a href="#portfolio" class="dropbtn">PORTFOLIO</a>
+        <div class="dropdown-content">
+          <a href="#portfolio-health">Health</a>
+          <a href="#portfolio-finance">Finance</a>
+          <a href="#portfolio-sport">Sport</a>
+          <a href="#portfolio-fun">Fun Projects</a>
+        </div>
+      </li>
+      <li><a href="#footer">CONTACT</a></li>
+    </ul>
+  </nav>
 </header>
 
 <section id="hero" class="hero">
-<h1>Usman Waxun</h1>
-<p>Future Healthcare Analyst<br>Data Enthusiast | American Football & Rugby Fan</p>
+  <h1>Usman Waxun</h1>
+  <p>Future Healthcare Analyst<br>Data Enthusiast | American Football & Rugby Fan</p>
 
-<div class="social-icons">
-<a href="https://github.com/thesilenceofthewolves" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-<a href="https://www.linkedin.com/in/waxun/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
-</div>
+  <div class="social-icons">
+    <a href="https://github.com/thesilenceofthewolves" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/waxun/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+  </div>
 </section>
-<!-- Daily Quran Verses -->
-<!--<section id="daily-ayah" style="text-align: center; padding: 2em 1em;">-->
+
+<!-- Daily Data News -->
 <div id="data-news">📡 Loading today’s data news...</div>
-
-<!--<h3 style="margin-bottom: 1em;"> Reflection of the Day</h3> reflection of the day to add a vesrse of the Quran-->
 <p id="ayah-text" style="white-space: pre-line; line-height: 1.6;"></p>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>
+    I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst,
+    improving patient outcomes with data-driven solutions.
+  </p>
 </section>
 
-<section id="about" class="section-card">
-<h2>About Me</h2>
-<p>
-I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.
-</p>
-</section>
-<section id="portfolio" class="section-card">
+<section id="portfolio">
   <h2>PORTFOLIO</h2>
   <p class="subtitle">A glimpse of the projects I've been working on</p>
 
@@ -93,27 +88,23 @@ I’m passionate about turning data into meaningful insights. I aspire to work a
     </div>
   </div>
 </section>
-    <section id="contact" class="section-card contact-box">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:usman@protonmail.com">waxun@protonmail.com</a></p>
-    </section>
 
-<footer>
-<span id="current-date"></span>
+<!-- Footer with Contact -->
+<footer id="footer">
+  <h2>Contact</h2>
+  <p>Email: <a href="mailto:usman@protonmail.com">waxun@protonmail.com</a></p>
+  <span id="current-date"></span>
 
-<script>
-const options = { year: 'numeric', month: 'long', day: 'numeric' };
-const today = new Date().toLocaleDateString(undefined, options);
-document.getElementById('current-date').textContent = today;
-</script>
-
+  <script>
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const today = new Date().toLocaleDateString(undefined, options);
+    document.getElementById('current-date').textContent = today;
+  </script>
 </footer>
-</div>
 
-<!-- JS config -->
+<!-- JS -->
 <script src="script.js"></script>
-<!-- JS config  - Random verses from the Quran -->
-<!-- <script src="reminders.js"></script> -- >
 <script src="news.js"></script>
+
 </body>
 </html>
