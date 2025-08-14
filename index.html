@@ -14,75 +14,120 @@
   <!-- tsParticles Library -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
 </head>
-<body>
 
+<body>
   <!-- Particle Background -->
   <div id="tsparticles"></div>
 
   <!-- Main content -->
   <div class="container">
+    <!-- Navigation Bar -->
     <header class="navbar">
-      <div class="logo"><a href="#hero">HOME</a></div>
+      <div class="logo"><a href="#hero">Home</a></div>
       <nav>
         <ul class="nav-links">
           <li><a href="#about">ABOUT</a></li>
-          <li><a href="#portfolio">PORTFOLIO</a></li>
+          <li class="dropdown">
+            <a href="#portfolio" class="dropbtn">PORTFOLIO</a>
+            <div class="dropdown-content">
+              <a href="#portfolio-health">Health</a>
+              <a href="#portfolio-finance">Finance</a>
+              <a href="#portfolio-sport">Sport</a>
+              <a href="#portfolio-fun">Fun Projects</a>
+            </div>
+          </li>
           <li><a href="#contact">CONTACT</a></li>
         </ul>
       </nav>
     </header>
 
+    <!-- Hero Section -->
     <section id="hero" class="hero">
       <h1>Usman Waxun</h1>
-      <p>Future Healthcare Analyst<br>Data Enthusiast | American Football & Rugby Fan</p>
-
+      <p>
+        Future Healthcare Analyst<br>
+        Data Enthusiast | American Football & Rugby Fan
+      </p>
       <div class="social-icons">
-        <a href="https://github.com/thesilenceofthewolves" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/waxun/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/thesilenceofthewolves" target="_blank" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/waxun/" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
       </div>
     </section>
-    <!-- Daily Quran Verses -->
- <!--   <section id="daily-ayah" style="text-align: center; padding: 2em 1em;">
-  <h3 style="margin-bottom: 1em;"> Reflection of the Day</h3>
-  <p id="ayah-text" style="white-space: pre-line; line-height: 1.6;"></p>
-</section>  -->
 
+    <!-- Daily News Section -->
+    <div id="data-news">📡 Loading today’s data news...</div>
+
+    <!-- (Optional) Daily Quran Reflection -->
+    <!--
+    <section id="daily-ayah" style="text-align: center; padding: 2em 1em;">
+      <h3 style="margin-bottom: 1em;">Reflection of the Day</h3>
+      <p id="ayah-text" style="white-space: pre-line; line-height: 1.6;"></p>
+    </section>
+    -->
+
+    <!-- About Section -->
     <section id="about" class="section-card">
       <h2>About Me</h2>
       <p>
-        I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.
+        I’m passionate about turning data into meaningful insights.
+        I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.
       </p>
     </section>
 
+    <!-- Portfolio Section -->
     <section id="portfolio" class="section-card">
-      <h2>Project</h2>
-      <div class="project-card">
-        <strong>Car Deal Data Analysis</strong><br />
-        Car sales trends using Python & Pandas.<br />
-        <a href="https://www.datacamp.com/datalab/w/9a88424d-d9bd-4292-8cef-0124e2f074c1/edit/carsles_deal.ipynb" target="_blank" rel="noopener noreferrer">View Project</a>
+      <h2>PORTFOLIO</h2>
+      <p class="subtitle">A glimpse of the projects I've been working on</p>
+
+      <div class="category-filters">
+        <button class="filter-btn active" data-category="all">Show all</button>
+        <button class="filter-btn" data-category="health">Health</button>
+        <button class="filter-btn" data-category="finance">Finance</button>
+        <button class="filter-btn" data-category="sport">Sport</button>
+        <button class="filter-btn" data-category="fun">Fun Projects</button>
+      </div>
+
+      <div class="projects-grid">
+        <div class="project-card" data-category="health">
+          <a href="#"><img src="https://via.placeholder.com/300x200?text=Health+Project" alt="Health Project"></a>
+        </div>
+        <div class="project-card" data-category="finance">
+          <a href="#"><img src="https://via.placeholder.com/300x200?text=Finance+Project" alt="Finance Project"></a>
+        </div>
+        <div class="project-card" data-category="sport">
+          <a href="#"><img src="https://via.placeholder.com/300x200?text=Sport+Project" alt="Sport Project"></a>
+        </div>
+        <div class="project-card" data-category="fun">
+          <a href="#"><img src="https://via.placeholder.com/300x200?text=Fun+Project" alt="Fun Project"></a>
+        </div>
       </div>
     </section>
 
+    <!-- Contact Section -->
     <section id="contact" class="section-card contact-box">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:usman@protonmail.com">waxun@protonmail.com</a></p>
+      <p>Email: <a href="mailto:waxun@protonmail.com">waxun@protonmail.com</a></p>
     </section>
 
+    <!-- Footer with Date -->
     <footer>
       <span id="current-date"></span>
-
-        <script>
+      <script>
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
         const today = new Date().toLocaleDateString(undefined, options);
         document.getElementById('current-date').textContent = today;
-        </script>
-
+      </script>
     </footer>
   </div>
 
-  <!-- JS config -->
+  <!-- JavaScript Config -->
   <script src="script.js"></script>
-  <!-- JS config  - Random verses from the Quran -->
-  <!--<script src="reminders.js"></script>-->
+ <script src="news.js"></script>
+  <!-- <script src="reminders.js"></script> --> <!-- Uncomment to enable Quran reflections -->
+
 </body>
 </html>
