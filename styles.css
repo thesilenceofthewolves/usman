@@ -184,6 +184,10 @@ footer a:hover {
   display: block;
 }
 
+
+
+/* Add this at the bottom of your styles.css */
+
 /* Portfolio Section */
 #portfolio {
   max-width: 900px;
@@ -280,4 +284,5 @@ footer a:hover {
   color: #005a9c;
   text-decoration: underline;
 }
+
 
