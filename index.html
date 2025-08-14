@@ -2,31 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Usman Waxun - Portfolio</title>
 
-  <!-- Styles -->
+  <!-- CSS -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Font Awesome for icons -->
+  <!-- FontAwesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- tsParticles Library -->
+  <!-- tsParticles -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
 </head>
 <body>
-
   <!-- Particle Background -->
   <div id="tsparticles"></div>
 
-  <!-- Main content -->
   <div class="container">
     <header class="navbar">
       <div class="logo"><a href="#hero">Home</a></div>
       <nav>
         <ul class="nav-links">
           <li><a href="#about">ABOUT</a></li>
-
           <li class="dropdown">
             <a href="#portfolio" class="dropbtn">PORTFOLIO</a>
             <div class="dropdown-content">
@@ -36,7 +33,6 @@
               <a href="#portfolio-fun">Fun Projects</a>
             </div>
           </li>
-
           <li><a href="#contact">CONTACT</a></li>
         </ul>
       </nav>
@@ -47,24 +43,17 @@
       <p>Future Healthcare Analyst<br>Data Enthusiast | American Football & Rugby Fan</p>
 
       <div class="social-icons">
-        <a href="https://github.com/thesilenceofthewolves" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/waxun/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/thesilenceofthewolves" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/waxun/" target="_blank"><i class="fab fa-linkedin"></i></a>
       </div>
-    </section>
-
-    <!-- Daily Quran Verses -->
-    <section id="daily-ayah" style="text-align: center; padding: 2em 1em;">
-      <div id="data-news">📡 Loading today’s data news...</div>
-      <p id="ayah-text" style="white-space: pre-line; line-height: 1.6;"></p>
     </section>
 
     <section id="about" class="section-card">
       <h2>About Me</h2>
-      <p>
-        I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.
-      </p>
+      <p>I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.</p>
     </section>
 
+    <!-- Portfolio Section -->
     <section id="portfolio" class="section-card">
       <h2>PORTFOLIO</h2>
       <p class="subtitle">A glimpse of the projects I've been working on</p>
@@ -78,44 +67,54 @@
       </div>
 
       <div class="projects-grid">
-        <a href="https://www.datacamp.com/datalab/w/9a88424d-d9bd-4292-8cef-0124e2f074c1/edit/carsles_deal.ipynb" target="_blank" class="project-card" data-category="finance" title="Car Deal Data Analysis">
-          <img src="path/to/car_deal_image.png" alt="Car Deal Data Analysis" />
+        <a href="https://example.com/project1" class="project-card" data-category="finance" target="_blank">
+          <img src="images/project1.jpg" alt="Car Deal Data Analysis">
         </a>
-
-        <a href="#" target="_blank" class="project-card" data-category="health" title="Health Data Analysis">
-          <img src="path/to/health_project_image.png" alt="Health Project" />
+        <a href="https://example.com/project2" class="project-card" data-category="health" target="_blank">
+          <img src="images/project2.jpg" alt="Health Data Analysis">
         </a>
-
-        <a href="#" target="_blank" class="project-card" data-category="sport" title="Sports Analytics">
-          <img src="path/to/sport_project_image.png" alt="Sport Project" />
+        <a href="https://example.com/project3" class="project-card" data-category="sport" target="_blank">
+          <img src="images/project3.jpg" alt="Sports Analytics">
         </a>
-
-        <a href="#" target="_blank" class="project-card" data-category="fun" title="Fun Data Visualizations">
-          <img src="path/to/fun_project_image.png" alt="Fun Project" />
+        <a href="https://example.com/project4" class="project-card" data-category="fun" target="_blank">
+          <img src="images/project4.jpg" alt="Fun Data Visualization">
         </a>
       </div>
     </section>
 
-    <section id="contact" class="section-card contact-box">
+    <!-- Contact -->
+    <section id="contact" class="section-card">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:usman@protonmail.com">waxun@protonmail.com</a></p>
+      <p>Email: <a href="mailto:waxun@protonmail.com">waxun@protonmail.com</a></p>
     </section>
 
     <footer>
       <span id="current-date"></span>
-
       <script>
         const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const today = new Date().toLocaleDateString(undefined, options);
-        document.getElementById('current-date').textContent = today;
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString(undefined, options);
       </script>
     </footer>
   </div>
 
-  <!-- JS config -->
-  <script src="script.js"></script>
-  <!-- JS config  - Random verses from the Quran -->
-  <!-- <script src="reminders.js"></script> -->
-  <script src="news.js"></script>
+  <!-- Filter Script -->
+  <script>
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const projectCards = document.querySelectorAll(".project-card");
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const category = btn.dataset.category;
+
+        filterButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        projectCards.forEach(card => {
+          const cardCategory = card.dataset.category;
+          card.style.display = (category === "all" || cardCategory === category) ? "block" : "none";
+        });
+      });
+    });
+  </script>
 </body>
 </html>
