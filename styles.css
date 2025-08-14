@@ -139,3 +139,41 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
+.nav-links li.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.nav-links li.dropdown .dropbtn {
+  cursor: pointer;
+  user-select: none;
+}
+
+.nav-links li.dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 140px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1000;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.nav-links li.dropdown .dropdown-content a {
+  color: #333;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.nav-links li.dropdown .dropdown-content a:hover {
+  background-color: #4caf50;
+  color: white;
+}
+
+.nav-links li.dropdown:hover .dropdown-content {
+  display: block;
+}
+
