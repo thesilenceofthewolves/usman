@@ -13,136 +13,6 @@
 
   <!-- tsParticles Library -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
-
-  <style>
-    /* Minimal styling for layout */
-    body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      margin: 0;
-      padding: 0;
-    }
-
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    header.navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #fff;
-      padding: 10px 20px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    }
-
-    .logo a {
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 24px;
-      color: #222;
-    }
-
-    nav ul.nav-links {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      margin: 0;
-      padding: 0;
-    }
-
-    nav ul.nav-links li a {
-      text-decoration: none;
-      color: #333;
-      font-weight: 600;
-    }
-
-    section.section-card {
-      background: #fff;
-      padding: 20px;
-      margin-top: 20px;
-      border-radius: 5px;
-      box-shadow: 0 0 6px rgba(0,0,0,0.05);
-    }
-
-    h2 {
-      margin-top: 0;
-      font-weight: 700;
-    }
-
-    .subtitle {
-      font-style: italic;
-      color: #555;
-      margin-bottom: 15px;
-    }
-
-    .category-filters {
-      margin-bottom: 15px;
-    }
-
-    .filter-btn {
-      border: 1px solid #999;
-      background: #fff;
-      color: #333;
-      padding: 6px 12px;
-      margin-right: 8px;
-      border-radius: 3px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .filter-btn.active, .filter-btn:hover {
-      background: #58a;
-      color: white;
-      border-color: #58a;
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 15px;
-    }
-
-    .project-card {
-      background: #eee;
-      padding: 15px;
-      border-radius: 6px;
-    }
-
-    .project-card img {
-      max-width: 100%;
-      border-radius: 5px;
-      margin-bottom: 10px;
-    }
-
-    .project-card h3 {
-      margin: 0 0 6px;
-    }
-
-    .project-card p {
-      margin: 0 0 10px;
-      color: #333;
-    }
-
-    .project-card a {
-      color: #0066cc;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    .project-card a:hover {
-      text-decoration: underline;
-    }
-
-    @media(min-width: 600px) {
-      .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-  </style>
 </head>
 <body>
 
@@ -156,15 +26,17 @@
       <nav>
         <ul class="nav-links">
           <li><a href="#about">ABOUT</a></li>
+
           <li class="dropdown">
             <a href="#portfolio" class="dropbtn">PORTFOLIO</a>
-            <div class="dropdown-content" style="display:none;">
+            <div class="dropdown-content">
               <a href="#portfolio-health">Health</a>
               <a href="#portfolio-finance">Finance</a>
               <a href="#portfolio-sport">Sport</a>
               <a href="#portfolio-fun">Fun Projects</a>
             </div>
           </li>
+
           <li><a href="#contact">CONTACT</a></li>
         </ul>
       </nav>
@@ -178,6 +50,12 @@
         <a href="https://github.com/thesilenceofthewolves" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
         <a href="https://www.linkedin.com/in/waxun/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
       </div>
+    </section>
+
+    <!-- Daily Quran Verses -->
+    <section id="daily-ayah" style="text-align: center; padding: 2em 1em;">
+      <div id="data-news">📡 Loading today’s data news...</div>
+      <p id="ayah-text" style="white-space: pre-line; line-height: 1.6;"></p>
     </section>
 
     <section id="about" class="section-card">
@@ -200,73 +78,44 @@
       </div>
 
       <div class="projects-grid">
-        <div class="project-card" data-category="finance">
+        <a href="https://www.datacamp.com/datalab/w/9a88424d-d9bd-4292-8cef-0124e2f074c1/edit/carsles_deal.ipynb" target="_blank" class="project-card" data-category="finance" title="Car Deal Data Analysis">
           <img src="path/to/car_deal_image.png" alt="Car Deal Data Analysis" />
-          <h3>Car Deal Data Analysis</h3>
-          <p>Car sales trends using Python & Pandas.</p>
-          <a href="https://www.datacamp.com/datalab/w/9a88424d-d9bd-4292-8cef-0124e2f074c1/edit/carsles_deal.ipynb" target="_blank" rel="noopener noreferrer">View Project</a>
-        </div>
+        </a>
 
-        <div class="project-card" data-category="health">
+        <a href="#" target="_blank" class="project-card" data-category="health" title="Health Data Analysis">
           <img src="path/to/health_project_image.png" alt="Health Project" />
-          <h3>Health Data Analysis</h3>
-          <p>Insights from patient data.</p>
-          <a href="#" target="_blank" rel="noopener noreferrer">View Project</a>
-        </div>
+        </a>
 
-        <div class="project-card" data-category="sport">
+        <a href="#" target="_blank" class="project-card" data-category="sport" title="Sports Analytics">
           <img src="path/to/sport_project_image.png" alt="Sport Project" />
-          <h3>Sports Analytics</h3>
-          <p>Performance tracking using data science.</p>
-          <a href="#" target="_blank" rel="noopener noreferrer">View Project</a>
-        </div>
+        </a>
 
-        <div class="project-card" data-category="fun">
+        <a href="#" target="_blank" class="project-card" data-category="fun" title="Fun Data Visualizations">
           <img src="path/to/fun_project_image.png" alt="Fun Project" />
-          <h3>Fun Analysis</h3>
-          <p>Playful data exploration projects.</p>
-          <a href="#" target="_blank" rel="noopener noreferrer">View Project</a>
-        </div>
+        </a>
       </div>
     </section>
 
-    <footer style="text-align:center; margin-top: 40px;">
+    <section id="contact" class="section-card contact-box">
+      <h2>Contact</h2>
+      <p>Email: <a href="mailto:usman@protonmail.com">waxun@protonmail.com</a></p>
+    </section>
+
+    <footer>
       <span id="current-date"></span>
+
+      <script>
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const today = new Date().toLocaleDateString(undefined, options);
+        document.getElementById('current-date').textContent = today;
+      </script>
     </footer>
   </div>
 
-  <script>
-    // Display current date in footer
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
-    const today = new Date().toLocaleDateString(undefined, options);
-    document.getElementById('current-date').textContent = today;
-
-    // Filter buttons functionality
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-
-    filterButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        // Remove active from all buttons
-        filterButtons.forEach(btn => btn.classList.remove('active'));
-        // Add active to clicked button
-        button.classList.add('active');
-
-        const category = button.getAttribute('data-category');
-
-        projectCards.forEach(card => {
-          if (category === 'all' || card.getAttribute('data-category') === category) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-    });
-  </script>
-
-  <!-- Your other scripts -->
+  <!-- JS config -->
   <script src="script.js"></script>
+  <!-- JS config  - Random verses from the Quran -->
+  <!-- <script src="reminders.js"></script> -->
   <script src="news.js"></script>
 </body>
 </html>
