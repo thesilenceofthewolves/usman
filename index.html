@@ -55,73 +55,14 @@
         I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.
       </p>
     </section>
-    <section id="portfolio" class="section-card">
-  <h2>Portfolio</h2>
-  <p style="font-style: italic; color: #666;">A glimpse of the projects I've been working on</p>
-
-  <!-- Filter Buttons -->
-  <div style="margin-bottom: 20px; display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
-    <button class="filter-btn active" onclick="filterProjects('all', this)">Show all</button>
-    <button class="filter-btn" onclick="filterProjects('health', this)">Health</button>
-    <button class="filter-btn" onclick="filterProjects('finance', this)">Finance</button>
-    <button class="filter-btn" onclick="filterProjects('sport', this)">Sport</button>
-    <button class="filter-btn" onclick="filterProjects('fun', this)">Fun Projects</button>
-  </div>
-
-  <!-- Projects grid -->
-  <div id="projects" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px;">
-
-    <!-- Car Deal Project (Finance) -->
-    <div class="project-card finance" style="border: 1px solid #d3d3d3; border-radius: 8px; padding: 15px; background: #fff; box-shadow: 0 2px 4px rgb(0 0 0 / 0.1);">
-      <img src="car-deal-sample.jpg" alt="Car Deal Data Analysis" style="width: 100%; border-radius: 6px; margin-bottom: 10px;" />
-      <h4 style="margin: 0 0 8px;">Car Deal Data Analysis</h4>
-      <p style="font-size: 0.9rem; color: #555;">Car sales trends using Python & Pandas.</p>
-      <a href="https://www.datacamp.com/datalab/w/9a88424d-d9bd-4292-8cef-0124e2f074c1/edit/carsles_deal.ipynb" target="_blank" style="color: #00796b; font-weight: 600; text-decoration: none;">View Project</a>
-    </div>
-
-    <!-- More project cards here -->
-
+  <section id="portfolio" class="section-card">
+  <h2>Project</h2>
+  <div class="project-card">
+    <strong>Car Deal Data Analysis</strong><br />
+    Car sales trends using Python & Pandas.<br />
+    <a href="https://www.datacamp.com/datalab/w/9a88424d-d9bd-4292-8cef-0124e2f074c1/edit/carsles_deal.ipynb" target="_blank" rel="noopener noreferrer">View Project</a>
   </div>
 </section>
-
-<script>
-  function filterProjects(category, btn) {
-    const projects = document.querySelectorAll('.project-card');
-    projects.forEach(project => {
-      if (category === 'all' || project.classList.contains(category)) {
-        project.style.display = 'block';
-      } else {
-        project.style.display = 'none';
-      }
-    });
-
-    // Update active button style
-    document.querySelectorAll('.filter-btn').forEach(button => button.classList.remove('active'));
-    btn.classList.add('active');
-  }
-</script>
-
-<style>
-  .filter-btn {
-    background-color: #e0f2f1;
-    border: 1px solid #80cbc4;
-    padding: 8px 15px;
-    margin: 0 5px;
-    border-radius: 4px;
-    cursor: pointer;
-    color: #00796b;
-    font-weight: 500;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  .filter-btn.active {
-    background-color: #80cbc4;
-    color: white;
-  }
-  .filter-btn:hover:not(.active) {
-    background-color: #b2dfdb;
-  }
-</style>
-
  
     <section id="contact" class="section-card contact-box">
       <h2>Contact</h2>
