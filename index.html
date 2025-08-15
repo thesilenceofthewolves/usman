@@ -5,25 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Usman Waxun - Portfolio</title>
 
-  <!-- Link to external CSS -->
+  <!-- Styles -->
   <link rel="stylesheet" href="styles.css" />
 
   <!-- Font Awesome for icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <!-- tsParticles Library -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js" defer></script>
-  <script src="script.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
 </head>
 
 <body>
   <!-- Particle Background -->
   <div id="tsparticles"></div>
 
-  <!-- Main content container -->
+  <!-- Main content -->
   <div class="container">
     <!-- Navigation Bar -->
     <header class="navbar">
@@ -34,10 +30,10 @@
           <li class="dropdown">
             <a href="#portfolio" class="dropbtn">PORTFOLIO</a>
             <div class="dropdown-content">
-              <a href="health.html">Health</a>
-              <a href="finance.html">Finance</a>
-              <a href="sport.html">Sport</a>
-              <a href="fun.html">Fun Projects</a>
+              <a href="#portfolio-health">Health</a>
+              <a href="#portfolio-finance">Finance</a>
+              <a href="#portfolio-sport">Sport</a>
+              <a href="#portfolio-fun">Fun Projects</a>
             </div>
           </li>
           <li><a href="#contact">CONTACT</a></li>
@@ -49,32 +45,25 @@
     <section id="hero" class="hero">
       <h1>Usman Waxun</h1>
       <p>
-        Future Healthcare Analyst<br />
+        Future Healthcare Analyst<br>
         Data Enthusiast | American Football & Rugby Fan
       </p>
       <div class="social-icons">
-        <a
-          href="https://github.com/thesilenceofthewolves"
-          target="_blank"
-          aria-label="GitHub"
-          ><i class="fab fa-github"></i
-        ></a>
-        <a
-          href="https://www.linkedin.com/in/waxun/"
-          target="_blank"
-          aria-label="LinkedIn"
-          ><i class="fab fa-linkedin"></i
-        ></a>
+        <a href="https://github.com/thesilenceofthewolves" target="_blank" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/waxun/" target="_blank" aria-label="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about">
-      <h2>About Me</h2>
-      <p>
-        I’m passionate about turning data into meaningful insights.<br />
-        I aspire to work as a Healthcare Analyst, improving patient outcomes
-        with data-driven solutions.
+    <section id="about" style="text-align: center; padding: 3rem 1rem;">
+      <h2 style="margin-bottom: 1rem;">About Me</h2>
+      <p style="max-width: 600px; margin: 0 auto; font-size: 1.1rem; line-height: 1.7; color: #333;">
+        I’m passionate about turning data into meaningful insights.<br>
+        I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.
       </p>
     </section>
 
@@ -92,17 +81,21 @@
       </div>
 
       <div class="projects-grid">
-        <div class="project-card" data-category="health" data-project="health">
-          <img src="Health.jpg" alt="Health Project" />
+        <div class="project-card" data-category="health">
+          <a href="#"><img src="Health.jpg" alt="Health Project" /></a>
+          <div class="overlay">Health Projects</div>
         </div>
-        <div class="project-card" data-category="finance" data-project="finance">
-          <img src="Finances.jpg" alt="Finance Project" />
+        <div class="project-card" data-category="finance">
+          <a href="#"><img src="Finances.jpg" alt="Finance Project" /></a>
+          <div class="overlay">Finance Projects</div>
         </div>
-        <div class="project-card" data-category="sport" data-project="sport">
-          <img src="sportanalysis.jpg" alt="Sport Project" />
+        <div class="project-card" data-category="sport">
+          <a href="#"><img src="sportanalysis.jpg" alt="Sport Project" /></a>
+          <div class="overlay">Sport Projects</div>
         </div>
-        <div class="project-card" data-category="fun" data-project="fun">
-          <img src="fun.jpg" alt="Fun Project" />
+        <div class="project-card" data-category="fun">
+          <a href="#"><img src="fun.jpg" alt="Fun Project" /></a>
+          <div class="overlay">Fun Projects</div>
         </div>
       </div>
     </section>
@@ -113,21 +106,29 @@
       <p>Email: <a href="mailto:waxun@protonmail.com">waxun@protonmail.com</a></p>
     </section>
 
-    <!-- Footer with Date -->
+    <!-- Footer -->
     <footer>
       <span id="current-date"></span>
+      <script>
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const today = new Date().toLocaleDateString(undefined, options);
+        document.getElementById('current-date').textContent = today;
+      </script>
     </footer>
   </div>
 
-  <!-- Modal Overlay -->
-  <div id="projectModal" class="modal" style="display: none;">
+  <!-- Modal -->
+  <div class="modal" id="project-modal">
     <div class="modal-content">
-      <span id="modalClose" class="close-button">&times;</span>
-      <div id="modalImage"></div>
-      <h3 id="modalTitle"></h3>
-      <p id="modalDescription"></p>
-      <a href="#" id="modalGoToPage" class="btn" target="_blank" rel="noopener noreferrer">Go to page</a>
+      <span class="close-button">&times;</span>
+      <img src="" alt="Project Image" id="modal-image" />
+      <h2 id="modal-title"></h2>
+      <p id="modal-description"></p>
+      <a href="#" class="btn" id="modal-link">Go to page</a>
     </div>
   </div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
 </body>
 </html>
