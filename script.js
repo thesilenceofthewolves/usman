@@ -89,4 +89,56 @@ tsParticles.load("tsparticles", {
     });
   });
 
+/* === Category Summary Cards === */
+.category-summary-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 700px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.category-summary-img {
+  max-width: 200px;
+  height: auto;
+  margin-bottom: 1rem;
+  border-radius: 6px;
+}
+
+.category-summary-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.25rem;
+}
+
+.category-summary-card .subtitle {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.category-summary-card p {
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 1rem;
+}
+
+.btn-go-to-page {
+  display: inline-block;
+  margin: 1rem 0;
+  padding: 0.6rem 1.2rem;
+  background-color: #a37c52;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-go-to-page:hover {
+  background-color: #7a5a3c;
+}
+
+
 
