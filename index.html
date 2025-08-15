@@ -57,25 +57,15 @@
         </a>
       </div>
     </section>
+
+    <!-- About Section -->
     <section id="about" style="text-align: center; padding: 3rem 1rem;">
-  <h2 style="margin-bottom: 1rem;">About Me</h2>
-  <p style="max-width: 600px; margin: 0 auto; font-size: 1.1rem; line-height: 1.7; color: #333;">
-    I’m passionate about turning data into meaningful insights.<br>
-    I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.
-  </p>
-</section>
-
-
-    <!-- Daily News Section -->
-   <!-- <div id="data-news">📡 Loading today’s data news...</div> -->
-
-    <!-- (Optional) Daily Quran Reflection -->
-    <!--
-    <section id="daily-ayah" style="text-align: center; padding: 2em 1em;">
-      <h3 style="margin-bottom: 1em;">Reflection of the Day</h3>
-      <p id="ayah-text" style="white-space: pre-line; line-height: 1.6;"></p>
+      <h2 style="margin-bottom: 1rem;">About Me</h2>
+      <p style="max-width: 600px; margin: 0 auto; font-size: 1.1rem; line-height: 1.7; color: #333;">
+        I’m passionate about turning data into meaningful insights.<br>
+        I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.
+      </p>
     </section>
-    -->
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="section-card">
@@ -104,6 +94,65 @@
           <a href="#"><img src="fun.jpg" alt="Fun Project"></a>
         </div>
       </div>
+
+      <!-- Category Cards -->
+
+      <!-- Health -->
+      <div class="category-summary-card" id="portfolio-health">
+        <img src="Health.jpg" alt="Health Projects" class="category-summary-img">
+        <h3>Health</h3>
+        <p class="subtitle">Using data to drive better patient outcomes</p>
+        <a href="health.html" class="btn-go-to-page">Go to Page</a>
+        <h4>Description</h4>
+        <p>
+          Health data analysis focuses on uncovering trends and patterns in medical and patient datasets.
+          Projects in this category explore areas like hospital admissions, treatment efficiency, and disease tracking.
+          Using Python, SQL and visualisation libraries, I aim to highlight insights that could inform healthcare decision-making.
+        </p>
+      </div>
+
+      <!-- Finance -->
+      <div class="category-summary-card" id="portfolio-finance">
+        <img src="Finances.jpg" alt="Finance Projects" class="category-summary-img">
+        <h3>Finance</h3>
+        <p class="subtitle">Making sense of numbers behind the economy</p>
+        <a href="finance.html" class="btn-go-to-page">Go to Page</a>
+        <h4>Description</h4>
+        <p>
+          Finance projects involve analysing stock trends, budget data, and economic indicators.
+          By applying Python, Pandas, and statistical techniques, I transform raw financial data into meaningful stories.
+          Whether it's stock performance or spending analysis, these projects highlight the power of data in economic decision-making.
+        </p>
+      </div>
+
+      <!-- Sport -->
+      <div class="category-summary-card" id="portfolio-sport">
+        <img src="sportanalysis.jpg" alt="Sport Projects" class="category-summary-img">
+        <h3>Sport</h3>
+        <p class="subtitle">Where data meets athletic performance</p>
+        <a href="sport.html" class="btn-go-to-page">Go to Page</a>
+        <h4>Description</h4>
+        <p>
+          Sport analytics helps us understand player performance, team stats, and match trends.
+          These projects include analysing league tables, predicting outcomes, and visualising game statistics.
+          With tools like Python and visual libraries, I explore how data adds a competitive edge to the sporting world.
+        </p>
+      </div>
+
+      <!-- Fun -->
+      <div class="category-summary-card" id="portfolio-fun">
+        <img src="fun.jpg" alt="Fun Projects" class="category-summary-img">
+        <h3>Fun Projects</h3>
+        <p class="subtitle">Exploring the playful side of data</p>
+        <a href="fun.html" class="btn-go-to-page">Go to Page</a>
+        <h4>Description</h4>
+        <p>
+          Fun projects are a creative playground for data storytelling.
+          From analysing baby name trends to quirky datasets and visual experiments,
+          these projects demonstrate how data can be both insightful and entertaining.
+          Python, SQL, and Matplotlib help bring these stories to life in an engaging way.
+        </p>
+      </div>
     </section>
 
     <!-- Contact Section -->
@@ -112,7 +161,7 @@
       <p>Email: <a href="mailto:waxun@protonmail.com">waxun@protonmail.com</a></p>
     </section>
 
-    <!-- Footer with Date -->
+    <!-- Footer -->
     <footer>
       <span id="current-date"></span>
       <script>
@@ -123,10 +172,7 @@
     </footer>
   </div>
 
-  <!-- JavaScript Config -->
+  <!-- JavaScript -->
   <script src="script.js"></script>
-<!--  <script src="news.js"></script> <!-- news -->
-  <!-- <script src="reminders.js"></script> --> <!-- Uncomment to enable Quran reflections -->
-
 </body>
 </html>
