@@ -264,3 +264,84 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
+
+/* Modal Styles */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 10000; /* On top */
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.5); /* Black transparent background */
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+
+.modal.show {
+  display: flex; /* Show modal with flex */
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.modal-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  user-select: none;
+}
+
+.close-button:hover {
+  color: #b48a78; /* Your theme color */
+}
+
+.modal-content h2 {
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.modal-content p {
+  margin-bottom: 1.5rem;
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.modal-content a.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background-color: #b48a78;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.modal-content a.btn:hover {
+  background-color: #9e6f62;
+}
+
