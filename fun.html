@@ -2,43 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fun Projects Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fun Projects</title>
   <link rel="stylesheet" href="fun.css" />
 </head>
 <body>
 
-  <div class="layout">
+  <!-- Hamburger Icon -->
+  <div class="hamburger" id="hamburger">&#9776;</div>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <h1>🎉 Fun Projects</h1>
-      </div>
-      <ul class="project-menu">
-        <li><a href="#baby-names">👶 Baby Names Analysis</a></li>
-        <!-- Add more in the future -->
+  <div class="layout">
+    
+    <!-- Sidebar Menu -->
+    <aside class="sidebar" id="sidebar">
+      <h2>Fun Projects</h2>
+      <ul>
+        <li><a href="#baby-names">Baby Names Analysis</a></li>
+        <!-- Future project links go here -->
       </ul>
-      <a href="index.html" class="back-home">← Back to Home</a>
     </aside>
 
-    <!-- Main content -->
+    <!-- Main Content Area -->
     <main class="main-area">
+      
+      <!-- Page Intro -->
       <section class="intro">
-        <h2>Welcome to the Fun Zone 🧠</h2>
-        <p>This is a collection of fun data analysis projects — lighthearted, exploratory, and insightful. You'll find visuals, dashboards, and playful data experiments.</p>
-        <img src="images/dashboard-mockup.jpg" alt="Fun Dashboard" class="dashboard-preview"/>
+        <h1>Fun Data Projects</h1>
+        <p>A collection of interesting and playful data analysis projects presented in dashboard-style views. More coming soon!</p>
       </section>
 
-      <section id="baby-names" class="project">
-        <h3>Baby Names Analysis</h3>
-        <p>This project explores name popularity using U.S. Social Security data. It analyzes naming trends over decades and visualizes shifts in gender preferences and name choices.</p>
-
-        <iframe src="files/baby_names_analysis.pdf" width="100%" height="600px" class="pdf-viewer"></iframe>
+      <!-- Project Section -->
+      <section class="project" id="baby-names">
+        <h2>Baby Names Analysis</h2>
+        <iframe src="baby-names-analysis.pdf" title="Baby Names PDF"></iframe>
       </section>
+
     </main>
 
   </div>
 
+  <!-- Sidebar Toggle Script -->
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const sidebar = document.getElementById('sidebar');
+
+    hamburger.addEventListener('click', () => {
+      sidebar.classList.toggle('show');
+    });
+  </script>
 </body>
 </html>
+
