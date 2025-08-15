@@ -1,41 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Fun Projects</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fun Projects Dashboard</title>
+  <link rel="stylesheet" href="fun.css" />
 </head>
 <body>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo"><a href="index.html">← Back to Home</a></div>
-    <div class="burger" onclick="toggleMenu()">☰</div>
-  </nav>
+  <div class="layout">
 
-  <!-- Menu (hamburger dropdown) -->
-  <ul class="mobile-menu" id="mobileMenu">
-    <li><a href="#baby-names">Baby Names Analysis</a></li>
-  </ul>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h1>🎉 Fun Projects</h1>
+      </div>
+      <ul class="project-menu">
+        <li><a href="#baby-names">👶 Baby Names Analysis</a></li>
+        <!-- Add more in the future -->
+      </ul>
+      <a href="index.html" class="back-home">← Back to Home</a>
+    </aside>
 
-  <!-- Page content -->
-  <div class="container">
-    <h1>Fun Projects</h1>
+    <!-- Main content -->
+    <main class="main-area">
+      <section class="intro">
+        <h2>Welcome to the Fun Zone 🧠</h2>
+        <p>This is a collection of fun data analysis projects — lighthearted, exploratory, and insightful. You'll find visuals, dashboards, and playful data experiments.</p>
+        <img src="images/dashboard-mockup.jpg" alt="Fun Dashboard" class="dashboard-preview"/>
+      </section>
 
-    <section id="baby-names" class="project-card">
-      <h2>Baby Names Analysis</h2>
-      <p>This project analyses baby name trends using US Social Security data.</p>
-      <a href="files/baby_names_analysis.pdf" target="_blank" class="btn">📄 View PDF</a>
-    </section>
+      <section id="baby-names" class="project">
+        <h3>Baby Names Analysis</h3>
+        <p>This project explores name popularity using U.S. Social Security data. It analyzes naming trends over decades and visualizes shifts in gender preferences and name choices.</p>
+
+        <iframe src="files/baby_names_analysis.pdf" width="100%" height="600px" class="pdf-viewer"></iframe>
+      </section>
+    </main>
+
   </div>
 
-  <script>
-    function toggleMenu() {
-      const menu = document.getElementById("mobileMenu");
-      menu.classList.toggle("open");
-    }
-  </script>
 </body>
 </html>
-
