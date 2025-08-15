@@ -1,38 +1,57 @@
-/* Reset & Base */
+/* Reset */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f4f4;
-  color: #333;
-  line-height: 1.6;
+body, html {
+  font-family: Arial, sans-serif;
+  height: 100%;
+  background: #f4f4f4;
 }
 
-/* Layout */
-.layout {
+/* Top Header */
+.top-bar {
   display: flex;
-  min-height: 100vh;
+  align-items: center;
+  padding: 1rem;
+  background-color: #343a40;
+  color: white;
+  position: relative;
 }
 
-/* Sidebar (Menu) */
+.hamburger {
+  font-size: 1.8rem;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.page-title {
+  font-size: 1.5rem;
+}
+
+/* Sidebar */
 .sidebar {
-  width: 220px;
-  background-color: #1e293b;
-  color: white;
+  position: fixed;
+  top: 60px;
+  left: -250px;
+  width: 200px;
+  height: 100%;
+  background-color: #343a40;
   padding: 1rem;
-  position: relative;
-  transition: all 0.3s ease;
+  color: white;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.show {
+  left: 0;
 }
 
 .sidebar h2 {
-  font-size: 1.2rem;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #444;
-  padding-bottom: 0.5rem;
+  font-size: 1.2rem;
 }
 
 .sidebar ul {
@@ -40,98 +59,46 @@ body {
 }
 
 .sidebar ul li {
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 
 .sidebar ul li a {
-  color: #ddd;
+  color: white;
   text-decoration: none;
-  transition: color 0.3s ease;
 }
 
 .sidebar ul li a:hover {
-  color: #fff;
+  text-decoration: underline;
 }
 
-/* Main Content Area */
+/* Main Content */
 .main-area {
-  flex: 1;
-  padding: 2rem;
-  background-color: #ffffff;
+  margin-left: 0;
+  padding: 2rem 1rem;
+  transition: margin-left 0.3s ease;
 }
 
-/* Intro / Description */
+@media (min-width: 768px) {
+  .main-area {
+    margin-left: 220px;
+  }
+
+  .sidebar {
+    left: 0;
+  }
+
+  .hamburger {
+    display: none;
+  }
+}
+
 .intro {
   margin-bottom: 2rem;
-}
-
-.intro h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  color: #222;
-}
-
-.intro p {
-  font-size: 1rem;
-  color: #555;
-}
-
-/* Project Section */
-.project {
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fafafa;
-}
-
-.project h2 {
-  margin-bottom: 1rem;
-  color: #333;
 }
 
 .project iframe {
   width: 100%;
   height: 600px;
-  border: none;
-  border-radius: 6px;
-}
-
-/* Hamburger Menu */
-.hamburger {
-  display: none;
-  font-size: 2rem;
-  padding: 1rem;
-  cursor: pointer;
-  background: #1e293b;
-  color: white;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9999;
-}
-
-/* Responsive Sidebar for Mobile */
-@media (max-width: 768px) {
-  .sidebar {
-    position: fixed;
-    top: 0;
-    left: -250px;
-    height: 100vh;
-    width: 220px;
-    z-index: 999;
-    transition: left 0.3s ease;
-  }
-
-  .sidebar.show {
-    left: 0;
-  }
-
-  .main-area {
-    padding-top: 4rem;
-  }
-
-  .hamburger {
-    display: block;
-  }
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
