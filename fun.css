@@ -1,40 +1,38 @@
-/* Reset */
+/* Reset & Base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body, html {
-  height: 100%;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  background-color: #f4f6f8;
-  color: #222;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
 }
 
-/* Dashboard Layout */
-.dashboard-container {
+/* Layout */
+.layout {
   display: flex;
   min-height: 100vh;
 }
 
-/* Sidebar */
+/* Sidebar (Menu) */
 .sidebar {
-  background-color: #2e3b4e;
+  width: 220px;
+  background-color: #1e293b;
   color: white;
-  width: 250px;
-  padding: 2rem 1.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: sticky;
-  top: 0;
-  height: 100vh;
+  padding: 1rem;
+  position: relative;
+  transition: all 0.3s ease;
 }
 
 .sidebar h2 {
-  font-size: 1.4rem;
-  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #444;
+  padding-bottom: 0.5rem;
 }
 
 .sidebar ul {
@@ -45,78 +43,95 @@ body, html {
   margin-bottom: 1rem;
 }
 
-.sidebar a {
+.sidebar ul li a {
   color: #ddd;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s;
+  transition: color 0.3s ease;
 }
 
-.sidebar a:hover {
+.sidebar ul li a:hover {
   color: #fff;
 }
 
-.back-home {
-  margin-top: auto;
-  display: block;
-  font-size: 0.9rem;
-  color: #ccc;
+/* Main Content Area */
+.main-area {
+  flex: 1;
+  padding: 2rem;
+  background-color: #ffffff;
 }
 
-/* Main Content */
-.main-content {
-  flex-grow: 1;
-  padding: 2rem;
-  overflow-y: auto;
-}
-
-.project-section {
-  background: white;
-  padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+/* Intro / Description */
+.intro {
   margin-bottom: 2rem;
 }
 
-.project-section h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
+.intro h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #222;
 }
 
-.project-section p {
-  margin-bottom: 1.5rem;
+.intro p {
+  font-size: 1rem;
   color: #555;
-  line-height: 1.6;
 }
 
-/* PDF Embed */
-.pdf-viewer {
-  border: 1px solid #ccc;
+/* Project Section */
+.project {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.project h2 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.project iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
   border-radius: 6px;
 }
 
-/* Responsive */
+/* Hamburger Menu */
+.hamburger {
+  display: none;
+  font-size: 2rem;
+  padding: 1rem;
+  cursor: pointer;
+  background: #1e293b;
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+}
+
+/* Responsive Sidebar for Mobile */
 @media (max-width: 768px) {
-  .dashboard-container {
-    flex-direction: column;
-  }
-
   .sidebar {
-    width: 100%;
-    height: auto;
-    flex-direction: row;
-    align-items: center;
-    padding: 1rem;
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100vh;
+    width: 220px;
+    z-index: 999;
+    transition: left 0.3s ease;
   }
 
-  .sidebar ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+  .sidebar.show {
+    left: 0;
   }
 
-  .main-content {
-    padding: 1rem;
+  .main-area {
+    padding-top: 4rem;
+  }
+
+  .hamburger {
+    display: block;
   }
 }
