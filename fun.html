@@ -1,47 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fun Projects</title>
-  <link rel="stylesheet" href="fun.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Fun Projects</title>
+<style>
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body, html {
+    font-family: Arial, sans-serif;
+    height: 100%;
+    background: #f4f4f4;
+  }
+  /* Header */
+  .top-bar {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background-color: #343a40;
+    color: white;
+    position: relative;
+  }
+  .hamburger {
+    font-size: 2rem;
+    cursor: pointer;
+    margin-right: 1rem;
+    user-select: none;
+  }
+  .page-title {
+    font-size: 1.5rem;
+  }
+  /* Sidebar */
+  .sidebar {
+    position: fixed;
+    top: 60px;
+    left: -250px;
+    width: 200px;
+    height: 100%;
+    background-color: #343a40;
+    padding: 1rem;
+    color: white;
+    transition: left 0.3s ease;
+    z-index: 1000;
+  }
+  .sidebar.show {
+    left: 0;
+  }
+  .sidebar h2 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  .sidebar ul {
+    list-style: none;
+  }
+  .sidebar ul li {
+    margin-bottom: 0.75rem;
+  }
+  .sidebar ul li a {
+    color: white;
+    text-decoration: none;
+  }
+  .sidebar ul li a:hover {
+    text-decoration: underline;
+  }
+  /* Main content */
+  .main-area {
+    margin-left: 0;
+    padding: 2rem 1rem;
+    transition: margin-left 0.3s ease;
+  }
+  @media (min-width: 768px) {
+    .main-area {
+      margin-left: 220px;
+    }
+    .sidebar {
+      left: 0;
+    }
+    .hamburger {
+      display: none;
+    }
+  }
+  .intro {
+    margin-bottom: 2rem;
+  }
+  .project iframe {
+    width: 100%;
+    height: 600px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+</style>
 </head>
 <body>
 
-  <!-- Hamburger Icon -->
-  <div class="hamburger" id="hamburger">&#9776;</div>
+  <header class="top-bar">
+    <div class="hamburger" id="hamburger">&#9776;</div>
+    <h1 class="page-title">Fun Projects</h1>
+  </header>
 
-  <div class="layout">
-    
-    <!-- Sidebar Menu -->
-    <aside class="sidebar" id="sidebar">
-      <h2>Fun Projects</h2>
-      <ul>
-        <li><a href="#baby-names">Baby Names Analysis</a></li>
-        <!-- Future project links go here -->
-      </ul>
-    </aside>
+  <aside class="sidebar" id="sidebar">
+    <h2>Projects</h2>
+    <ul>
+      <li><a href="#baby-names">Baby Names Analysis</a></li>
+    </ul>
+  </aside>
 
-    <!-- Main Content Area -->
-    <main class="main-area">
-      
-      <!-- Page Intro -->
-      <section class="intro">
-        <h1>Fun Data Projects</h1>
-        <p>A collection of interesting and playful data analysis projects presented in dashboard-style views. More coming soon!</p>
-      </section>
+  <main class="main-area">
+    <section class="intro">
+      <h2>Welcome to Fun Projects</h2>
+      <p>This section showcases creative and playful data analysis dashboards. Currently only one project is live, but more to come!</p>
+    </section>
 
-      <!-- Project Section -->
-      <section class="project" id="baby-names">
-        <h2>Baby Names Analysis</h2>
-        <iframe src="baby-names-analysis.pdf" title="Baby Names PDF"></iframe>
-      </section>
+    <section class="project" id="baby-names">
+      <h3>Baby Names Analysis</h3>
+      <iframe src="baby-names-analysis.pdf" title="Baby Names Analysis PDF"></iframe>
+    </section>
+  </main>
 
-    </main>
-
-  </div>
-
-  <!-- Sidebar Toggle Script -->
   <script>
     const hamburger = document.getElementById('hamburger');
     const sidebar = document.getElementById('sidebar');
