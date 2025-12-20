@@ -1,138 +1,265 @@
-console.log("script.js is running...");
-
-tsParticles.load("tsparticles", {
-  background: { color: "#ffffff" },
-  fpsLimit: 60,
-  particles: {
-    number: { value: 60, density: { enable: true, area: 900 } },
-    color: { value: "#999999" },
-    shape: { type: "circle" },
-    opacity: { value: 0.5 },
-    size: { value: 3, random: { enable: true, minimumValue: 1 } },
-    links: { enable: true, distance: 150, color: "#cccccc", opacity: 0.4, width: 1 },
-    move: { enable: true, speed: 2, outModes: { default: "bounce" } }
-  },
-  interactivity: {
-    events: { onHover: { enable: true, mode: "repulse" }, onClick: { enable: true, mode: "push" }, resize: true },
-    modes: { repulse: { distance: 100 }, push: { quantity: 4 } }
-  },
-  detectRetina: true
+// ----------------------
+// Date in footer
+// ----------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const dateSpan = document.getElementById("current-date");
+  if (dateSpan) {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    dateSpan.textContent = new Date().toLocaleDateString(undefined, options);
+  }
 });
 
-// Filter Buttons Logic
-const filterButtons = document.querySelectorAll('.filter-btn');
-const projectCards = document.querySelectorAll('.project-card');
+// ----------------------
+// Portfolio filtering
+// ----------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const projectCards = document.querySelectorAll(".project-card");
 
-filterButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const category = button.getAttribute('data-category');
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const category = btn.getAttribute("data-category");
 
-    filterButtons.forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
+      filterButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
 
-    projectCards.forEach(card => {
-      if (category === 'all' || card.getAttribute('data-category') === category) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
+      projectCards.forEach((card) => {
+        const cardCategory = card.getAttribute("data-category");
+
+        if (category === "all" || cardCategory === category) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
     });
   });
 });
 
-// Modal Popup Description
-document.addEventListener('DOMContentLoaded', () => {
-  const projectImages = document.querySelectorAll('.project-card img');
+// ----------------------
+// Modal logic
+// ----------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("project-modal");
+  const modalImage = document.getElementById("modal-image");
+  const modalTitle = document.getElementById("modal-title");
+  const modalDescription = document.getElementById("modal-description");
+  const modalLinks = document.getElementById("modal-links");
+  const closeButton = document.getElementById("modal-close");
+  const projectCards = document.querySelectorAll(".project-card");
 
-  // Create modal
-  const modal = document.createElement('div');
-  modal.classList.add('modal');
-  modal.style.display = 'none'; // hide initially
+  if (!modal || !modalImage || !modalTitle || !modalDescription || !modalLinks) return;
 
-  const modalContent = document.createElement('div');
-  modalContent.classList.add('modal-content');
-
-  const closeBtn = document.createElement('span');
-  closeBtn.classList.add('close-button');
-  closeBtn.innerHTML = '&times;';
-
-  modalContent.appendChild(closeBtn);
-  modal.appendChild(modalContent);
-  document.body.appendChild(modal);
-
-  // Descriptions for categories
-  const descriptions = {
-    health: {
-      title: 'Health Projects',
-      description: 'Data analysis in the health category focusing on patient outcomes, healthcare trends, and clinical data.',
-      imgSrc: 'Health.jpg',
-      pageLink: 'health.html'
-    },
-    finance: {
-      title: 'Finance Projects',
-      description: 'Analysis of financial data including stock markets, investment trends, and economic indicators.',
-      imgSrc: 'Finances.jpg',
-      pageLink: 'finance.html'
-    },
-    sport: {
-      title: 'Sport Projects',
-      description: 'Insights into sports statistics, game analytics, and athlete performance metrics.',
-      imgSrc: 'sportanalysis.jpg',
-      pageLink: 'sport.html'
-    },
-    fun: {
-      title: 'Fun Projects',
-      description: 'Creative and experimental projects including baby name trends, games, and interactive data visualisations.',
-      imgSrc: 'fun.jpg',
-      pageLink: 'fun.html'
-    }
+  const financeProjects = {
+    title: "Business & Finance Analytics",
+    description:
+      "A set of analytics projects across airlines, banking and retail, showcasing forecasting, modelling and commercial insight.",
+    imageAlt: "Finance data project",
+    sections: [
+      {
+        heading: "British Airways",
+        items: [
+          {
+            label: "British Airways Model",
+            file: "BritishAirwayModel.pdf",
+          },
+          {
+            label: "British Airways Lounges Analysis",
+            file: "BritishAirwayLounges.pdf",
+          },
+        ],
+      },
+      {
+        heading: "Lloyds Banking Group",
+        items: [
+          {
+            label: "Lloyds Analysis",
+            file: "LlyodAnalysis.pdf",
+          },
+          {
+            label: "Lloyds Model",
+            file: "LlyodModel.pdf",
+          },
+        ],
+      },
+      {
+        heading: "Quantium Analytics",
+        items: [
+          {
+            label: "Quantium Project",
+            file: "quantium.pdf",
+          },
+          {
+            label: "Quantium Store Insights",
+            file: "quantiumstore.pdf",
+          },
+        ],
+      },
+    ],
   };
 
-  function showModal(category) {
-    const data = descriptions[category];
-    if (!data) return;
+  function openModal(card) {
+    const projectType = card.getAttribute("data-project");
+    const img = card.querySelector("img");
 
-    // Clear previous except close button
-    modalContent.querySelectorAll(':not(.close-button)').forEach(e => e.remove());
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
 
-    // Add new content
-    const img = document.createElement('img');
-    img.src = data.imgSrc;
-    img.alt = data.title;
-    modalContent.appendChild(img);
+    if (img) {
+      modalImage.src = img.src;
+      modalImage.alt = img.alt || "";
+    } else {
+      modalImage.src = "";
+      modalImage.alt = "";
+    }
 
-    const h2 = document.createElement('h2');
-    h2.textContent = data.title;
-    modalContent.appendChild(h2);
+    modalLinks.innerHTML = "";
 
-    const p = document.createElement('p');
-    p.textContent = data.description;
-    modalContent.appendChild(p);
+    if (projectType === "finance") {
+      modalTitle.textContent = financeProjects.title;
+      modalDescription.textContent = financeProjects.description;
 
-    const link = document.createElement('a');
-    link.href = data.pageLink;
-    link.textContent = 'Go to page';
-    link.classList.add('btn-go-to-page');
-    modalContent.appendChild(link);
+      financeProjects.sections.forEach((section) => {
+        const sectionEl = document.createElement("div");
+        sectionEl.classList.add("modal-section");
 
-    modal.style.display = 'block';
+        const h3 = document.createElement("h3");
+        h3.textContent = section.heading;
+        sectionEl.appendChild(h3);
+
+        const ul = document.createElement("ul");
+        section.items.forEach((item) => {
+          const li = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = item.file; // PDFs live in the same folder as index.html
+          link.target = "_blank";
+          link.rel = "noopener";
+          link.textContent = item.label;
+          li.appendChild(link);
+          ul.appendChild(li);
+        });
+
+        sectionEl.appendChild(ul);
+        modalLinks.appendChild(sectionEl);
+      });
+    } else if (projectType === "health") {
+      modalTitle.textContent = "Health Analytics Projects";
+      modalDescription.textContent =
+        "Exploratory and predictive work focused on healthcare data, clinical trends and patient outcomes. Content coming soon.";
+    } else if (projectType === "sport") {
+      modalTitle.textContent = "Sport Analytics Projects";
+      modalDescription.textContent =
+        "Data-driven analysis of performance metrics, game outcomes and sports strategy. Content coming soon.";
+    } else if (projectType === "fun") {
+      modalTitle.textContent = "Fun & Experimental Projects";
+      modalDescription.textContent =
+        "Personal experiments, creative analyses and playful data explorations. Content coming soon.";
+    } else {
+      modalTitle.textContent = "Project Details";
+      modalDescription.textContent = card.getAttribute("data-description") || "";
+    }
   }
 
-  projectImages.forEach(img => {
-    img.addEventListener('click', (e) => {
-      e.preventDefault();
-      const category = img.closest('.project-card').getAttribute('data-category');
-      showModal(category);
-    });
+  function closeModal() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+  }
+
+  projectCards.forEach((card) => {
+    card.addEventListener("click", () => openModal(card));
   });
 
-  closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
+  closeButton.addEventListener("click", closeModal);
 
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.style.display = 'none';
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      closeModal();
     }
   });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && modal.classList.contains("open")) {
+      closeModal();
+    }
+  });
+});
+
+// ----------------------
+// tsParticles config
+// ----------------------
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.tsParticles) {
+    tsParticles.load("tsparticles", {
+      background: {
+        color: {
+          value: "#050816",
+        },
+      },
+      fpsLimit: 60,
+      interactivity: {
+        events: {
+          onClick: {
+            enable: true,
+            mode: "push",
+          },
+          onHover: {
+            enable: true,
+            mode: "repulse",
+          },
+          resize: true,
+        },
+        modes: {
+          push: {
+            quantity: 2,
+          },
+          repulse: {
+            distance: 100,
+            duration: 0.4,
+          },
+        },
+      },
+      particles: {
+        color: {
+          value: "#ffffff",
+        },
+        links: {
+          color: "#8888ff",
+          distance: 120,
+          enable: true,
+          opacity: 0.4,
+          width: 1,
+        },
+        collisions: {
+          enable: false,
+        },
+        move: {
+          direction: "none",
+          enable: true,
+          outModes: {
+            default: "bounce",
+          },
+          random: false,
+          speed: 1,
+          straight: false,
+        },
+        number: {
+          density: {
+            enable: true,
+            area: 800,
+          },
+          value: 60,
+        },
+        opacity: {
+          value: 0.5,
+        },
+        shape: {
+          type: "circle",
+        },
+        size: {
+          value: { min: 1, max: 4 },
+        },
+      },
+      detectRetina: true,
+    });
+  }
 });
