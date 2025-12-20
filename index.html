@@ -9,10 +9,19 @@
   <link rel="stylesheet" href="styles.css" />
 
   <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-pIVpG8G0M9Pp7c6+gF6C+WbQnXn7GgM2gT3nvP9xVx8mC4bZx3u6lX8vCqO3c6pV4yqX1rK8C9E3O5X1s4F3Yg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 
   <!-- tsParticles Library -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js" defer></script>
+
+  <!-- Main JS -->
+  <script src="script.js" defer></script>
 </head>
 
 <body>
@@ -23,7 +32,7 @@
   <div class="container">
     <!-- Navigation Bar -->
     <header class="navbar">
-      <div class="logo"><a href="#hero">Home</a></div>
+      <div class="logo"><a href="#hero">Usman</a></div>
       <nav>
         <ul class="nav-links">
           <li><a href="#about">ABOUT</a></li>
@@ -43,33 +52,33 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero">
-      <h1>Usman Waxun</h1>
-      <p>
-        Future Healthcare Analyst<br>
-        Data Enthusiast | American Football & Rugby Fan
+      <h1 class="hero-title">Usman Waxun</h1>
+      <p class="hero-subtitle">
+        Future Healthcare Analyst<br />
+        Data Enthusiast • American Football & Rugby Fan
       </p>
       <div class="social-icons">
-        <a href="https://github.com/thesilenceofthewolves" target="_blank" aria-label="GitHub">
+        <a href="https://github.com/thesilenceofthewolves" target="_blank" rel="noopener" aria-label="GitHub">
           <i class="fab fa-github"></i>
         </a>
-        <a href="https://www.linkedin.com/in/waxun/" target="_blank" aria-label="LinkedIn">
+        <a href="https://www.linkedin.com/in/waxun/" target="_blank" rel="noopener" aria-label="LinkedIn">
           <i class="fab fa-linkedin"></i>
         </a>
       </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" style="text-align: center; padding: 3rem 1rem;">
-      <h2 style="margin-bottom: 1rem;">About Me</h2>
-      <p style="max-width: 600px; margin: 0 auto; font-size: 1.1rem; line-height: 1.7; color: #333;">
-        I’m passionate about turning data into meaningful insights.<br>
-        I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.
+    <section id="about" class="section-card section-about">
+      <h2>About Me</h2>
+      <p>
+        I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst,
+        using data-driven solutions to improve patient outcomes and support better decision-making in healthcare.
       </p>
     </section>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="section-card">
-      <h2>PORTFOLIO</h2>
+    <section id="portfolio" class="section-card section-portfolio">
+      <h2>Portfolio</h2>
       <p class="subtitle">A glimpse of the projects I've been working on</p>
 
       <div class="category-filters">
@@ -81,20 +90,51 @@
       </div>
 
       <div class="projects-grid">
-        <div class="project-card" data-category="health" data-description="Health data insights and clinical trends"   >
-          <a href="#"><img src="Health.jpg" alt="Health Project" /></a>
+        <!-- Health -->
+        <div
+          class="project-card"
+          data-category="health"
+          data-project="health"
+          data-description="Health data insights and clinical trends."
+          id="portfolio-health"
+        >
+          <img src="Health.jpg" alt="Health data project" />
           <div class="overlay">Health Projects</div>
         </div>
-        <div class="project-card" data-category="finance" data-description="Financial analytics and market trends"   >
-          <a href="#"><img src="Finances.jpg" alt="Finance Project" /></a>
-          <div class="overlay">Finance Projects</div>
+
+        <!-- Finance (with PDFs) -->
+        <div
+          class="project-card"
+          data-category="finance"
+          data-project="finance"
+          data-description="Business & Finance analytics across airlines, banking and retail."
+          id="portfolio-finance"
+        >
+          <img src="Finances.jpg" alt="Finance data project" />
+          <div class="overlay">Business & Finance Analytics</div>
         </div>
-        <div class="project-card" data-category="sport" data-description="Performance metrics and sports statistics"  >
-          <a href="#"><img src="sportanalysis.jpg" alt="Sport Project" /></a>
+
+        <!-- Sport -->
+        <div
+          class="project-card"
+          data-category="sport"
+          data-project="sport"
+          data-description="Performance metrics, sports statistics and predictive insights."
+          id="portfolio-sport"
+        >
+          <img src="sportanalysis.jpg" alt="Sport analytics project" />
           <div class="overlay">Sport Projects</div>
         </div>
-        <div class="project-card" data-category="fun">
-          <a href="#"><img src="fun.jpg" alt="Fun Project" data-description="Creative fun analysis, games & trends"/></a>
+
+        <!-- Fun -->
+        <div
+          class="project-card"
+          data-category="fun"
+          data-project="fun"
+          data-description="Creative analysis, experiments and fun data explorations."
+          id="portfolio-fun"
+        >
+          <img src="fun.jpg" alt="Fun side projects" />
           <div class="overlay">Fun Projects</div>
         </div>
       </div>
@@ -103,32 +143,29 @@
     <!-- Contact Section -->
     <section id="contact" class="section-card contact-box">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:waxun@protonmail.com">waxun@protonmail.com</a></p>
+      <p>
+        Email:
+        <a href="mailto:waxun@protonmail.com">waxun@protonmail.com</a>
+      </p>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
       <span id="current-date"></span>
-      <script>
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        const today = new Date().toLocaleDateString(undefined, options);
-        document.getElementById('current-date').textContent = today;
-      </script>
     </footer>
   </div>
 
   <!-- Modal -->
-  <div class="modal" id="project-modal">
+  <div class="modal" id="project-modal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <img src="" alt="Project Image" id="modal-image" />
+      <button class="close-button" id="modal-close" aria-label="Close project details">&times;</button>
+      <img src="" alt="" id="modal-image" class="modal-image" />
       <h2 id="modal-title"></h2>
       <p id="modal-description"></p>
-      <a href="#" class="btn" id="modal-link">Go to page</a>
+      <div id="modal-links" class="modal-links">
+        <!-- JS will inject PDF links or other content here -->
+      </div>
     </div>
   </div>
-
-  <!-- Scripts -->
-  <script src="script.js"></script>
 </body>
 </html>
