@@ -5,17 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Usman Waxun - Portfolio</title>
 
+  <!-- Styles -->
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js" defer></script>
-  <script src="script.js" defer></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- tsParticles -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
 </head>
 
 <body>
+  <!-- Particle Background -->
   <div id="tsparticles"></div>
 
+  <!-- Main Container -->
   <div class="container">
+
     <!-- NAVBAR -->
     <header class="navbar">
       <div class="logo"><a href="#hero">Home</a></div>
@@ -24,7 +30,7 @@
           <li><a href="#about">ABOUT</a></li>
 
           <li class="dropdown">
-            <a href="#portfolio" class="dropbtn">PORTFOLIO</a>
+            <a class="dropbtn">PORTFOLIO</a>
             <div class="dropdown-content">
               <a href="#portfolio-health">Health</a>
               <a href="#portfolio-finance">Finance</a>
@@ -40,36 +46,37 @@
 
     <!-- HERO -->
     <section id="hero" class="hero">
-      <h1 class="hero-title">Usman Waxun</h1>
-      <p class="hero-subtitle">
-        Future Healthcare Analyst<br />
-        Data Enthusiast • American Football & Rugby Fan
+      <h1>Usman Waxun</h1>
+      <p>
+        Future Healthcare Analyst<br>
+        Data Enthusiast | American Football & Rugby Fan
       </p>
 
       <div class="social-icons">
-        <a href="https://github.com/thesilenceofthewolves" target="_blank" rel="noopener">
+        <a href="https://github.com/thesilenceofthewolves" target="_blank">
           <i class="fab fa-github"></i>
         </a>
-        <a href="https://www.linkedin.com/in/waxun/" target="_blank" rel="noopener">
+        <a href="https://www.linkedin.com/in/waxun/" target="_blank">
           <i class="fab fa-linkedin"></i>
         </a>
       </div>
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="section-card section-about">
+    <section id="about" class="about-plain">
       <h2>About Me</h2>
       <p>
-        I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst,
-        using data-driven solutions to improve patient outcomes and support better decision-making in healthcare.
+        I’m passionate about turning data into meaningful insights.<br>
+        I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.
       </p>
     </section>
 
     <!-- PORTFOLIO -->
-    <section id="portfolio" class="section-card section-portfolio">
-      <h2>Portfolio</h2>
+    <section id="portfolio" class="section-card">
+      <h2>PORTFOLIO</h2>
       <p class="subtitle">A glimpse of the projects I've been working on</p>
 
+      <!-- FILTER BUTTONS -->
       <div class="category-filters">
         <button class="filter-btn active" data-category="all">Show all</button>
         <button class="filter-btn" data-category="health">Health</button>
@@ -78,26 +85,29 @@
         <button class="filter-btn" data-category="fun">Fun Projects</button>
       </div>
 
+      <!-- PROJECT GRID -->
       <div class="projects-grid">
-        <div class="project-card" data-category="health" data-project="health" id="portfolio-health">
-          <img src="Health.jpg" alt="Health data project" />
+
+        <div class="project-card" data-category="health" data-description="Health data insights and clinical trends" id="portfolio-health">
+          <img src="Health.jpg" alt="Health Project" />
           <div class="overlay">Health Projects</div>
         </div>
 
-        <div class="project-card" data-category="finance" data-project="finance" id="portfolio-finance">
-          <img src="Finances.jpg" alt="Finance data project" />
-          <div class="overlay">Business & Finance Analytics</div>
+        <div class="project-card" data-category="finance" data-description="Financial analytics and market trends" id="portfolio-finance">
+          <img src="Finances.jpg" alt="Finance Project" />
+          <div class="overlay">Finance Projects</div>
         </div>
 
-        <div class="project-card" data-category="sport" data-project="sport" id="portfolio-sport">
-          <img src="sportanalysis.jpg" alt="Sport analytics project" />
+        <div class="project-card" data-category="sport" data-description="Performance metrics and sports statistics" id="portfolio-sport">
+          <img src="sportanalysis.jpg" alt="Sport Project" />
           <div class="overlay">Sport Projects</div>
         </div>
 
-        <div class="project-card" data-category="fun" data-project="fun" id="portfolio-fun">
-          <img src="fun.jpg" alt="Fun side projects" />
+        <div class="project-card" data-category="fun" data-description="Creative fun analysis, games & trends" id="portfolio-fun">
+          <img src="fun.jpg" alt="Fun Project" />
           <div class="overlay">Fun Projects</div>
         </div>
+
       </div>
     </section>
 
@@ -108,22 +118,29 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="footer">
+    <footer>
       <span id="current-date"></span>
+      <script>
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById('current-date').textContent =
+          new Date().toLocaleDateString(undefined, options);
+      </script>
     </footer>
+
   </div>
 
-  <!-- MODAL -->
-  <div class="modal" id="project-modal" aria-hidden="true">
+  <!-- UNIVERSAL MODAL (used for categories + projects + tasks) -->
+  <div class="modal" id="project-modal">
     <div class="modal-content">
-      <button class="close-button" id="modal-close">&times;</button>
+      <span class="close-button">&times;</span>
 
-      <img src="" alt="" id="modal-image" class="modal-image" />
-      <h2 id="modal-title"></h2>
-      <p id="modal-description"></p>
+      <!-- Dynamic content injected by JS -->
+      <div id="modal-body"></div>
 
-      <div id="modal-links" class="modal-links"></div>
     </div>
   </div>
+
+  <!-- SCRIPT -->
+  <script src="script.js"></script>
 </body>
 </html>
