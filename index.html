@@ -2,116 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Usman Waxun - Portfolio</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js" defer></script>
-  <script src="script.js" defer></script>
 </head>
 
 <body>
-  <div id="tsparticles"></div>
 
-  <div class="container">
-    <header class="navbar">
-      <div class="logo"><a href="#hero">Home</a></div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#about">ABOUT</a></li>
-          <li class="dropdown">
-            <a href="#portfolio" class="dropbtn">PORTFOLIO</a>
-            <div class="dropdown-content">
-              <a href="#portfolio-health">Health</a>
-              <a href="#portfolio-finance">Finance</a>
-              <a href="#portfolio-sport">Sport</a>
-              <a href="#portfolio-fun">Fun Projects</a>
-            </div>
-          </li>
-          <li><a href="#contact">CONTACT</a></li>
-        </ul>
-      </nav>
-    </header>
+  <!-- ========================= -->
+  <!--       FINANCE SECTION     -->
+  <!-- ========================= -->
+  <section id="finance" class="category-section">
+    <h2>Finance Projects</h2>
+    <p class="category-description">
+      Business analytics projects focused on understanding customers, forecasting performance and supporting
+      data‑driven decision‑making across different industries.
+    </p>
 
-    <section id="hero" class="hero">
-      <h1 class="hero-title">Usman Waxun</h1>
-      <p class="hero-subtitle">
-        Future Healthcare Analyst<br />
-        Data Enthusiast • American Football & Rugby Fan
-      </p>
-      <div class="social-icons">
-        <a href="https://github.com/thesilenceofthewolves" target="_blank" rel="noopener">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/waxun/" target="_blank" rel="noopener">
-          <i class="fab fa-linkedin"></i>
-        </a>
-      </div>
-    </section>
+    <div class="project-grid">
 
-    <section id="about" class="section-card section-about">
-      <h2>About Me</h2>
-      <p>
-        I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst,
-        using data-driven solutions to improve patient outcomes and support better decision-making in healthcare.
-      </p>
-    </section>
-
-    <section id="portfolio" class="section-card section-portfolio">
-      <h2>Portfolio</h2>
-      <p class="subtitle">A glimpse of the projects I've been working on</p>
-
-      <div class="category-filters">
-        <button class="filter-btn active" data-category="all">Show all</button>
-        <button class="filter-btn" data-category="health">Health</button>
-        <button class="filter-btn" data-category="finance">Finance</button>
-        <button class="filter-btn" data-category="sport">Sport</button>
-        <button class="filter-btn" data-category="fun">Fun Projects</button>
+      <!-- British Airways -->
+      <div class="project-card" data-project="britishAirways">
+        <h3>British Airways – Customer Insights & Lounge Demand Analysis</h3>
       </div>
 
-      <div class="projects-grid">
-        <div class="project-card" data-category="health" data-project="health" id="portfolio-health">
-          <img src="Health.jpg" alt="Health data project" />
-          <div class="overlay">Health Projects</div>
-        </div>
-
-        <div class="project-card" data-category="finance" data-project="finance" id="portfolio-finance">
-          <img src="Finances.jpg" alt="Finance data project" />
-          <div class="overlay">Business & Finance Analytics</div>
-        </div>
-
-        <div class="project-card" data-category="sport" data-project="sport" id="portfolio-sport">
-          <img src="sportanalysis.jpg" alt="Sport analytics project" />
-          <div class="overlay">Sport Projects</div>
-        </div>
-
-        <div class="project-card" data-category="fun" data-project="fun" id="portfolio-fun">
-          <img src="fun.jpg" alt="Fun side projects" />
-          <div class="overlay">Fun Projects</div>
-        </div>
+      <!-- Lloyds -->
+      <div class="project-card" data-project="lloyds">
+        <h3>Lloyds Banking Group – Customer Behaviour & Predictive Modelling</h3>
       </div>
-    </section>
 
-    <section id="contact" class="section-card contact-box">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:waxun@protonmail.com">waxun@protonmail.com</a></p>
-    </section>
+      <!-- Quantium -->
+      <div class="project-card" data-project="quantium">
+        <h3>Quantium – Retail Analytics & Client Reporting</h3>
+      </div>
 
-    <footer class="footer">
-      <span id="current-date"></span>
-    </footer>
-  </div>
+    </div>
+  </section>
 
-  <div class="modal" id="project-modal" aria-hidden="true">
+  <!-- ========================= -->
+  <!--          MODAL            -->
+  <!-- ========================= -->
+  <div id="projectModal" class="modal">
     <div class="modal-content">
-      <button class="close-button" id="modal-close">&times;</button>
-      <img src="" alt="" id="modal-image" class="modal-image" />
-      <h2 id="modal-title"></h2>
-      <p id="modal-description"></p>
-      <div id="modal-links" class="modal-links"></div>
+      <span id="closeModal" class="close">&times;</span>
+
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+
+      <ul id="modalTasks"></ul>
     </div>
   </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
