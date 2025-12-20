@@ -1,483 +1,318 @@
-/* ----------------------
-   Base styles
-------------------------- */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  color: #f5f5f5;
-  background-color: #050816;
-}
-
-body {
-  min-height: 100vh;
-  position: relative;
-}
-
-/* Particle background */
-#tsparticles {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-}
-
-/* Main container */
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1.5rem 1rem 3rem;
-}
-
-/* ----------------------
-   Navbar
-------------------------- */
-
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 0;
-  margin-bottom: 1.5rem;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: linear-gradient(
-    to bottom,
-    rgba(5, 8, 22, 0.95),
-    rgba(5, 8, 22, 0.75),
-    transparent
-  );
-  backdrop-filter: blur(10px);
-}
-
-.logo a {
-  text-decoration: none;
-  color: #ffffff;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 0.95rem;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #d1d5db;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  position: relative;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -0.25rem;
-  width: 0;
-  height: 1px;
-  background: linear-gradient(90deg, #38bdf8, #a855f7);
-  transition: width 0.2s ease;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* Dropdown */
-.dropdown {
-  position: relative;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  top: 135%;
-  left: 0;
-  background-color: #111827;
-  min-width: 160px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-  z-index: 20;
-  border-radius: 0.5rem;
-  overflow: hidden;
-}
-
-.dropdown-content a {
-  color: #e5e7eb;
-  padding: 0.5rem 0.75rem;
-  text-decoration: none;
-  display: block;
-  font-size: 0.8rem;
-}
-
-.dropdown-content a:hover {
-  background-color: #1f2937;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* ----------------------
-   Hero
-------------------------- */
-
-.hero {
-  text-align: center;
-  padding: 3.5rem 1rem 2.5rem;
-}
-
-.hero-title {
-  font-size: 2.4rem;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.hero-subtitle {
-  margin: 0 auto 1.5rem;
-  max-width: 26rem;
-  font-size: 1.05rem;
-  color: #d1d5db;
-}
-
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 1.25rem;
-}
-
-.social-icons a {
-  color: #e5e7eb;
-  font-size: 1.3rem;
-  transition: transform 0.15s ease, color 0.15s ease;
-}
-
-.social-icons a:hover {
-  transform: translateY(-2px);
-  color: #38bdf8;
-}
-
-/* ----------------------
-   Sections
-------------------------- */
-
-.section-card {
-  background-color: rgba(15, 23, 42, 0.88);
-  border-radius: 0.9rem;
-  padding: 2rem 1.5rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(148, 163, 184, 0.2);
-}
-
-.section-card h2 {
-  margin-top: 0;
-  margin-bottom: 0.75rem;
-  font-size: 1.5rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.section-card p {
-  margin: 0;
-  color: #e5e7eb;
-}
-
-/* About */
-.section-about {
-  text-align: center;
-}
-
-.section-about p {
-  max-width: 38rem;
-  margin: 0 auto;
-  line-height: 1.7;
-}
-
-/* ----------------------
-   Portfolio
-------------------------- */
-
-.section-portfolio .subtitle {
-  margin-top: 0.25rem;
-  margin-bottom: 1.5rem;
-  color: #9ca3af;
-  font-size: 0.95rem;
-}
-
-.category-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.filter-btn {
-  border: 1px solid rgba(148, 163, 184, 0.7);
-  background: transparent;
-  color: #e5e7eb;
-  padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease,
-    border-color 0.15s ease;
-}
-
-.filter-btn.active,
-.filter-btn:hover {
-  background: linear-gradient(90deg, #38bdf8, #a855f7);
-  color: #050816;
-  border-color: transparent;
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 1.25rem;
-}
-
-/* Project cards */
-.project-card {
-  position: relative;
-  border-radius: 0.75rem;
-  overflow: hidden;
-  cursor: pointer;
-  border: 1px solid rgba(148, 163, 184, 0.28);
-  background-color: #020617;
-  transition: transform 0.15s ease, box-shadow 0.15s ease,
-    border-color 0.15s ease;
-}
-
-.project-card img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
-  display: block;
-  filter: saturate(1.1);
-}
-
-.project-card .overlay {
-  position: absolute;
-  inset: auto 0 0;
-  padding: 0.6rem 0.75rem;
-  background: linear-gradient(
-    to top,
-    rgba(2, 6, 23, 0.9),
-    rgba(2, 6, 23, 0)
-  );
-  color: #f9fafb;
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
-  border-color: rgba(129, 140, 248, 0.8);
-}
-
-/* ----------------------
-   Contact
-------------------------- */
-
-.contact-box p {
-  font-size: 0.95rem;
-}
-
-.contact-box a {
-  color: #38bdf8;
-  text-decoration: none;
-}
-
-.contact-box a:hover {
-  text-decoration: underline;
-}
-
-/* ----------------------
-   Footer
-------------------------- */
-
-.footer {
-  text-align: center;
-  color: #9ca3af;
-  font-size: 0.8rem;
-  margin-top: 1.5rem;
-}
-
-/* ----------------------
-   Modal
-------------------------- */
-
-.modal {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(8px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 30;
-
-  /* Animation */
-  opacity: 0;
-  transform: scale(0.96);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.modal.open {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.modal-content {
-  background-color: #020617;
-  border-radius: 1rem;
-  max-width: 640px;
-  width: 92%;
-  padding: 1.5rem 1.5rem 1.75rem;
-  position: relative;
-  border: 1px solid rgba(148, 163, 184, 0.4);
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
-}
-
-.modal-image {
-  width: 100%;
-  max-height: 220px;
-  object-fit: cover;
-  border-radius: 0.75rem;
-  margin-bottom: 1rem;
-}
-
-.close-button {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.8rem;
-  border: none;
-  background: none;
-  color: #9ca3af;
-  font-size: 1.4rem;
-  cursor: pointer;
-  padding: 0.1rem;
-}
-
-.close-button:hover {
-  color: #e5e7eb;
-}
-
-#modal-title {
-  margin: 0.5rem 0 0.25rem;
-  font-size: 1.3rem;
-}
-
-#modal-description {
-  margin: 0 0 0.75rem;
-  font-size: 0.95rem;
-  color: #d1d5db;
-}
-
-.modal-links {
-  margin-top: 0.5rem;
-}
-
-/* Finance intro */
-.finance-intro {
-  margin-bottom: 1.2rem;
-  padding-bottom: 0.8rem;
-  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
-}
-
-.finance-intro h2 {
-  margin: 0;
-  font-size: 1.25rem;
-  color: #f3f4f6;
-}
-
-.finance-intro p {
-  margin: 0.35rem 0 0;
-  font-size: 0.9rem;
-  color: #cbd5e1;
-}
-
-/* Project sections */
-.modal-section {
-  margin-top: 1.4rem;
-  padding-top: 1rem;
-  border-top: 1px solid rgba(148, 163, 184, 0.2);
-}
-
-.modal-section h3 {
-  margin: 0 0 0.35rem;
-  font-size: 1rem;
-  color: #e5e7eb;
-}
-
-.modal-section p {
-  margin: 0 0 0.5rem;
-  font-size: 0.9rem;
-  color: #cbd5e1;
-}
-
-.modal-section ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.modal-section li {
-  margin-bottom: 0.25rem;
-}
-
-.modal-section a {
-  color: #38bdf8;
-  font-size: 0.92rem;
-  text-decoration: none;
-}
-
-.modal-section a:hover {
-  text-decoration: underline;
-}
-
-/* ----------------------
-   Responsive tweaks
-------------------------- */
-
-@media (max-width: 640px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.4rem;
+// ---------------------
+// Date in footer
+// ----------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const dateSpan = document.getElementById("current-date");
+  if (dateSpan) {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    dateSpan.textContent = new Date().toLocaleDateString(undefined, options);
+  }
+});
+
+// ----------------------
+// Portfolio filtering
+// ----------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const projectCards = document.querySelectorAll(".project-card");
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const category = btn.getAttribute("data-category");
+
+      filterButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      projectCards.forEach((card) => {
+        const cardCategory = card.getAttribute("data-category");
+        if (category === "all" || cardCategory === category) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    });
+  });
+});
+
+// ----------------------
+// Modal logic
+// ----------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("project-modal");
+  const modalImage = document.getElementById("modal-image");
+  const modalTitle = document.getElementById("modal-title");
+  const modalDescription = document.getElementById("modal-description");
+  const modalLinks = document.getElementById("modal-links");
+  const closeButton = document.getElementById("modal-close");
+  const projectCards = document.querySelectorAll(".project-card");
+
+  if (!modal || !modalImage || !modalTitle || !modalDescription || !modalLinks) return;
+
+  const financeProjects = {
+    title: "Business & Finance Analytics",
+    description:
+      "A collection of commercial analytics projects across airlines, banking and retail, focusing on forecasting, customer behaviour and data-driven decisions.",
+    sections: [
+      {
+        heading: "British Airways – Customer Insights & Lounge Demand Analysis",
+        projectDescription:
+          "Analysed lounge demand patterns and built a customer model to understand usage, segment passengers and support capacity planning.",
+        items: [
+          {
+            label: "Lounge Demand Analysis",
+            file: "BritishAirways_Lounge_Demand_Analysis.pdf",
+            tooltip:
+              "Analysed lounge usage data to forecast demand and identify capacity bottlenecks."
+          },
+          {
+            label: "Customer Model",
+            file: "BritishAirways_Customer_Model.pdf",
+            tooltip:
+              "Built a customer segmentation model to understand behaviour and identify high-value passenger groups."
+          }
+        ]
+      },
+      {
+        heading: "Lloyds Banking Group – Customer Behaviour & Predictive Modelling",
+        projectDescription:
+          "Explored customer behaviour patterns and developed a predictive model to support product targeting and retention strategy.",
+        items: [
+          {
+            label: "Customer Analysis",
+            file: "Lloyds_Customer_Analysis.pdf",
+            tooltip:
+              "Investigated customer trends and behaviours to highlight retention risks and growth opportunities."
+          },
+          {
+            label: "Predictive Model",
+            file: "Lloyds_Predictive_Model.pdf",
+            tooltip:
+              "Developed a model to predict customer product uptake and support data-driven decision-making."
+          }
+        ]
+      },
+      {
+        heading: "Quantium – Retail Analytics & Client Reporting",
+        projectDescription:
+          "Used transaction data to understand customer purchasing behaviour, benchmark store performance and deliver insights in a client-ready report.",
+        items: [
+          {
+            label: "Transaction Analysis",
+            file: "Quantium_Transaction_Analysis.pdf",
+            tooltip:
+              "Analysed transaction-level data to uncover purchasing patterns and customer segments."
+          },
+          {
+            label: "Benchmark Store Analysis",
+            file: "Quantium_Benchmark_Store_Analysis.pdf",
+            tooltip:
+              "Compared store performance against benchmarks to identify under- and over-performing locations."
+          },
+          {
+            label: "Client Report",
+            file: "Quantium_Client_Report.pdf",
+            tooltip:
+              "Summarised key insights and recommendations in a concise, client-facing report."
+          }
+        ]
+      }
+    ]
+  };
+
+  function openModal(card) {
+    const projectType = card.getAttribute("data-project");
+    const img = card.querySelector("img");
+
+    // show modal
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+
+    // image
+    if (img) {
+      modalImage.src = img.src;
+      modalImage.alt = img.alt || "";
+    } else {
+      modalImage.src = "";
+      modalImage.alt = "";
+    }
+
+    // reset content
+    modalTitle.textContent = "";
+    modalDescription.textContent = "";
+    modalLinks.innerHTML = "";
+
+    if (projectType === "finance") {
+      // intro at top of links area
+      const intro = document.createElement("div");
+      intro.classList.add("finance-intro");
+
+      const introTitle = document.createElement("h2");
+      introTitle.textContent = financeProjects.title;
+      intro.appendChild(introTitle);
+
+      const introDesc = document.createElement("p");
+      introDesc.textContent = financeProjects.description;
+      intro.appendChild(introDesc);
+
+      modalLinks.appendChild(intro);
+
+      // optional: keep main title minimal
+      modalTitle.textContent = "Finance Projects";
+      modalDescription.textContent = "";
+
+      financeProjects.sections.forEach((section) => {
+        const sectionEl = document.createElement("div");
+        sectionEl.classList.add("modal-section");
+
+        const h3 = document.createElement("h3");
+        h3.textContent = section.heading;
+        sectionEl.appendChild(h3);
+
+        if (section.projectDescription) {
+          const p = document.createElement("p");
+          p.textContent = section.projectDescription;
+          sectionEl.appendChild(p);
+        }
+
+        const ul = document.createElement("ul");
+        section.items.forEach((item) => {
+          const li = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = item.file;  // make sure filenames match your actual PDFs
+          link.target = "_blank";
+          link.rel = "noopener";
+          link.textContent = item.label;
+          if (item.tooltip) {
+            link.title = item.tooltip;  // hover tooltip
+          }
+          li.appendChild(link);
+          ul.appendChild(li);
+        });
+
+        sectionEl.appendChild(ul);
+        modalLinks.appendChild(sectionEl);
+      });
+    } else if (projectType === "health") {
+      modalTitle.textContent = "Health Analytics Projects";
+      modalDescription.textContent =
+        "Exploratory and predictive work focused on healthcare data, clinical trends and patient outcomes. More detailed case studies will be added soon.";
+    } else if (projectType === "sport") {
+      modalTitle.textContent = "Sport Analytics Projects";
+      modalDescription.textContent =
+        "Data-driven analysis of performance metrics, game outcomes and sports strategy across sports like American football and rugby.";
+    } else if (projectType === "fun") {
+      modalTitle.textContent = "Fun & Experimental Projects";
+      modalDescription.textContent =
+        "Personal experiments, creative analyses and playful data explorations built for curiosity and learning.";
+    } else {
+      modalTitle.textContent = "Project Details";
+      modalDescription.textContent = card.getAttribute("data-description") || "";
+    }
   }
 
-  .hero-title {
-    font-size: 2rem;
+  function closeModal() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
   }
 
-  .hero-subtitle {
-    font-size: 0.95rem;
+  projectCards.forEach((card) => {
+    card.addEventListener("click", () => openModal(card));
+  });
+
+  if (closeButton) {
+    closeButton.addEventListener("click", closeModal);
   }
 
-  .section-card {
-    padding: 1.6rem 1.2rem;
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && modal.classList.contains("open")) {
+      closeModal();
+    }
+  });
+});
+
+// ----------------------
+// tsParticles config
+// ----------------------
+document.addEventListener("DOMContentLoaded", () => {
+  if (window.tsParticles) {
+    tsParticles.load("tsparticles", {
+      background: {
+        color: {
+          value: "#050816",
+        },
+      },
+      fpsLimit: 60,
+      interactivity: {
+        events: {
+          onClick: {
+            enable: true,
+            mode: "push",
+          },
+          onHover: {
+            enable: true,
+            mode: "repulse",
+          },
+          resize: true,
+        },
+        modes: {
+          push: {
+            quantity: 2,
+          },
+          repulse: {
+            distance: 100,
+            duration: 0.4,
+          },
+        },
+      },
+      particles: {
+        color: {
+          value: "#ffffff",
+        },
+        links: {
+          color: "#8888ff",
+          distance: 120,
+          enable: true,
+          opacity: 0.4,
+          width: 1,
+        },
+        collisions: {
+          enable: false,
+        },
+        move: {
+          direction: "none",
+          enable: true,
+          outModes: {
+            default: "bounce",
+          },
+          random: false,
+          speed: 1,
+          straight: false,
+        },
+        number: {
+          density: {
+            enable: true,
+            area: 800,
+          },
+          value: 60,
+        },
+        opacity: {
+          value: 0.5,
+        },
+        shape: {
+          type: "circle",
+        },
+        size: {
+          value: { min: 1, max: 4 },
+        },
+      },
+      detectRetina: true,
+    });
   }
-}
+});
