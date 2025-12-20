@@ -1,16 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* ------------------------------
-     tsParticles Background
+     tsParticles Background (safe)
   ------------------------------ */
-  tsParticles.load("tsparticles", {
-    particles: {
-      number: { value: 60 },
-      size: { value: 2 },
-      move: { speed: 1 },
-      links: { enable: true, distance: 130, color: "#38bdf8" },
-      color: { value: "#38bdf8" }
-    }
-  });
+  if (window.tsParticles) {
+    tsParticles.load("tsparticles", {
+      particles: {
+        number: { value: 60 },
+        size: { value: 2 },
+        move: { speed: 1 },
+        links: { enable: true, distance: 130, color: "#38bdf8" },
+        color: { value: "#38bdf8" }
+      }
+    });
+  }
 
   /* ------------------------------
      Category Filters
@@ -26,8 +28,9 @@ document.addEventListener("DOMContentLoaded", () => {
       const category = btn.dataset.category;
 
       projectCards.forEach(card => {
-        if (category === "all" || card.dataset.category === category) {
-          card.style.display = "block";
+        const cardCategory = card.dataset.category;
+        if (category === "all" || cardCategory === category) {
+          card.style.display = "";
         } else {
           card.style.display = "none";
         }
@@ -44,6 +47,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalTitle = document.getElementById("modal-title");
   const modalDescription = document.getElementById("modal-description");
   const modalLinks = document.getElementById("modal-links");
+
+  if (!modal || !modalClose || !modalImage || !modalTitle || !modalDescription || !modalLinks) {
+    console.error("Modal elements not found. Check your HTML IDs.");
+    return;
+  }
 
   const projectInfo = {
     health: {
@@ -118,12 +126,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   };
 
-  projectCards.forEach(card => {
+  document.querySelectorAll(".project-card").forEach(card => {
     card.addEventListener("click", () => {
       const key = card.dataset.project;
       const data = projectInfo[key];
+      if (!data) return;
 
       modalImage.src = data.image;
+      modalImage.alt = data.title;
       modalTitle.textContent = data.title;
       modalDescription.textContent = data.description;
 
@@ -144,6 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const a = document.createElement("a");
             a.href = task.file;
             a.target = "_blank";
+            a.rel = "noopener";
             a.textContent = task.label;
             li.appendChild(a);
             ul.appendChild(li);
@@ -155,50 +166,49 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
     });
   });
 
-  modalClose.addEventListener("click", () => modal.classList.remove("open"));
-  modal.addEventListener("click", e => {
-    if (e.target === modal) modal.classList.remove("open");
+  modalClose.addEventListener("click", () => {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
   });
+
+  modal.addEventListener("click", e => {
+    if (e.target === modal) {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+    }
+  });
+
+  /* ------------------------------
+     Footer Date
+  ------------------------------ */
+  const dateSpan = document.getElementById("current-date");
+  if (dateSpan) {
+    const now = new Date();
+    dateSpan.textContent = now.toLocaleDateString(undefined, {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+  }
 
   /* ------------------------------
      Sun/Moon Toggle (Style C)
   ------------------------------ */
   const toggle = document.createElement("div");
-  toggle.style.position = "fixed";
-  toggle.style.bottom = "20px";
-  toggle.style.right = "20px";
-  toggle.style.width = "60px";
-  toggle.style.height = "30px";
-  toggle.style.borderRadius = "30px";
-  toggle.style.background = "#1f2937";
-  toggle.style.border = "1px solid #555";
-  toggle.style.display = "flex";
-  toggle.style.alignItems = "center";
-  toggle.style.justifyContent = "space-between";
-  toggle.style.padding = "0 6px";
-  toggle.style.cursor = "pointer";
-  toggle.style.userSelect = "none";
-  toggle.style.zIndex = "50";
+  toggle.className = "theme-toggle";
 
   const sun = document.createElement("span");
   sun.textContent = "☀️";
-  sun.style.fontSize = "16px";
 
   const moon = document.createElement("span");
   moon.textContent = "🌙";
-  moon.style.fontSize = "16px";
 
   const knob = document.createElement("div");
-  knob.style.width = "24px";
-  knob.style.height = "24px";
-  knob.style.borderRadius = "50%";
-  knob.style.background = "#fff";
-  knob.style.position = "absolute";
-  knob.style.left = "4px";
-  knob.style.transition = "0.25s ease";
+  knob.className = "knob";
 
   toggle.appendChild(sun);
   toggle.appendChild(moon);
@@ -207,12 +217,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let dark = true;
 
+  const applyTheme = () => {
+    if (dark) {
+      document.body.style.backgroundColor = "#050816";
+      document.body.style.color = "#f5f5f5";
+      knob.style.left = "4px";
+    } else {
+      document.body.style.backgroundColor = "#ffffff";
+      document.body.style.color = "#111111";
+      knob.style.left = "32px";
+    }
+  };
+
+  applyTheme();
+
   toggle.addEventListener("click", () => {
     dark = !dark;
-
-    knob.style.left = dark ? "4px" : "32px";
-
-    document.body.style.background = dark ? "#050816" : "#ffffff";
-    document.body.style.color = dark ? "#f5f5f5" : "#111";
+    applyTheme();
   });
 });
