@@ -1,238 +1,508 @@
-document.addEventListener("DOMContentLoaded", () => {
-  /* ------------------------------
-     tsParticles Background (safe)
-  ------------------------------ */
-  if (window.tsParticles) {
-    tsParticles.load("tsparticles", {
-      particles: {
-        number: { value: 60 },
-        size: { value: 2 },
-        move: { speed: 1 },
-        links: { enable: true, distance: 130, color: "#38bdf8" },
-        color: { value: "#38bdf8" }
-      }
-    });
-  }
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  /* ------------------------------
-     Category Filters
-  ------------------------------ */
-  const filterButtons = document.querySelectorAll(".filter-btn");
-  const projectCards = document.querySelectorAll(".project-card");
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #ffffff;
+  color: #111;
+  overflow-x: hidden;
+  position: relative;
+  transition: background 0.3s ease, color 0.3s ease;
+}
 
-  filterButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      filterButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
+/* Dark Mode */
+body.dark {
+  background: #1a1a1a;
+  color: #f5f5f5;
+}
 
-      const category = btn.dataset.category;
+/* Particle Canvas */
+#tsparticles {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: transparent;
+  pointer-events: none;
+}
 
-      projectCards.forEach(card => {
-        const cardCategory = card.dataset.category;
-        if (category === "all" || cardCategory === category) {
-          card.style.display = "";
-        } else {
-          card.style.display = "none";
-        }
-      });
-    });
-  });
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #ffffffd9;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(6px);
+  transition: background 0.3s ease;
+}
 
-  /* ------------------------------
-     Modal Logic
-  ------------------------------ */
-  const modal = document.getElementById("project-modal");
-  const modalClose = document.getElementById("modal-close");
-  const modalImage = document.getElementById("modal-image");
-  const modalTitle = document.getElementById("modal-title");
-  const modalDescription = document.getElementById("modal-description");
-  const modalLinks = document.getElementById("modal-links");
+body.dark .navbar {
+  background: #222222d9;
+}
 
-  if (!modal || !modalClose || !modalImage || !modalTitle || !modalDescription || !modalLinks) {
-    console.error("Modal elements not found. Check your HTML IDs.");
-    return;
-  }
+.navbar .logo a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #444;
+  text-decoration: none;
+}
 
-  const projectInfo = {
-    health: {
-      title: "Health Projects",
-      description: "A collection of healthcare analytics projects.",
-      image: "Health.jpg",
-      links: []
-    },
-    sport: {
-      title: "Sport Analytics",
-      description: "Performance analytics and sports insights.",
-      image: "sportanalysis.jpg",
-      links: []
-    },
-    fun: {
-      title: "Fun Projects",
-      description: "Creative and experimental side projects.",
-      image: "fun.jpg",
-      links: []
-    },
-    finance: {
-      title: "Finance Projects",
-      description:
-        "Business analytics projects focused on understanding customers, forecasting performance and supporting data‑driven decision‑making.",
-      image: "Finances.jpg",
-      links: [],
-      sections: [
-        {
-          title: "British Airways – Customer Insights & Lounge Demand Analysis",
-          tasks: [
-            {
-              label: "Lounge Demand Analysis",
-              file: "BritishAirways_Task1_Lounge_Demand_Analysis.pdf"
-            },
-            {
-              label: "Customer Model",
-              file: "BritishAirways_Task2_Customer_Model.pdf"
-            }
-          ]
-        },
-        {
-          title: "Lloyds Banking Group – Customer Behaviour & Predictive Modelling",
-          tasks: [
-            {
-              label: "Customer Analysis",
-              file: "Lloyds_Task1_Customer_Analysis.pdf"
-            },
-            {
-              label: "Predictive Model",
-              file: "Lloyds_Task2_Predictive_Model.pdf"
-            }
-          ]
-        },
-        {
-          title: "Quantium – Retail Analytics & Client Reporting",
-          tasks: [
-            {
-              label: "Transaction Analysis",
-              file: "Quantium_Task1_Transaction_Analysis.pdf"
-            },
-            {
-              label: "Benchmark Store Analysis",
-              file: "Quantium_Task2_Benchmark_Store_Analysis.pdf"
-            },
-            {
-              label: "Client Report",
-              file: "Quantium_Task3_Client_Report.pdf"
-            }
-          ]
-        }
-      ]
-    }
-  };
+body.dark .navbar .logo a {
+  color: #eaeaea;
+}
 
-  document.querySelectorAll(".project-card").forEach(card => {
-    card.addEventListener("click", () => {
-      const key = card.dataset.project;
-      const data = projectInfo[key];
-      if (!data) return;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+}
 
-      modalImage.src = data.image;
-      modalImage.alt = data.title;
-      modalTitle.textContent = data.title;
-      modalDescription.textContent = data.description;
+.nav-links li a {
+  text-decoration: none;
+  color: #444;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
 
-      modalLinks.innerHTML = "";
+body.dark .nav-links li a {
+  color: #eaeaea;
+}
 
-      if (data.sections) {
-        data.sections.forEach(section => {
-          const div = document.createElement("div");
-          div.classList.add("modal-section");
+.nav-links li a:hover {
+  border-bottom: 2px solid #888;
+}
 
-          const h3 = document.createElement("h3");
-          h3.textContent = section.title;
-          div.appendChild(h3);
+/* Dropdown */
+.nav-links li.dropdown {
+  position: relative;
+}
 
-          const ul = document.createElement("ul");
-          section.tasks.forEach(task => {
-            const li = document.createElement("li");
-            const a = document.createElement("a");
-            a.href = task.file;
-            a.target = "_blank";
-            a.rel = "noopener";
-            a.textContent = task.label;
-            li.appendChild(a);
-            ul.appendChild(li);
-          });
+.nav-links li.dropdown .dropdown-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
+  z-index: 1000;
+  border-radius: 6px;
+  padding: 0.5rem 0;
+}
 
-          div.appendChild(ul);
-          modalLinks.appendChild(div);
-        });
-      }
+body.dark .nav-links li.dropdown .dropdown-content {
+  background-color: #333;
+}
 
-      modal.classList.add("open");
-      modal.setAttribute("aria-hidden", "false");
-    });
-  });
+.nav-links li.dropdown .dropdown-content a {
+  color: #444;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  display: block;
+}
 
-  modalClose.addEventListener("click", () => {
-    modal.classList.remove("open");
-    modal.setAttribute("aria-hidden", "true");
-  });
+body.dark .nav-links li.dropdown .dropdown-content a {
+  color: #eaeaea;
+}
 
-  modal.addEventListener("click", e => {
-    if (e.target === modal) {
-      modal.classList.remove("open");
-      modal.setAttribute("aria-hidden", "true");
-    }
-  });
+.nav-links li.dropdown .dropdown-content a:hover {
+  background-color: #b48a78;
+  color: white;
+}
 
-  /* ------------------------------
-     Footer Date
-  ------------------------------ */
-  const dateSpan = document.getElementById("current-date");
-  if (dateSpan) {
-    const now = new Date();
-    dateSpan.textContent = now.toLocaleDateString(undefined, {
-      year: "numeric",
-      month: "long",
-      day: "numeric"
-    });
-  }
+.nav-links li.dropdown:hover .dropdown-content {
+  display: block;
+}
 
-  /* ------------------------------
-     Sun/Moon Toggle (Style C)
-  ------------------------------ */
-  const toggle = document.createElement("div");
-  toggle.className = "theme-toggle";
+/* Social Icons */
+.social-icons a {
+  margin-left: 1rem;
+  font-size: 1.3rem;
+  color: #444;
+}
 
-  const sun = document.createElement("span");
-  sun.textContent = "☀️";
+body.dark .social-icons a {
+  color: #eaeaea;
+}
 
-  const moon = document.createElement("span");
-  moon.textContent = "🌙";
+.social-icons a:hover {
+  color: #b48a78;
+}
 
-  const knob = document.createElement("div");
-  knob.className = "knob";
+/* Main Layout */
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
 
-  toggle.appendChild(sun);
-  toggle.appendChild(moon);
-  toggle.appendChild(knob);
-  document.body.appendChild(toggle);
+/* Hero */
+.hero {
+  text-align: center;
+  margin: 3rem 0 2rem;
+}
 
-  let dark = true;
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
 
-  const applyTheme = () => {
-    if (dark) {
-      document.body.style.backgroundColor = "#050816";
-      document.body.style.color = "#f5f5f5";
-      knob.style.left = "4px";
-    } else {
-      document.body.style.backgroundColor = "#ffffff";
-      document.body.style.color = "#111111";
-      knob.style.left = "32px";
-    }
-  };
+body.dark .hero h1 {
+  color: #f5f5f5;
+}
 
-  applyTheme();
+.hero p {
+  margin-top: 0.5rem;
+  color: #888;
+}
 
-  toggle.addEventListener("click", () => {
-    dark = !dark;
-    applyTheme();
-  });
-});
+body.dark .hero p {
+  color: #ccc;
+}
+
+/* About */
+.about-plain {
+  max-width: 700px;
+  margin: 4rem auto;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #333;
+}
+
+body.dark .about-plain {
+  color: #eaeaea;
+}
+
+/* Section Cards */
+.section-card {
+  background: #f7f7f7ee;
+  padding: 1.5rem;
+  border-left: 4px solid #888;
+  margin-bottom: 2rem;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+body.dark .section-card {
+  background: #2a2a2a;
+  border-left-color: #b48a78;
+}
+
+.section-card h2 {
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+body.dark .section-card h2 {
+  color: #f5f5f5;
+}
+
+/* Portfolio */
+#portfolio {
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+body.dark #portfolio {
+  background: #2a2a2a;
+}
+
+#portfolio h2 {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 0.25rem;
+  font-size: 2rem;
+}
+
+#portfolio p.subtitle {
+  font-style: italic;
+  color: #666;
+}
+
+body.dark #portfolio p.subtitle {
+  color: #ccc;
+}
+
+/* Filter Buttons */
+.category-filters {
+  margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.filter-btn {
+  border: 1px solid #b48a78;
+  background-color: transparent;
+  color: #b48a78;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background-color: #b48a78;
+  color: white;
+}
+
+/* Project Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Project Cards */
+.project-card {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px;
+  aspect-ratio: 1 / 1;
+  background: white;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 0.1);
+  transition: transform 0.3s ease;
+}
+
+body.dark .project-card {
+  background: #333;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Hover Overlay */
+.project-card::after {
+  content: attr(data-description);
+  position: absolute;
+  inset: 0;
+  background: rgba(180, 138, 120, 0.85);
+  color: white;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover::after {
+  opacity: 1;
+}
+
+/* Contact */
+.contact-box {
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  margin-top: 3rem;
+  padding: 2rem 1rem;
+  border-top: 1px solid #ccc;
+  color: #666;
+}
+
+body.dark footer {
+  border-top-color: #555;
+  color: #ccc;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  text-align: left;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: background 0.3s ease;
+}
+
+body.dark .modal-content {
+  background: #2a2a2a;
+  color: #f5f5f5;
+}
+
+.close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: #333;
+}
+
+body.dark .close-button {
+  color: #ddd;
+}
+
+.close-button:hover {
+  color: #b48a78;
+}
+
+/* Modal Body */
+#modal-body h2 {
+  margin-bottom: 0.5rem;
+}
+
+#modal-body p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+/* Finance Project List */
+.finance-list {
+  list-style: none;
+  padding: 0;
+}
+
+.finance-list li {
+  padding: 0.6rem 0;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+body.dark .finance-list li {
+  border-bottom-color: #555;
+}
+
+.finance-list li:hover {
+  color: #b48a78;
+}
+
+/* Task List */
+.task-list {
+  list-style: none;
+  padding: 0;
+}
+
+.task-list li {
+  margin-bottom: 0.6rem;
+  position: relative;
+}
+
+/* Tooltip */
+.task-list li a {
+  color: #b48a78;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+}
+
+.task-list li a:hover {
+  text-decoration: underline;
+}
+
+.task-list li a:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 0;
+  top: 120%;
+  background: #333;
+  color: white;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  z-index: 9999;
+}
+
+/* Back Button */
+.back-button {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: #b48a78;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+}
+
+/* Dark/Light Toggle */
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 28px;
+  background: #ddd;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
+  cursor: pointer;
+  z-index: 9999;
+  transition: background 0.3s ease;
+}
+
+body.dark .theme-toggle {
+  background: #444;
+}
+
+.theme-toggle span {
+  font-size: 14px;
+}
+
+.theme-toggle .knob {
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  left: 4px;
+  transition: left 0.3s ease;
+}
+
+body.dark .theme-toggle .knob {
+  left: 29px;
+}
