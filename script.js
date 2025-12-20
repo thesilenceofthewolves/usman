@@ -1,29 +1,49 @@
 console.log("script.js is running...");
 
-/* ---------------------------------------------------
-   PARTICLES
---------------------------------------------------- */
 tsParticles.load("tsparticles", {
   fpsLimit: 60,
   particles: {
-    number: { value: 60, density: { enable: true, area: 900 } },
+    number: { value: 70, density: { enable: true, area: 900 } },
     color: { value: "#999999" },
     shape: { type: "circle" },
-    opacity: { value: 0.5 },
+    opacity: { value: 0.7 },
     size: { value: 3, random: { enable: true, minimumValue: 1 } },
-    links: { enable: true, distance: 150, color: "#cccccc", opacity: 0.4, width: 1 },
-    move: { enable: true, speed: 2, outModes: { default: "bounce" } }
+
+    // ✅ Stronger connecting lines
+    links: { 
+      enable: true,
+      distance: 130,
+      color: "#888888",
+      opacity: 0.8,
+      width: 1.5
+    },
+
+    move: { 
+      enable: true,
+      speed: 1.6,
+      outModes: { default: "bounce" }
+    }
   },
+
+  // ✅ Hover grab effect
   interactivity: {
     events: {
-      onHover: { enable: true, mode: "repulse" },
+      onHover: { enable: true, mode: "grab" },
       onClick: { enable: true, mode: "push" },
       resize: true
     },
-    modes: { repulse: { distance: 100 }, push: { quantity: 4 } }
+    modes: {
+      grab: {
+        distance: 180,
+        links: { opacity: 1 }
+      },
+      push: { quantity: 4 }
+    }
   },
+
   detectRetina: true
 });
+
 
 /* ---------------------------------------------------
    FILTER BUTTONS
