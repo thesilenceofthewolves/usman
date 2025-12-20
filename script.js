@@ -1,4 +1,4 @@
-// ----------------------
+// ---------------------
 // Date in footer
 // ----------------------
 document.addEventListener("DOMContentLoaded", () => {
