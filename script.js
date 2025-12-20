@@ -1,508 +1,221 @@
-/* Reset & Base */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body, html {
-  height: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #ffffff;
-  color: #111;
-  overflow-x: hidden;
-  position: relative;
-  transition: background 0.3s ease, color 0.3s ease;
-}
-
-/* Dark Mode */
-body.dark {
-  background: #1a1a1a;
-  color: #f5f5f5;
-}
-
-/* Particle Canvas */
-#tsparticles {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background: transparent;
-  pointer-events: none;
-}
-
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background: #ffffffd9;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  backdrop-filter: blur(6px);
-  transition: background 0.3s ease;
-}
-
-body.dark .navbar {
-  background: #222222d9;
-}
-
-.navbar .logo a {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #444;
-  text-decoration: none;
-}
-
-body.dark .navbar .logo a {
-  color: #eaeaea;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1.5rem;
-}
-
-.nav-links li a {
-  text-decoration: none;
-  color: #444;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-
-body.dark .nav-links li a {
-  color: #eaeaea;
-}
-
-.nav-links li a:hover {
-  border-bottom: 2px solid #888;
-}
-
-/* Dropdown */
-.nav-links li.dropdown {
-  position: relative;
-}
-
-.nav-links li.dropdown .dropdown-content {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background-color: white;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-  z-index: 1000;
-  border-radius: 6px;
-  padding: 0.5rem 0;
-}
-
-body.dark .nav-links li.dropdown .dropdown-content {
-  background-color: #333;
-}
-
-.nav-links li.dropdown .dropdown-content a {
-  color: #444;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  display: block;
-}
-
-body.dark .nav-links li.dropdown .dropdown-content a {
-  color: #eaeaea;
-}
-
-.nav-links li.dropdown .dropdown-content a:hover {
-  background-color: #b48a78;
-  color: white;
-}
-
-.nav-links li.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* Social Icons */
-.social-icons a {
-  margin-left: 1rem;
-  font-size: 1.3rem;
-  color: #444;
-}
-
-body.dark .social-icons a {
-  color: #eaeaea;
-}
-
-.social-icons a:hover {
-  color: #b48a78;
-}
-
-/* Main Layout */
-.container {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 0 1.5rem;
-}
-
-/* Hero */
-.hero {
-  text-align: center;
-  margin: 3rem 0 2rem;
-}
-
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  color: #222;
-}
-
-body.dark .hero h1 {
-  color: #f5f5f5;
-}
-
-.hero p {
-  margin-top: 0.5rem;
-  color: #888;
-}
-
-body.dark .hero p {
-  color: #ccc;
-}
-
-/* About */
-.about-plain {
-  max-width: 700px;
-  margin: 4rem auto;
-  text-align: center;
-  font-size: 1.1rem;
-  line-height: 1.8;
-  color: #333;
-}
-
-body.dark .about-plain {
-  color: #eaeaea;
-}
-
-/* Section Cards */
-.section-card {
-  background: #f7f7f7ee;
-  padding: 1.5rem;
-  border-left: 4px solid #888;
-  margin-bottom: 2rem;
-  border-radius: 6px;
-  transition: background 0.3s ease;
-}
-
-body.dark .section-card {
-  background: #2a2a2a;
-  border-left-color: #b48a78;
-}
-
-.section-card h2 {
-  margin-bottom: 1rem;
-  color: #222;
-}
-
-body.dark .section-card h2 {
-  color: #f5f5f5;
-}
-
-/* Portfolio */
-#portfolio {
-  background: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
-  text-align: center;
-  transition: background 0.3s ease;
-}
-
-body.dark #portfolio {
-  background: #2a2a2a;
-}
-
-#portfolio h2 {
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 0.25rem;
-  font-size: 2rem;
-}
-
-#portfolio p.subtitle {
-  font-style: italic;
-  color: #666;
-}
-
-body.dark #portfolio p.subtitle {
-  color: #ccc;
-}
-
-/* Filter Buttons */
-.category-filters {
-  margin-bottom: 1.5rem;
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-}
-
-.filter-btn {
-  border: 1px solid #b48a78;
-  background-color: transparent;
-  color: #b48a78;
-  font-weight: 600;
-  padding: 0.4rem 0.9rem;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.filter-btn:hover,
-.filter-btn.active {
-  background-color: #b48a78;
-  color: white;
-}
-
-/* Project Grid */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-/* Project Cards */
-.project-card {
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  border-radius: 8px;
-  aspect-ratio: 1 / 1;
-  background: white;
-  box-shadow: 0 1px 5px rgb(0 0 0 / 0.1);
-  transition: transform 0.3s ease;
-}
-
-body.dark .project-card {
-  background: #333;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-}
-
-.project-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Hover Overlay */
-.project-card::after {
-  content: attr(data-description);
-  position: absolute;
-  inset: 0;
-  background: rgba(180, 138, 120, 0.85);
-  color: white;
-  font-size: 1rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 1rem;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.project-card:hover::after {
-  opacity: 1;
-}
-
-/* Contact */
-.contact-box {
-  text-align: center;
-}
-
-/* Footer */
-footer {
-  text-align: center;
-  margin-top: 3rem;
-  padding: 2rem 1rem;
-  border-top: 1px solid #ccc;
-  color: #666;
-}
-
-body.dark footer {
-  border-top-color: #555;
-  color: #ccc;
-}
-
-/* Modal */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.55);
-  justify-content: center;
-  align-items: center;
-  z-index: 10000;
-}
-
-.modal.show {
-  display: flex;
-}
-
-.modal-content {
-  background: #fff;
-  padding: 2rem;
-  border-radius: 10px;
-  max-width: 600px;
-  width: 90%;
-  position: relative;
-  text-align: left;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  transition: background 0.3s ease;
-}
-
-body.dark .modal-content {
-  background: #2a2a2a;
-  color: #f5f5f5;
-}
-
-.close-button {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: #333;
-}
-
-body.dark .close-button {
-  color: #ddd;
-}
-
-.close-button:hover {
-  color: #b48a78;
-}
-
-/* Modal Body */
-#modal-body h2 {
-  margin-bottom: 0.5rem;
-}
-
-#modal-body p {
-  margin-bottom: 1rem;
-  line-height: 1.5;
-}
-
-/* Finance Project List */
-.finance-list {
-  list-style: none;
-  padding: 0;
-}
-
-.finance-list li {
-  padding: 0.6rem 0;
-  font-size: 1.1rem;
-  cursor: pointer;
-  border-bottom: 1px solid #ddd;
-}
-
-body.dark .finance-list li {
-  border-bottom-color: #555;
-}
-
-.finance-list li:hover {
-  color: #b48a78;
-}
-
-/* Task List */
-.task-list {
-  list-style: none;
-  padding: 0;
-}
-
-.task-list li {
-  margin-bottom: 0.6rem;
-  position: relative;
-}
-
-/* Tooltip */
-.task-list li a {
-  color: #b48a78;
-  font-weight: 600;
-  text-decoration: none;
-  position: relative;
-}
-
-.task-list li a:hover {
-  text-decoration: underline;
-}
-
-.task-list li a:hover::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  left: 0;
-  top: 120%;
-  background: #333;
-  color: white;
-  padding: 0.4rem 0.6rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  z-index: 9999;
-}
-
-/* Back Button */
-.back-button {
-  display: inline-block;
-  margin-bottom: 1rem;
-  color: #b48a78;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.back-button:hover {
-  text-decoration: underline;
-}
-
-/* Dark/Light Toggle */
-.theme-toggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 55px;
-  height: 28px;
-  background: #ddd;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 6px;
-  cursor: pointer;
-  z-index: 9999;
-  transition: background 0.3s ease;
-}
-
-body.dark .theme-toggle {
-  background: #444;
-}
-
-.theme-toggle span {
-  font-size: 14px;
-}
-
-.theme-toggle .knob {
-  width: 22px;
-  height: 22px;
-  background: white;
-  border-radius: 50%;
-  position: absolute;
-  left: 4px;
-  transition: left 0.3s ease;
-}
-
-body.dark .theme-toggle .knob {
-  left: 29px;
-}
+console.log("script.js is running...");
+
+/* ---------------------------------------------------
+   PARTICLES
+--------------------------------------------------- */
+tsParticles.load("tsparticles", {
+  fpsLimit: 60,
+  particles: {
+    number: { value: 60, density: { enable: true, area: 900 } },
+    color: { value: "#999999" },
+    shape: { type: "circle" },
+    opacity: { value: 0.5 },
+    size: { value: 3, random: { enable: true, minimumValue: 1 } },
+    links: { enable: true, distance: 150, color: "#cccccc", opacity: 0.4, width: 1 },
+    move: { enable: true, speed: 2, outModes: { default: "bounce" } }
+  },
+  interactivity: {
+    events: {
+      onHover: { enable: true, mode: "repulse" },
+      onClick: { enable: true, mode: "push" },
+      resize: true
+    },
+    modes: { repulse: { distance: 100 }, push: { quantity: 4 } }
+  },
+  detectRetina: true
+});
+
+/* ---------------------------------------------------
+   FILTER BUTTONS
+--------------------------------------------------- */
+const filterButtons = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-card');
+
+filterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const category = button.getAttribute('data-category');
+
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+
+    projectCards.forEach(card => {
+      if (category === 'all' || card.getAttribute('data-category') === category) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+/* ---------------------------------------------------
+   MODAL SYSTEM
+--------------------------------------------------- */
+const modal = document.getElementById("project-modal");
+const modalBody = document.getElementById("modal-body");
+const closeBtn = document.querySelector(".close-button");
+
+/* Finance project structure */
+const financeProjects = {
+  "British Airways": {
+    description: "Customer insights and lounge demand analysis.",
+    tasks: [
+      {
+        label: "Lounge Demand Analysis",
+        file: "BritishAirways_Task1_Lounge_Demand_Analysis.pdf",
+        tooltip: "Analysis of lounge usage patterns and demand forecasting."
+      },
+      {
+        label: "Customer Model",
+        file: "BritishAirways_Task2_Customer_Model.pdf",
+        tooltip: "Predictive model for customer segmentation and behavior."
+      }
+    ]
+  },
+  "Lloyds Banking Group": {
+    description: "Customer behaviour and predictive modelling.",
+    tasks: [
+      {
+        label: "Customer Analysis",
+        file: "Lloyds_Task1_Customer_Analysis.pdf",
+        tooltip: "Exploration of customer demographics and spending patterns."
+      },
+      {
+        label: "Predictive Model",
+        file: "Lloyds_Task2_Predictive_Model.pdf",
+        tooltip: "Machine learning model predicting customer churn."
+      }
+    ]
+  },
+  "Quantium": {
+    description: "Retail analytics and client reporting.",
+    tasks: [
+      {
+        label: "Transaction Analysis",
+        file: "Quantium_Task1_Transaction_Analysis.pdf",
+        tooltip: "Deep dive into customer transaction behaviour."
+      },
+      {
+        label: "Benchmark Store Analysis",
+        file: "Quantium_Task2_Benchmark_Store_Analysis.pdf",
+        tooltip: "Comparing store performance against benchmarks."
+      },
+      {
+        label: "Client Report",
+        file: "Quantium_Task3_Client_Report.pdf",
+        tooltip: "Final insights and recommendations for the client."
+      }
+    ]
+  }
+};
+
+/* ---------------------------------------------------
+   OPEN CATEGORY MODAL
+--------------------------------------------------- */
+function openCategory(category) {
+  modal.classList.add("show");
+
+  if (category === "finance") {
+    showFinanceList();
+  } else {
+    showSimpleCategory(category);
+  }
+}
+
+/* Simple categories (Health, Sport, Fun) */
+function showSimpleCategory(category) {
+  const titles = {
+    health: "Health Projects",
+    sport: "Sport Projects",
+    fun: "Fun Projects"
+  };
+
+  const descriptions = {
+    health: "Health data insights and clinical trends.",
+    sport: "Performance metrics and sports statistics.",
+    fun: "Creative fun analysis, games & trends."
+  };
+
+  modalBody.innerHTML = `
+    <h2>${titles[category]}</h2>
+    <p>${descriptions[category]}</p>
+  `;
+}
+
+/* ---------------------------------------------------
+   FINANCE LIST VIEW
+--------------------------------------------------- */
+function showFinanceList() {
+  modalBody.innerHTML = `
+    <h2>Finance Projects</h2>
+    <ul class="finance-list">
+      ${Object.keys(financeProjects)
+        .map(name => `<li onclick="openFinanceProject('${name}')">${name}</li>`)
+        .join("")}
+    </ul>
+  `;
+}
+
+/* ---------------------------------------------------
+   FINANCE PROJECT VIEW
+--------------------------------------------------- */
+window.openFinanceProject = function(name) {
+  const project = financeProjects[name];
+
+  modalBody.innerHTML = `
+    <span class="back-button" onclick="showFinanceList()">← Back to Finance Projects</span>
+    <h2>${name}</h2>
+    <p>${project.description}</p>
+
+    <h3>Tasks</h3>
+    <ul class="task-list">
+      ${project.tasks
+        .map(
+          t => `
+        <li>
+          <a href="${t.file}" target="_blank" data-tooltip="${t.tooltip}">
+            ${t.label}
+          </a>
+        </li>`
+        )
+        .join("")}
+    </ul>
+  `;
+};
+
+/* ---------------------------------------------------
+   CLICK HANDLERS FOR PROJECT CARDS
+--------------------------------------------------- */
+document.querySelectorAll(".project-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const category = card.getAttribute("data-category");
+    openCategory(category);
+  });
+});
+
+/* ---------------------------------------------------
+   CLOSE MODAL
+--------------------------------------------------- */
+closeBtn.addEventListener("click", () => {
+  modal.classList.remove("show");
+});
+
+modal.addEventListener("click", e => {
+  if (e.target === modal) modal.classList.remove("show");
+});
+
+/* ---------------------------------------------------
+   DARK / LIGHT MODE TOGGLE
+--------------------------------------------------- */
+const toggle = document.createElement("div");
+toggle.className = "theme-toggle";
+toggle.innerHTML = `
+  <span>☀️</span>
+  <span>🌙</span>
+  <div class="knob"></div>
+`;
+document.body.appendChild(toggle);
+
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
