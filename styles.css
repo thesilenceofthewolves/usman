@@ -8,7 +8,7 @@
 body, html {
   height: 100%;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #ffffff;
+  background: transparent;
   color: #111;
   overflow-x: hidden;
   position: relative;
@@ -27,7 +27,7 @@ body.dark {
   top: 0; left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: 0;
   background: transparent;
   pointer-events: none;
 }
