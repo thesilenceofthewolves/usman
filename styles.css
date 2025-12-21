@@ -21,7 +21,7 @@ body {
 body {
   min-height: 100vh;
   position: relative;
-  background: transparent !important;
+  background: transparent;
 }
 
 /* Light mode: fully light background */
