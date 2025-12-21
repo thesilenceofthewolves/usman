@@ -8,29 +8,44 @@
   <!-- Styles -->
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Font Awesome for icons -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 
-  <!-- tsParticles -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
+  <!-- ✅ Correct tsParticles version (v3) -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@3/tsparticles.engine.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-move-base@3/tsparticles.move.base.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-shape-circle@3/tsparticles.shape.circle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-color@3/tsparticles.updater.color.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-opacity@3/tsparticles.updater.opacity.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-out-modes@3/tsparticles.updater.out-modes.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-updater-size@3/tsparticles.updater.size.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-push@3/tsparticles.interaction.external.push.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-external-repulse@3/tsparticles.interaction.external.repulse.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles-interaction-particles-links@3/tsparticles.interaction.particles.links.min.js"></script>
+
+  <!-- Main JS -->
+  <script src="script.js" defer></script>
 </head>
 
 <body>
   <!-- Particle Background -->
   <div id="tsparticles"></div>
 
-  <!-- Main Container -->
+  <!-- Main content -->
   <div class="container">
-
-    <!-- NAVBAR -->
+    <!-- Navigation Bar -->
     <header class="navbar">
       <div class="logo"><a href="#hero">Home</a></div>
       <nav>
         <ul class="nav-links">
           <li><a href="#about">ABOUT</a></li>
-
           <li class="dropdown">
-            <a class="dropbtn">PORTFOLIO</a>
+            <a href="#portfolio" class="dropbtn">PORTFOLIO</a>
             <div class="dropdown-content">
               <a href="#portfolio-health">Health</a>
               <a href="#portfolio-finance">Finance</a>
@@ -38,45 +53,42 @@
               <a href="#portfolio-fun">Fun Projects</a>
             </div>
           </li>
-
           <li><a href="#contact">CONTACT</a></li>
         </ul>
       </nav>
     </header>
 
-    <!-- HERO -->
+    <!-- Hero Section -->
     <section id="hero" class="hero">
-      <h1>Usman Waxun</h1>
-      <p>
-        Future Healthcare Analyst<br>
-        Data Enthusiast | American Football & Rugby Fan
+      <h1 class="hero-title">Usman Waxun</h1>
+      <p class="hero-subtitle">
+        Future Healthcare Analyst<br />
+        Data Enthusiast • American Football & Rugby Fan
       </p>
-
       <div class="social-icons">
-        <a href="https://github.com/thesilenceofthewolves" target="_blank">
+        <a href="https://github.com/thesilenceofthewolves" target="_blank" rel="noopener" aria-label="GitHub">
           <i class="fab fa-github"></i>
         </a>
-        <a href="https://www.linkedin.com/in/waxun/" target="_blank">
+        <a href="https://www.linkedin.com/in/waxun/" target="_blank" rel="noopener" aria-label="LinkedIn">
           <i class="fab fa-linkedin"></i>
         </a>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="about-plain">
+    <!-- About Section -->
+    <section id="about" class="section-card section-about">
       <h2>About Me</h2>
       <p>
-        I’m passionate about turning data into meaningful insights.<br>
-        I aspire to work as a Healthcare Analyst, improving patient outcomes with data-driven solutions.
+        I’m passionate about turning data into meaningful insights. I aspire to work as a Healthcare Analyst,
+        using data-driven solutions to improve patient outcomes and support better decision-making in healthcare.
       </p>
     </section>
 
-    <!-- PORTFOLIO -->
-    <section id="portfolio" class="section-card">
-      <h2>PORTFOLIO</h2>
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section-card section-portfolio">
+      <h2>Portfolio</h2>
       <p class="subtitle">A glimpse of the projects I've been working on</p>
 
-      <!-- FILTER BUTTONS -->
       <div class="category-filters">
         <button class="filter-btn active" data-category="all">Show all</button>
         <button class="filter-btn" data-category="health">Health</button>
@@ -85,55 +97,81 @@
         <button class="filter-btn" data-category="fun">Fun Projects</button>
       </div>
 
-      <!-- PROJECT GRID -->
       <div class="projects-grid">
-
-        <div class="project-card" data-category="health" data-description="Health data insights and clinical trends" id="portfolio-health">
-          <img src="Health.jpg" alt="Health Project" />
+        <!-- Health -->
+        <div
+          class="project-card"
+          data-category="health"
+          data-project="health"
+          data-description="Health data insights and clinical trends."
+          id="portfolio-health"
+        >
+          <img src="Health.jpg" alt="Health data project" />
+          <div class="overlay">Health Projects</div>
         </div>
 
-        <div class="project-card" data-category="finance" data-description="Financial analytics and market trends" id="portfolio-finance">
-          <img src="Finances.jpg" alt="Finance Project" />
+        <!-- Finance -->
+        <div
+          class="project-card"
+          data-category="finance"
+          data-project="finance"
+          data-description="Business & Finance analytics across airlines, banking and retail."
+          id="portfolio-finance"
+        >
+          <img src="Finances.jpg" alt="Finance data project" />
+          <div class="overlay">Business & Finance Analytics</div>
         </div>
 
-        <div class="project-card" data-category="sport" data-description="Performance metrics and sports statistics" id="portfolio-sport">
-          <img src="sportanalysis.jpg" alt="Sport Project" />
+        <!-- Sport -->
+        <div
+          class="project-card"
+          data-category="sport"
+          data-project="sport"
+          data-description="Performance metrics, sports statistics and predictive insights."
+          id="portfolio-sport"
+        >
+          <img src="sportanalysis.jpg" alt="Sport analytics project" />
+          <div class="overlay">Sport Projects</div>
         </div>
 
-        <div class="project-card" data-category="fun" data-description="Creative fun analysis, games & trends" id="portfolio-fun">
-          <img src="fun.jpg" alt="Fun Project" />
+        <!-- Fun -->
+        <div
+          class="project-card"
+          data-category="fun"
+          data-project="fun"
+          data-description="Creative analysis, experiments and fun data explorations."
+          id="portfolio-fun"
+        >
+          <img src="fun.jpg" alt="Fun side projects" />
+          <div class="overlay">Fun Projects</div>
         </div>
-
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- Contact Section -->
     <section id="contact" class="section-card contact-box">
       <h2>Contact</h2>
-      <p>Email: <a href="mailto:waxun@protonmail.com">waxun@protonmail.com</a></p>
+      <p>
+        Email:
+        <a href="mailto:waxun@protonmail.com">waxun@protonmail.com</a>
+      </p>
     </section>
 
-    <!-- FOOTER -->
-    <footer>
+    <!-- Footer -->
+    <footer class="footer">
       <span id="current-date"></span>
-      <script>
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
-        document.getElementById('current-date').textContent =
-          new Date().toLocaleDateString(undefined, options);
-      </script>
     </footer>
-
   </div>
 
-  <!-- UNIVERSAL MODAL -->
-  <div class="modal" id="project-modal">
+  <!-- Modal -->
+  <div class="modal" id="project-modal" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="modal-content">
-      <span class="close-button">&times;</span>
-      <div id="modal-body"></div>
+      <button class="close-button" id="modal-close" aria-label="Close project details">&times;</button>
+      <img src="" alt="" id="modal-image" class="modal-image" />
+      <h2 id="modal-title"></h2>
+      <p id="modal-description"></p>
+      <div id="modal-links" class="modal-links"></div>
     </div>
   </div>
-
-  <!-- SCRIPT -->
-  <script src="script.js"></script>
 </body>
 </html>
