@@ -52,7 +52,7 @@ body.dark .nav-links li a { color: #eaeaea; }
   min-width: 160px;
   border-radius: 6px;
   padding: 0.5rem 0;
-  z-index: 1000;
+  z-index: 99999; /* ✅ ensures dropdown appears above everything */
 }
 
 .nav-links li.dropdown:hover .dropdown-content { display: block; }
@@ -139,21 +139,25 @@ body.dark .nav-links li a { color: #eaeaea; }
   object-fit: cover;
 }
 
-/* ✅ Card text */
-.card-info {
-  padding: 0.6rem;
-  text-align: left;
+/* ✅ Hover overlay (Version 1 behaviour) */
+.project-card::after {
+  content: attr(data-description);
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1rem;
+  opacity: 0;
+  transition: opacity 0.25s ease;
 }
 
-.card-info h3 {
-  font-size: 1rem;
-  margin-bottom: 0.25rem;
-  color: #333;
-}
-
-.card-info p {
-  font-size: 0.85rem;
-  color: #666;
+.project-card:hover::after {
+  opacity: 1;
 }
 
 /* Modal */
