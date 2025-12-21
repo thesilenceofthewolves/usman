@@ -1,205 +1,231 @@
-console.log("script.js is running...");
-
-tsParticles.load("tsparticles", {
-  fpsLimit: 60,
-  particles: {
-    number: { value: 70, density: { enable: true, area: 900 } },
-    color: { value: "#999999" },
-    shape: { type: "circle" },
-    opacity: { value: 0.7 },
-    size: { value: 3, random: { enable: true, minimumValue: 1 } },
-    links: { enable: true, distance: 130, color: "#888888", opacity: 0.8, width: 1.5 },
-    move: { enable: true, speed: 1.6, outModes: { default: "bounce" } }
-  },
-  interactivity: {
-    events: {
-      onHover: { enable: true, mode: "grab" },
-      onClick: { enable: true, mode: "push" },
-      resize: true
-    },
-    modes: {
-      grab: { distance: 180, links: { opacity: 1 } },
-      push: { quantity: 4 }
-    }
-  },
-  detectRetina: true
+// ----------------------
+// Date in footer
+// ----------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const dateSpan = document.getElementById("current-date");
+  if (dateSpan) {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    dateSpan.textContent = new Date().toLocaleDateString(undefined, options);
+  }
 });
 
-/* FILTER BUTTONS */
-const filterButtons = document.querySelectorAll('.filter-btn');
-const projectCards = document.querySelectorAll('.project-card');
+// ----------------------
+// Portfolio filtering
+// ----------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const projectCards = document.querySelectorAll(".project-card");
 
-filterButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const category = button.getAttribute('data-category');
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const category = btn.getAttribute("data-category");
 
-    filterButtons.forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
+      filterButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
 
-    projectCards.forEach(card => {
-      if (category === 'all' || card.getAttribute('data-category') === category) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
+      projectCards.forEach((card) => {
+        const cardCategory = card.getAttribute("data-category");
+
+        if (category === "all" || cardCategory === category) {
+          card.style.display = "block";
+        } else {
+          card.style.display = "none";
+        }
+      });
     });
   });
 });
 
-/* MODAL SYSTEM */
-const modal = document.getElementById("project-modal");
-const modalBody = document.getElementById("modal-body");
-const closeBtn = document.querySelector(".close-button");
+// ----------------------
+// Modal logic
+// ----------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const modal = document.getElementById("project-modal");
+  const modalImage = document.getElementById("modal-image");
+  const modalTitle = document.getElementById("modal-title");
+  const modalDescription = document.getElementById("modal-description");
+  const modalLinks = document.getElementById("modal-links");
+  const closeButton = document.getElementById("modal-close");
+  const projectCards = document.querySelectorAll(".project-card");
 
-/* Finance project structure */
-const financeProjects = {
-  "British Airways": {
-    description: "Customer insights and lounge demand analysis.",
-    tasks: [
+  if (!modal || !modalImage || !modalTitle || !modalDescription || !modalLinks) return;
+
+  const financeProjects = {
+    title: "Business & Finance Analytics",
+    description:
+      "A set of analytics projects across airlines, banking and retail, showcasing forecasting, modelling and commercial insight.",
+    imageAlt: "Finance data project",
+    sections: [
       {
-        label: "Lounge Demand Analysis",
-        file: "BritishAirways_Task1_Lounge_Demand_Analysis.pdf",
-        tooltip: "Analysis of lounge usage patterns and demand forecasting."
+        heading: "British Airways",
+        items: [
+          {
+            label: "British Airways Model",
+            file: "BritishAirwayModel.pdf",
+          },
+          {
+            label: "British Airways Lounges Analysis",
+            file: "BritishAirwayLounges.pdf",
+          },
+        ],
       },
       {
-        label: "Customer Model",
-        file: "BritishAirways_Task2_Customer_Model.pdf",
-        tooltip: "Predictive model for customer segmentation and behavior."
-      }
-    ]
-  },
-  "Lloyds Banking Group": {
-    description: "Customer behaviour and predictive modelling.",
-    tasks: [
-      {
-        label: "Customer Analysis",
-        file: "Lloyds_Task1_Customer_Analysis.pdf",
-        tooltip: "Exploration of customer demographics and spending patterns."
+        heading: "Lloyds Banking Group",
+        items: [
+          {
+            label: "Lloyds Analysis",
+            file: "LlyodAnalysis.pdf",
+          },
+          {
+            label: "Lloyds Model",
+            file: "LlyodModel.pdf",
+          },
+        ],
       },
       {
-        label: "Predictive Model",
-        file: "Lloyds_Task2_Predictive_Model.pdf",
-        tooltip: "Machine learning model predicting customer churn."
-      }
-    ]
-  },
-  "Quantium": {
-    description: "Retail analytics and client reporting.",
-    tasks: [
-      {
-        label: "Transaction Analysis",
-        file: "Quantium_Task1_Transaction_Analysis.pdf",
-        tooltip: "Deep dive into customer transaction behaviour."
+        heading: "Quantium Analytics",
+        items: [
+          {
+            label: "Quantium Project",
+            file: "quantium.pdf",
+          },
+          {
+            label: "Quantium Store Insights",
+            file: "quantiumstore.pdf",
+          },
+        ],
       },
-      {
-        label: "Benchmark Store Analysis",
-        file: "Quantium_Task2_Benchmark_Store_Analysis.pdf",
-        tooltip: "Comparing store performance against benchmarks."
-      },
-      {
-        label: "Client Report",
-        file: "Quantium_Task3_Client_Report.pdf",
-        tooltip: "Final insights and recommendations for the client."
-      }
-    ]
-  }
-};
-
-/* OPEN CATEGORY MODAL */
-function openCategory(category) {
-  modal.classList.add("show");
-
-  if (category === "finance") {
-    showFinanceList();
-  } else {
-    showSimpleCategory(category);
-  }
-}
-
-/* Simple categories (Health, Sport, Fun) */
-function showSimpleCategory(category) {
-  const titles = {
-    health: "Health Projects",
-    sport: "Sport Projects",
-    fun: "Fun Projects"
+    ],
   };
 
-  const descriptions = {
-    health: "Health data insights and clinical trends.",
-    sport: "Performance metrics and sports statistics.",
-    fun: "Creative fun analysis, games & trends."
-  };
+  function openModal(card) {
+    const projectType = card.getAttribute("data-project");
+    const img = card.querySelector("img");
 
-  modalBody.innerHTML = `
-    <h2>${titles[category]}</h2>
-    <p>${descriptions[category]}</p>
-  `;
-}
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
 
-/* FINANCE LIST VIEW */
-function showFinanceList() {
-  modalBody.innerHTML = `
-    <h2>Finance Projects</h2>
-    <ul class="finance-list">
-      ${Object.keys(financeProjects)
-        .map(name => `<li onclick="openFinanceProject('${name}')">${name}</li>`)
-        .join("")}
-    </ul>
-  `;
-}
+    if (img) {
+      modalImage.src = img.src;
+      modalImage.alt = img.alt || "";
+    } else {
+      modalImage.src = "";
+      modalImage.alt = "";
+    }
 
-/* FINANCE PROJECT VIEW */
-window.openFinanceProject = function(name) {
-  const project = financeProjects[name];
+    modalLinks.innerHTML = "";
 
-  modalBody.innerHTML = `
-    <span class="back-button" onclick="showFinanceList()">← Back to Finance Projects</span>
-    <h2>${name}</h2>
-    <p>${project.description}</p>
+    if (projectType === "finance") {
+      modalTitle.textContent = financeProjects.title;
+      modalDescription.textContent = financeProjects.description;
 
-    <h3>Tasks</h3>
-    <ul class="task-list">
-      ${project.tasks
-        .map(
-          t => `
-        <li>
-          <a href="${t.file}" target="_blank" data-tooltip="${t.tooltip}">
-            ${t.label}
-          </a>
-        </li>`
-        )
-        .join("")}
-    </ul>
-  `;
-};
+      financeProjects.sections.forEach((section) => {
+        const sectionEl = document.createElement("div");
+        sectionEl.classList.add("modal-section");
 
-/* CLICK HANDLERS FOR PROJECT CARDS */
-document.querySelectorAll(".project-card").forEach(card => {
-  card.addEventListener("click", () => {
-    const category = card.getAttribute("data-category");
-    openCategory(category);
+        const h3 = document.createElement("h3");
+        h3.textContent = section.heading;
+        sectionEl.appendChild(h3);
+
+        const ul = document.createElement("ul");
+        section.items.forEach((item) => {
+          const li = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = item.file; // PDFs live in the same folder as index.html
+          link.target = "_blank";
+          link.rel = "noopener";
+          link.textContent = item.label;
+          li.appendChild(link);
+          ul.appendChild(li);
+        });
+
+        sectionEl.appendChild(ul);
+        modalLinks.appendChild(sectionEl);
+      });
+    } else if (projectType === "health") {
+      modalTitle.textContent = "Health Analytics Projects";
+      modalDescription.textContent =
+        "Exploratory and predictive work focused on healthcare data, clinical trends and patient outcomes. Content coming soon.";
+    } else if (projectType === "sport") {
+      modalTitle.textContent = "Sport Analytics Projects";
+      modalDescription.textContent =
+        "Data-driven analysis of performance metrics, game outcomes and sports strategy. Content coming soon.";
+    } else if (projectType === "fun") {
+      modalTitle.textContent = "Fun & Experimental Projects";
+      modalDescription.textContent =
+        "Personal experiments, creative analyses and playful data explorations. Content coming soon.";
+    } else {
+      modalTitle.textContent = "Project Details";
+      modalDescription.textContent = card.getAttribute("data-description") || "";
+    }
+  }
+
+  function closeModal() {
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
+  }
+
+  projectCards.forEach((card) => {
+    card.addEventListener("click", () => openModal(card));
+  });
+
+  closeButton.addEventListener("click", closeModal);
+
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      closeModal();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && modal.classList.contains("open")) {
+      closeModal();
+    }
   });
 });
 
-/* CLOSE MODAL */
-closeBtn.addEventListener("click", () => {
-  modal.classList.remove("show");
-});
-
-modal.addEventListener("click", e => {
-  if (e.target === modal) modal.classList.remove("show");
-});
-
-/* DARK / LIGHT MODE TOGGLE */
-const toggle = document.createElement("div");
-toggle.className = "theme-toggle";
-toggle.innerHTML = `
-  <span>☀️</span>
-  <span>🌙</span>
-  <div class="knob"></div>
-`;
-document.body.appendChild(toggle);
-
-toggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
+// ----------------------
+// tsParticles config
+// ----------------------
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    tsParticles.load("tsparticles", {
+      background: { color: { value: "#050816" } },
+      fpsLimit: 60,
+      interactivity: {
+        events: {
+          onClick: { enable: true, mode: "push" },
+          onHover: { enable: true, mode: "repulse" },
+          resize: true,
+        },
+        modes: {
+          push: { quantity: 2 },
+          repulse: { distance: 100, duration: 0.4 },
+        },
+      },
+      particles: {
+        color: { value: "#ffffff" },
+        links: {
+          color: "#8888ff",
+          distance: 120,
+          enable: true,
+          opacity: 0.4,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          outModes: { default: "bounce" },
+        },
+        number: {
+          density: { enable: true, area: 800 },
+          value: 60,
+        },
+        opacity: { value: 0.5 },
+        shape: { type: "circle" },
+        size: { value: { min: 1, max: 4 } },
+      },
+      detectRetina: true,
+    });
+  }, 150);
 });
