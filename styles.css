@@ -192,18 +192,39 @@ body:not(.dark) .dropdown-content a:hover {
   padding: 3.5rem 1rem 2.5rem;
 }
 
-.hero-title {
+.hero h1 {
   font-size: 2.4rem;
   margin-bottom: 0.5rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
 
-.hero-subtitle {
+.hero p {
   margin: 0 auto 1.5rem;
   max-width: 26rem;
   font-size: 1.05rem;
   color: #d1d5db;
+}
+
+/* ----------------------
+   Social icons
+------------------------- */
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.social-icons a {
+  color: #e5e7eb;
+  font-size: 1.3rem;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.social-icons a:hover {
+  transform: translateY(-2px);
+  color: #38bdf8;
 }
 
 /* ----------------------
@@ -217,6 +238,18 @@ body:not(.dark) .dropdown-content a:hover {
   margin-bottom: 2rem;
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
   border: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+.section-card h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.section-card p {
+  margin: 0;
 }
 
 /* ✅ LIGHT MODE SECTION CARDS */
@@ -235,6 +268,10 @@ body:not(.dark) .section-card {
   margin-bottom: 1.5rem;
   color: #9ca3af;
   font-size: 0.95rem;
+}
+
+body:not(.dark) .section-portfolio .subtitle {
+  color: #555;
 }
 
 .category-filters {
@@ -261,7 +298,7 @@ body:not(.dark) .section-card {
 }
 
 /* ----------------------
-   Project cards — DARK MODE
+   Project cards
 ------------------------- */
 
 .projects-grid {
@@ -289,14 +326,73 @@ body:not(.dark) .section-card {
   filter: saturate(1.1);
 }
 
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  border-color: rgba(129, 140, 248, 0.8);
+}
+
+/* Hover overlay using old style behaviour */
+.project-card::after {
+  content: attr(data-description);
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1rem;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.project-card:hover::after {
+  opacity: 1;
+}
+
 /* ✅ LIGHT MODE PROJECT CARDS */
 body:not(.dark) .project-card {
   background: white;
   border: 1px solid #ddd;
 }
 
-body:not(.dark) .project-card .overlay {
+body:not(.dark) .project-card::after {
   background: rgba(0, 0, 0, 0.55);
+}
+
+/* ----------------------
+   Contact
+------------------------- */
+
+.contact-box p {
+  font-size: 0.95rem;
+}
+
+.contact-box a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.contact-box a:hover {
+  text-decoration: underline;
+}
+
+/* ----------------------
+   Footer
+------------------------- */
+
+.footer {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+body:not(.dark) .footer {
+  color: #555;
 }
 
 /* ----------------------
@@ -314,7 +410,7 @@ body:not(.dark) .project-card .overlay {
   z-index: 30;
 }
 
-/* ✅ FIX: JS uses .show, not .open */
+/* JS uses .show */
 .modal.show {
   display: flex;
 }
@@ -327,6 +423,33 @@ body:not(.dark) .project-card .overlay {
   padding: 1.5rem 1.5rem 1.75rem;
   position: relative;
   border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
+}
+
+.close-button {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.8rem;
+  border: none;
+  background: none;
+  color: #9ca3af;
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 0.1rem;
+}
+
+.close-button:hover {
+  color: #e5e7eb;
+}
+
+#modal-body h2 {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 1.3rem;
+}
+
+#modal-body p {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
 }
 
 /* ✅ LIGHT MODE MODAL */
@@ -337,15 +460,42 @@ body:not(.dark) .modal-content {
 }
 
 /* ----------------------
-   Brown accents
+   Brown accents for lists
 ------------------------- */
+
+.finance-list,
+.task-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.finance-list li {
+  padding: 0.6rem 0;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
 
 .finance-list li:hover {
   color: #b48a78;
 }
 
+body.dark .finance-list li {
+  border-bottom: 1px solid #555;
+}
+
+.task-list li {
+  margin-bottom: 0.25rem;
+}
+
 .task-list li a {
   color: #b48a78;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.task-list li a:hover {
+  text-decoration: underline;
 }
 
 body.dark .task-list li a {
@@ -373,3 +523,39 @@ body.dark .task-list li a {
 }
 
 .theme-toggle .knob {
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  left: 4px;
+  transition: left 0.3s ease;
+}
+
+body.dark .theme-toggle .knob {
+  left: 29px;
+}
+
+/* ----------------------
+   Responsive tweaks
+------------------------- */
+
+@media (max-width: 640px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  .section-card {
+    padding: 1.6rem 1.2rem;
+  }
+}
