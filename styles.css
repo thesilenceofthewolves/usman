@@ -42,7 +42,10 @@ body.dark .navbar { background: #222222d9; }
 body.dark .nav-links li a { color: #eaeaea; }
 
 /* Dropdown */
-.nav-links li.dropdown { position: relative; }
+.nav-links li.dropdown {
+  position: relative;
+  z-index: 99999; /* ensures dropdown appears above cards */
+}
 
 .dropdown-content {
   display: none;
@@ -52,10 +55,26 @@ body.dark .nav-links li a { color: #eaeaea; }
   min-width: 160px;
   border-radius: 6px;
   padding: 0.5rem 0;
-  z-index: 99999; /* ✅ ensures dropdown appears above everything */
+  z-index: 100000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
-.nav-links li.dropdown:hover .dropdown-content { display: block; }
+.dropdown-content a {
+  display: block;              /* ✅ FIX: makes items stack vertically */
+  padding: 0.5rem 1rem;
+  color: #444;
+  text-decoration: none;
+  white-space: nowrap;         /* prevents wrapping */
+}
+
+.dropdown-content a:hover {
+  background: #b48a78;
+  color: white;
+}
+
+.nav-links li.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 /* Layout */
 .container { max-width: 900px; margin: 2rem auto; padding: 0 1.5rem; }
