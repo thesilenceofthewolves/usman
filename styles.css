@@ -465,3 +465,10 @@ body {
     padding: 1.6rem 1.2rem;
   }
 }
+body {
+  background: transparent !important;
+}
+
+#tsparticles {
+  z-index: -1 !important;
+}
