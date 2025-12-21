@@ -5,21 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Usman Waxun - Portfolio</title>
 
-  <!-- Styles -->
   <link rel="stylesheet" href="styles.css" />
-
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-
-  <!-- tsParticles -->
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.11.1/tsparticles.bundle.min.js"></script>
 </head>
 
 <body>
-  <!-- Particle Background -->
   <div id="tsparticles"></div>
 
-  <!-- Main Container -->
   <div class="container">
 
     <!-- NAVBAR -->
@@ -53,12 +46,8 @@
       </p>
 
       <div class="social-icons">
-        <a href="https://github.com/thesilenceofthewolves" target="_blank">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/waxun/" target="_blank">
-          <i class="fab fa-linkedin"></i>
-        </a>
+        <a href="https://github.com/thesilenceofthewolves" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/waxun/" target="_blank"><i class="fab fa-linkedin"></i></a>
       </div>
     </section>
 
@@ -76,7 +65,6 @@
       <h2>PORTFOLIO</h2>
       <p class="subtitle">A glimpse of the projects I've been working on</p>
 
-      <!-- FILTER BUTTONS -->
       <div class="category-filters">
         <button class="filter-btn active" data-category="all">Show all</button>
         <button class="filter-btn" data-category="health">Health</button>
@@ -85,23 +73,38 @@
         <button class="filter-btn" data-category="fun">Fun Projects</button>
       </div>
 
-      <!-- PROJECT GRID -->
       <div class="projects-grid">
 
-        <div class="project-card" data-category="health" data-description="Health data insights and clinical trends" id="portfolio-health">
+        <div class="project-card" id="portfolio-health" data-category="health">
           <img src="Health.jpg" alt="Health Project" />
+          <div class="card-info">
+            <h3>Health Projects</h3>
+            <p>Health data insights and clinical trends.</p>
+          </div>
         </div>
 
-        <div class="project-card" data-category="finance" data-description="Financial analytics and market trends" id="portfolio-finance">
+        <div class="project-card" id="portfolio-finance" data-category="finance">
           <img src="Finances.jpg" alt="Finance Project" />
+          <div class="card-info">
+            <h3>Finance Projects</h3>
+            <p>Financial analytics and market trends.</p>
+          </div>
         </div>
 
-        <div class="project-card" data-category="sport" data-description="Performance metrics and sports statistics" id="portfolio-sport">
+        <div class="project-card" id="portfolio-sport" data-category="sport">
           <img src="sportanalysis.jpg" alt="Sport Project" />
+          <div class="card-info">
+            <h3>Sport Projects</h3>
+            <p>Performance metrics and sports statistics.</p>
+          </div>
         </div>
 
-        <div class="project-card" data-category="fun" data-description="Creative fun analysis, games & trends" id="portfolio-fun">
+        <div class="project-card" id="portfolio-fun" data-category="fun">
           <img src="fun.jpg" alt="Fun Project" />
+          <div class="card-info">
+            <h3>Fun Projects</h3>
+            <p>Creative fun analysis, games & trends.</p>
+          </div>
         </div>
 
       </div>
@@ -117,15 +120,14 @@
     <footer>
       <span id="current-date"></span>
       <script>
-        const options = { year: 'numeric', month: 'long', day: 'numeric' };
         document.getElementById('current-date').textContent =
-          new Date().toLocaleDateString(undefined, options);
+          new Date().toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
       </script>
     </footer>
 
   </div>
 
-  <!-- UNIVERSAL MODAL -->
+  <!-- MODAL -->
   <div class="modal" id="project-modal">
     <div class="modal-content">
       <span class="close-button">&times;</span>
@@ -133,7 +135,6 @@
     </div>
   </div>
 
-  <!-- SCRIPT -->
   <script src="script.js"></script>
 </body>
 </html>
