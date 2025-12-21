@@ -32,10 +32,10 @@
           <li class="dropdown">
             <a class="dropbtn">PORTFOLIO</a>
             <div class="dropdown-content">
-              <a href="#portfolio-health">Health</a>
-              <a href="#portfolio-finance">Finance</a>
-              <a href="#portfolio-sport">Sport</a>
-              <a href="#portfolio-fun">Fun Projects</a>
+              <a href="#portfolio-health-anchor">Health</a>
+              <a href="#portfolio-finance-anchor">Finance</a>
+              <a href="#portfolio-sport-anchor">Sport</a>
+              <a href="#portfolio-fun-anchor">Fun Projects</a>
             </div>
           </li>
 
@@ -85,27 +85,29 @@
         <button class="filter-btn" data-category="fun">Fun Projects</button>
       </div>
 
+      <!-- ✅ Invisible scroll anchors -->
+      <div id="portfolio-health-anchor"></div>
+      <div id="portfolio-finance-anchor"></div>
+      <div id="portfolio-sport-anchor"></div>
+      <div id="portfolio-fun-anchor"></div>
+
       <!-- PROJECT GRID -->
       <div class="projects-grid">
 
         <div class="project-card" data-category="health" data-description="Health data insights and clinical trends" id="portfolio-health">
           <img src="Health.jpg" alt="Health Project" />
-          <div class="overlay">Health Projects</div>
         </div>
 
         <div class="project-card" data-category="finance" data-description="Financial analytics and market trends" id="portfolio-finance">
           <img src="Finances.jpg" alt="Finance Project" />
-          <div class="overlay">Finance Projects</div>
         </div>
 
         <div class="project-card" data-category="sport" data-description="Performance metrics and sports statistics" id="portfolio-sport">
           <img src="sportanalysis.jpg" alt="Sport Project" />
-          <div class="overlay">Sport Projects</div>
         </div>
 
         <div class="project-card" data-category="fun" data-description="Creative fun analysis, games & trends" id="portfolio-fun">
           <img src="fun.jpg" alt="Fun Project" />
-          <div class="overlay">Fun Projects</div>
         </div>
 
       </div>
@@ -129,14 +131,11 @@
 
   </div>
 
-  <!-- UNIVERSAL MODAL (used for categories + projects + tasks) -->
+  <!-- UNIVERSAL MODAL -->
   <div class="modal" id="project-modal">
     <div class="modal-content">
       <span class="close-button">&times;</span>
-
-      <!-- Dynamic content injected by JS -->
       <div id="modal-body"></div>
-
     </div>
   </div>
 
