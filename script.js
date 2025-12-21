@@ -154,4 +154,11 @@ toggle.className = "theme-toggle";
 toggle.innerHTML = `
   <span>☀️</span>
   <span>🌙</span>
-  <
+  <div class="knob"></div>
+`;
+document.body.appendChild(toggle);
+
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
+
