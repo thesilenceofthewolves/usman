@@ -472,3 +472,19 @@ body {
 #tsparticles {
   z-index: -1 !important;
 }
+
+#tsparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;   /* ✅ This is the missing piece */
+  pointer-events: none;
+}
+
+#tsparticles canvas {
+  width: 100% !important;
+  height: 100vh !important;  /* ✅ Forces the canvas to be visible */
+  display: block !important;
+}
+
