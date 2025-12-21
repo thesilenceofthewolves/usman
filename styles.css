@@ -1,287 +1,140 @@
-/* ----------------------
-   Base styles
-------------------------- */
+/* Reset & Base */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+body, html {
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: transparent;
+  color: #111;
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
-  color: #f5f5f5;
-  background-color: #050816; /* fallback */
-}
+body.dark { background: #1a1a1a; color: #f5f5f5; }
 
-body {
-  min-height: 100vh;
-  position: relative;
-  background: transparent !important;
-}
-
-/* ✅ LIGHT MODE FULL PAGE BACKGROUND */
-body:not(.dark) {
-  background: #ffffff !important;
-  color: #111 !important;
-}
-
-/* ----------------------
-   Particles
-------------------------- */
-
+/* Particles */
 #tsparticles {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: -1 !important;
-  pointer-events: none;
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
 }
 
-#tsparticles canvas {
-  width: 100% !important;
-  height: 100vh !important;
-  display: block !important;
-}
-
-/* ----------------------
-   Main container
-------------------------- */
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 1.5rem 1rem 3rem;
-}
-
-/* ----------------------
-   NAVBAR — DARK MODE (new design)
-------------------------- */
-
+/* Navbar */
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.75rem 0;
-  margin-bottom: 1.5rem;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  background: linear-gradient(
-    to bottom,
-    rgba(5, 8, 22, 0.95),
-    rgba(5, 8, 22, 0.75),
-    transparent
-  );
-  backdrop-filter: blur(10px);
-}
-
-.logo a {
-  text-decoration: none;
-  color: #ffffff;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 0.95rem;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-  padding: 0;
-  margin: 0;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #d1d5db;
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  position: relative;
-}
-
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -0.25rem;
-  width: 0;
-  height: 1px;
-  background: linear-gradient(90deg, #38bdf8, #a855f7);
-  transition: width 0.2s ease;
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
-
-/* ✅ NAVBAR — LIGHT MODE (old version) */
-body:not(.dark) .navbar {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1rem 2rem;
   background: #ffffffd9;
+  position: sticky; top: 0;
+  z-index: 100;
   backdrop-filter: blur(6px);
 }
 
-body:not(.dark) .nav-links a {
-  color: #444;
+body.dark .navbar {
+  background: #1a1a1a;
+  color: #f5f5f5;
 }
 
-/* ----------------------
-   Dropdown
-------------------------- */
+.nav-links { list-style: none; display: flex; gap: 1.5rem; }
 
-.dropdown {
+.nav-links li a {
+  text-decoration: none;
+  color: #444;
+  font-weight: 600;
+}
+
+body.dark .nav-links li a {
+  color: #f5f5f5;
+}
+
+/* Dropdown */
+.nav-links li.dropdown {
   position: relative;
+  z-index: 999999;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  top: 135%;
+  top: 100%;
   left: 0;
-  background-color: #111827;
+  background: white;
   min-width: 160px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-  z-index: 20;
-  border-radius: 0.5rem;
-  overflow: hidden;
+  border-radius: 6px;
+  padding: 0.5rem 0;
+  z-index: 1000000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .dropdown-content a {
-  color: #e5e7eb;
-  padding: 0.5rem 0.75rem;
-  text-decoration: none;
   display: block;
-  font-size: 0.8rem;
+  padding: 0.5rem 1rem;
+  color: #444;
+  text-decoration: none;
+  white-space: nowrap;
 }
 
 .dropdown-content a:hover {
-  background-color: #1f2937;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* ✅ LIGHT MODE DROPDOWN */
-body:not(.dark) .dropdown-content {
-  background: white;
-}
-
-body:not(.dark) .dropdown-content a {
-  color: #444;
-}
-
-body:not(.dark) .dropdown-content a:hover {
   background: #b48a78;
   color: white;
 }
 
-/* ----------------------
-   Hero
-------------------------- */
+.nav-links li.dropdown:hover .dropdown-content {
+  display: block;
+}
 
-.hero {
+/* ✅ Dark mode dropdown fix */
+body.dark .dropdown-content {
+  background: #2a2a2a;
+}
+
+body.dark .dropdown-content a {
+  color: #f5f5f5;
+}
+
+body.dark .dropdown-content a:hover {
+  background: #b48a78;
+  color: white;
+}
+
+/* Layout */
+.container { max-width: 900px; margin: 2rem auto; padding: 0 1.5rem; }
+
+/* Hero */
+.hero { text-align: center; margin: 3rem 0 2rem; }
+
+/* About */
+.about-plain {
+  max-width: 700px;
+  margin: 4rem auto;
   text-align: center;
-  padding: 3.5rem 1rem 2.5rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
 }
 
-.hero h1 {
-  font-size: 2.4rem;
-  margin-bottom: 0.5rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-
-.hero p {
-  margin: 0 auto 1.5rem;
-  max-width: 26rem;
-  font-size: 1.05rem;
-  color: #d1d5db;
-}
-
-/* ----------------------
-   Social icons
-------------------------- */
-
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 1.25rem;
-}
-
-.social-icons a {
-  color: #e5e7eb;
-  font-size: 1.3rem;
-  transition: transform 0.15s ease, color 0.15s ease;
-}
-
-.social-icons a:hover {
-  transform: translateY(-2px);
-  color: #38bdf8;
-}
-
-/* ----------------------
-   Sections — DARK MODE
-------------------------- */
-
+/* Section Card */
 .section-card {
-  background-color: rgba(15, 23, 42, 0.88);
-  border-radius: 0.9rem;
-  padding: 2rem 1.5rem;
-  margin-bottom: 2rem;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
-  border: 1px solid rgba(148, 163, 184, 0.2);
-}
-
-.section-card h2 {
-  margin-top: 0;
-  margin-bottom: 0.75rem;
-  font-size: 1.5rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.section-card p {
-  margin: 0;
-}
-
-/* ✅ LIGHT MODE SECTION CARDS */
-body:not(.dark) .section-card {
   background: #f7f7f7ee;
+  padding: 1.5rem;
   border-left: 4px solid #888;
-  color: #111;
+  margin-bottom: 2rem;
+  border-radius: 6px;
 }
 
-/* ----------------------
-   Portfolio
-------------------------- */
-
-.section-portfolio .subtitle {
-  margin-top: 0.25rem;
-  margin-bottom: 1.5rem;
-  color: #9ca3af;
-  font-size: 0.95rem;
-}
-
-body:not(.dark) .section-portfolio .subtitle {
-  color: #555;
+/* Portfolio */
+#portfolio {
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+  text-align: center;
 }
 
 .category-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
   margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
-/* ✅ FILTER BUTTONS — brown accent */
 .filter-btn {
   border: 1px solid #b48a78;
   background: transparent;
@@ -297,42 +150,35 @@ body:not(.dark) .section-portfolio .subtitle {
   color: white;
 }
 
-/* ----------------------
-   Project cards
-------------------------- */
-
+/* Grid */
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
 }
 
+/* Cards */
 .project-card {
   position: relative;
-  border-radius: 0.75rem;
-  overflow: hidden;
   cursor: pointer;
-  border: 1px solid rgba(148, 163, 184, 0.28);
-  background-color: #020617;
-  transition: transform 0.15s ease, box-shadow 0.15s ease,
-    border-color 0.15s ease;
+  overflow: hidden;
+  border-radius: 8px;
+  aspect-ratio: 1 / 1;
+  background: white;
+  box-shadow: 0 1px 5px rgb(0 0 0 / 0.1);
+  transition: transform 0.25s ease;
+  scroll-margin-top: 120px;
 }
+
+.project-card:hover { transform: translateY(-5px); }
 
 .project-card img {
   width: 100%;
-  height: 150px;
+  height: 100%;
   object-fit: cover;
-  display: block;
-  filter: saturate(1.1);
 }
 
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
-  border-color: rgba(129, 140, 248, 0.8);
-}
-
-/* Hover overlay using old style behaviour */
+/* Hover overlay */
 .project-card::after {
   content: attr(data-description);
   position: absolute;
@@ -353,121 +199,51 @@ body:not(.dark) .section-portfolio .subtitle {
   opacity: 1;
 }
 
-/* ✅ LIGHT MODE PROJECT CARDS */
-body:not(.dark) .project-card {
-  background: white;
-  border: 1px solid #ddd;
+/* Dark mode overlay fix */
+body.dark .project-card::after {
+  background: rgba(0, 0, 0, 0.7);
 }
 
-body:not(.dark) .project-card::after {
-  background: rgba(0, 0, 0, 0.55);
-}
-
-/* ----------------------
-   Contact
-------------------------- */
-
-.contact-box p {
-  font-size: 0.95rem;
-}
-
-.contact-box a {
-  color: #38bdf8;
-  text-decoration: none;
-}
-
-.contact-box a:hover {
-  text-decoration: underline;
-}
-
-/* ----------------------
-   Footer
-------------------------- */
-
-.footer {
-  text-align: center;
-  color: #9ca3af;
-  font-size: 0.8rem;
-  margin-top: 1.5rem;
-}
-
-body:not(.dark) .footer {
-  color: #555;
-}
-
-/* ----------------------
-   Modal — DARK MODE
-------------------------- */
-
+/* Modal */
 .modal {
+  display: none;
   position: fixed;
   inset: 0;
-  background-color: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(8px);
-  display: none;
-  align-items: center;
+  background: rgba(0,0,0,0.55);
   justify-content: center;
-  z-index: 30;
+  align-items: center;
+  z-index: 10000;
 }
 
-/* JS uses .show */
-.modal.show {
-  display: flex;
-}
+.modal.show { display: flex; }
 
 .modal-content {
-  background-color: #020617;
-  border-radius: 1rem;
-  max-width: 640px;
-  width: 92%;
-  padding: 1.5rem 1.5rem 1.75rem;
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 600px;
+  width: 90%;
   position: relative;
-  border: 1px solid rgba(148, 163, 184, 0.4);
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
+}
+
+/* Dark mode modal fix */
+body.dark .modal-content {
+  background: #2a2a2a;
+  color: #f5f5f5;
 }
 
 .close-button {
   position: absolute;
-  top: 0.6rem;
-  right: 0.8rem;
-  border: none;
-  background: none;
-  color: #9ca3af;
-  font-size: 1.4rem;
+  top: 1rem; right: 1rem;
+  font-size: 1.8rem;
   cursor: pointer;
-  padding: 0.1rem;
 }
 
-.close-button:hover {
-  color: #e5e7eb;
-}
-
-#modal-body h2 {
-  margin: 0.5rem 0 0.25rem;
-  font-size: 1.3rem;
-}
-
-#modal-body p {
-  margin: 0 0 0.75rem;
-  font-size: 0.95rem;
-}
-
-/* ✅ LIGHT MODE MODAL */
-body:not(.dark) .modal-content {
-  background: white;
-  color: #111;
-  border: 1px solid #ddd;
-}
-
-/* ----------------------
-   Brown accents for lists
-------------------------- */
-
+/* Finance lists */
 .finance-list,
 .task-list {
   list-style: none;
-  padding-left: 0;
-  margin: 0;
+  padding: 0;
 }
 
 .finance-list li {
@@ -476,16 +252,10 @@ body:not(.dark) .modal-content {
   border-bottom: 1px solid #ddd;
 }
 
-.finance-list li:hover {
-  color: #b48a78;
-}
+.finance-list li:hover { color: #b48a78; }
 
 body.dark .finance-list li {
   border-bottom: 1px solid #555;
-}
-
-.task-list li {
-  margin-bottom: 0.25rem;
 }
 
 .task-list li a {
@@ -494,24 +264,30 @@ body.dark .finance-list li {
   text-decoration: none;
 }
 
-.task-list li a:hover {
-  text-decoration: underline;
-}
+.task-list li a:hover { text-decoration: underline; }
 
 body.dark .task-list li a {
   color: #d9b8a8;
 }
 
-/* ----------------------
-   Toggle Button
-------------------------- */
+/* Tooltip */
+.task-list li a:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 0;
+  top: 120%;
+  background: #333;
+  color: white;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+}
 
+/* Dark mode toggle */
 .theme-toggle {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 55px;
-  height: 28px;
+  bottom: 20px; right: 20px;
+  width: 55px; height: 28px;
   background: #ddd;
   border-radius: 20px;
   display: flex;
@@ -523,8 +299,7 @@ body.dark .task-list li a {
 }
 
 .theme-toggle .knob {
-  width: 22px;
-  height: 22px;
+  width: 22px; height: 22px;
   background: white;
   border-radius: 50%;
   position: absolute;
@@ -532,30 +307,4 @@ body.dark .task-list li a {
   transition: left 0.3s ease;
 }
 
-body.dark .theme-toggle .knob {
-  left: 29px;
-}
-
-/* ----------------------
-   Responsive tweaks
-------------------------- */
-
-@media (max-width: 640px) {
-  .navbar {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.4rem;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .hero p {
-    font-size: 0.95rem;
-  }
-
-  .section-card {
-    padding: 1.6rem 1.2rem;
-  }
-}
+body.dark .theme-toggle .knob { left: 29px; }
