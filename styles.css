@@ -568,3 +568,7 @@ body.dark .theme-toggle .knob {
     padding: 1.6rem 1.2rem;
   }
 }
+/* ligth mode */
+#tsparticles canvas {
+  background: transparent !important;
+}
