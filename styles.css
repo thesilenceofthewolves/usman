@@ -1,5 +1,5 @@
 /* Reset & Base */
- {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -264,14 +264,24 @@ body.dark #portfolio p.subtitle {
   color: white;
 }
 
-/* Project Grid */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+/* ✅ Scroll Anchors */
+#portfolio-health-anchor,
+#portfolio-finance-anchor,
+#portfolio-sport-anchor,
+#portfolio-fun-anchor {
+  position: relative;
+  top: -120px;
+  height: 0;
 }
 
-/* Project Cards */
+/* ✅ Smaller, cleaner grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.2rem;
+}
+
+/* ✅ Smaller project cards */
 .project-card {
   position: relative;
   cursor: pointer;
@@ -280,7 +290,7 @@ body.dark #portfolio p.subtitle {
   aspect-ratio: 1 / 1;
   background: white;
   box-shadow: 0 1px 5px rgb(0 0 0 / 0.1);
-  transition: transform 0.3s ease;
+  transition: transform 0.25s ease;
 }
 
 body.dark .project-card {
@@ -297,21 +307,21 @@ body.dark .project-card {
   object-fit: cover;
 }
 
-/* Hover Overlay */
+/* Cleaner overlay */
 .project-card::after {
   content: attr(data-description);
   position: absolute;
   inset: 0;
-  background: rgba(180, 138, 120, 0.85);
+  background: rgba(0, 0, 0, 0.55);
   color: white;
-  font-size: 1rem;
+  font-size: 0.9rem;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   padding: 0 1rem;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.25s ease;
 }
 
 .project-card:hover::after {
