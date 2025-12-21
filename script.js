@@ -229,3 +229,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }, 150);
 });
+/* DARK / LIGHT MODE TOGGLE */
+const toggle = document.createElement("div");
+toggle.className = "theme-toggle";
+toggle.innerHTML = `
+  <span>☀️</span>
+  <span>🌙</span>
+  <div class="knob"></div>
+`;
+document.body.appendChild(toggle);
+
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
