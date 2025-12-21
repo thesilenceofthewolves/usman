@@ -29,7 +29,10 @@ body.dark { background: #1a1a1a; color: #f5f5f5; }
   backdrop-filter: blur(6px);
 }
 
-body.dark .navbar { background: #222222d9; }
+body.dark .navbar {
+  background: #1a1a1a;       /* solid dark background */
+  color: #f5f5f5;
+}
 
 .nav-links { list-style: none; display: flex; gap: 1.5rem; }
 
@@ -39,9 +42,11 @@ body.dark .navbar { background: #222222d9; }
   font-weight: 600;
 }
 
-body.dark .nav-links li a { color: #eaeaea; }
+body.dark .nav-links li a {
+  color: #f5f5f5;            /* readable in dark mode */
+}
 
-/* ✅ Dropdown (fixed) */
+/* Dropdown */
 .nav-links li.dropdown {
   position: relative;
   z-index: 999999;
@@ -159,7 +164,7 @@ body.dark .nav-links li a { color: #eaeaea; }
   object-fit: cover;
 }
 
-/* ✅ Hover overlay (Version 1) */
+/* Hover overlay */
 .project-card::after {
   content: attr(data-description);
   position: absolute;
@@ -180,12 +185,12 @@ body.dark .nav-links li a { color: #eaeaea; }
   opacity: 1;
 }
 
-/* ✅ Dark mode overlay fix */
+/* Dark mode overlay fix */
 body.dark .project-card::after {
   background: rgba(0, 0, 0, 0.7);
 }
 
-/* ✅ Modal */
+/* Modal */
 .modal {
   display: none;
   position: fixed;
@@ -207,7 +212,7 @@ body.dark .project-card::after {
   position: relative;
 }
 
-/* ✅ Dark mode modal fix */
+/* Dark mode modal fix */
 body.dark .modal-content {
   background: #2a2a2a;
   color: #f5f5f5;
@@ -235,7 +240,6 @@ body.dark .modal-content {
 
 .finance-list li:hover { color: #b48a78; }
 
-/* ✅ Dark mode finance list */
 body.dark .finance-list li {
   border-bottom: 1px solid #555;
 }
@@ -248,7 +252,6 @@ body.dark .finance-list li {
 
 .task-list li a:hover { text-decoration: underline; }
 
-/* ✅ Dark mode task links */
 body.dark .task-list li a {
   color: #d9b8a8;
 }
