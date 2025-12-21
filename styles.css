@@ -41,16 +41,17 @@ body.dark .navbar { background: #222222d9; }
 
 body.dark .nav-links li a { color: #eaeaea; }
 
-/* Dropdown */
+/* ✅ Dropdown */
 .nav-links li.dropdown {
   position: relative;
-  z-index: 99999; /* ensures dropdown appears above cards */
+  z-index: 99999;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
-  top: 100%; left: 0;
+  top: 100%;
+  left: 0;
   background: white;
   min-width: 160px;
   border-radius: 6px;
@@ -60,11 +61,11 @@ body.dark .nav-links li a { color: #eaeaea; }
 }
 
 .dropdown-content a {
-  display: block;              /* ✅ FIX: makes items stack vertically */
+  display: block;              /* ✅ FIX: vertical stacking */
   padding: 0.5rem 1rem;
   color: #444;
   text-decoration: none;
-  white-space: nowrap;         /* prevents wrapping */
+  white-space: nowrap;
 }
 
 .dropdown-content a:hover {
