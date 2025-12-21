@@ -25,7 +25,7 @@ body.dark { background: #1a1a1a; color: #f5f5f5; }
   padding: 1rem 2rem;
   background: #ffffffd9;
   position: sticky; top: 0;
-  z-index: 10;
+  z-index: 100;
   backdrop-filter: blur(6px);
 }
 
@@ -41,10 +41,10 @@ body.dark .navbar { background: #222222d9; }
 
 body.dark .nav-links li a { color: #eaeaea; }
 
-/* ✅ Dropdown */
+/* ✅ Dropdown (fixed) */
 .nav-links li.dropdown {
   position: relative;
-  z-index: 99999;
+  z-index: 999999; /* ensures dropdown is above cards */
 }
 
 .dropdown-content {
@@ -56,12 +56,12 @@ body.dark .nav-links li a { color: #eaeaea; }
   min-width: 160px;
   border-radius: 6px;
   padding: 0.5rem 0;
-  z-index: 100000;
+  z-index: 1000000;
   box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 .dropdown-content a {
-  display: block;              /* ✅ FIX: vertical stacking */
+  display: block;              /* ✅ vertical stacking */
   padding: 0.5rem 1rem;
   color: #444;
   text-decoration: none;
@@ -159,7 +159,7 @@ body.dark .nav-links li a { color: #eaeaea; }
   object-fit: cover;
 }
 
-/* ✅ Hover overlay (Version 1 behaviour) */
+/* ✅ Hover overlay (Version 1) */
 .project-card::after {
   content: attr(data-description);
   position: absolute;
@@ -178,6 +178,11 @@ body.dark .nav-links li a { color: #eaeaea; }
 
 .project-card:hover::after {
   opacity: 1;
+}
+
+/* ✅ Dark mode overlay fix */
+body.dark .project-card::after {
+  background: rgba(0, 0, 0, 0.7); /* darker so white text stays readable */
 }
 
 /* Modal */
