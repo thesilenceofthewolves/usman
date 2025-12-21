@@ -1,5 +1,5 @@
 /* ----------------------
-   Base styles
+   Base
 ------------------------- */
 
 *,
@@ -15,12 +15,19 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   color: #f5f5f5;
-  background-color: #050816;
+  background-color: #050816; /* fallback */
 }
 
 body {
   min-height: 100vh;
+  position: relative;
   background: transparent !important;
+}
+
+/* Light mode: fully light background */
+body:not(.dark) {
+  color: #111;
+  background-color: #ffffff;
 }
 
 /* ----------------------
@@ -59,13 +66,13 @@ body {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(5, 8, 22, 0.85);
+  background: rgba(5, 8, 22, 0.9);
   backdrop-filter: blur(10px);
 }
 
 body:not(.dark) .navbar {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
 }
 
 .logo a {
@@ -77,14 +84,12 @@ body:not(.dark) .navbar {
   font-size: 0.95rem;
 }
 
-/* ----------------------
-   Nav links
-------------------------- */
-
 .nav-links {
   list-style: none;
   display: flex;
   gap: 1rem;
+  padding: 0;
+  margin: 0;
 }
 
 .nav-links a {
@@ -94,6 +99,21 @@ body:not(.dark) .navbar {
   letter-spacing: 0.12em;
   text-transform: uppercase;
   position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.25rem;
+  width: 0;
+  height: 1px;
+  background: linear-gradient(90deg, #38bdf8, #a855f7);
+  transition: width 0.2s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 /* ----------------------
@@ -112,6 +132,7 @@ body:not(.dark) .navbar {
   background-color: #111827;
   min-width: 160px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
+  z-index: 20;
   border-radius: 0.5rem;
   overflow: hidden;
 }
@@ -121,10 +142,24 @@ body:not(.dark) .dropdown-content {
 }
 
 .dropdown-content a {
-  color: inherit;
+  color: #e5e7eb;
   padding: 0.5rem 0.75rem;
-  display: block;
   text-decoration: none;
+  display: block;
+  font-size: 0.8rem;
+}
+
+body:not(.dark) .dropdown-content a {
+  color: #444;
+}
+
+.dropdown-content a:hover {
+  background-color: #1f2937;
+}
+
+body:not(.dark) .dropdown-content a:hover {
+  background: #b48a78;
+  color: white;
 }
 
 .dropdown:hover .dropdown-content {
@@ -143,17 +178,44 @@ body:not(.dark) .dropdown-content {
 .hero-title {
   font-size: 2.4rem;
   margin-bottom: 0.5rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
 .hero-subtitle {
   margin: 0 auto 1.5rem;
   max-width: 26rem;
   font-size: 1.05rem;
-  opacity: 0.85;
+  color: #d1d5db;
+}
+
+body:not(.dark) .hero-subtitle {
+  color: #555;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.social-icons a {
+  color: #e5e7eb;
+  font-size: 1.3rem;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+body:not(.dark) .social-icons a {
+  color: #444;
+}
+
+.social-icons a:hover {
+  transform: translateY(-2px);
+  color: #38bdf8;
 }
 
 /* ----------------------
-   Section cards
+   Sections
 ------------------------- */
 
 .section-card {
@@ -161,31 +223,71 @@ body:not(.dark) .dropdown-content {
   border-radius: 0.9rem;
   padding: 2rem 1.5rem;
   margin-bottom: 2rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
   border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
 body:not(.dark) .section-card {
-  background: rgba(255, 255, 255, 0.85);
+  background: #f7f7f7ee;
   color: #111;
   border: 1px solid #ddd;
+}
+
+.section-card h2 {
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.section-card p {
+  margin: 0;
+}
+
+/* About */
+.section-about {
+  text-align: center;
+}
+
+.section-about p {
+  max-width: 38rem;
+  margin: 0 auto;
+  line-height: 1.7;
 }
 
 /* ----------------------
    Portfolio
 ------------------------- */
 
+.section-portfolio .subtitle {
+  margin-top: 0.25rem;
+  margin-bottom: 1.5rem;
+  color: #9ca3af;
+  font-size: 0.95rem;
+}
+
+body:not(.dark) .section-portfolio .subtitle {
+  color: #555;
+}
+
 .category-filters {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
 }
 
+/* brown accent filter buttons */
 .filter-btn {
   border: 1px solid #b48a78;
   background: transparent;
   color: #b48a78;
   padding: 0.4rem 0.9rem;
   border-radius: 999px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
   cursor: pointer;
 }
 
@@ -210,8 +312,10 @@ body:not(.dark) .section-card {
   border-radius: 0.75rem;
   overflow: hidden;
   cursor: pointer;
-  background-color: #020617;
   border: 1px solid rgba(148, 163, 184, 0.28);
+  background-color: #020617;
+  transition: transform 0.15s ease, box-shadow 0.15s ease,
+    border-color 0.15s ease;
 }
 
 body:not(.dark) .project-card {
@@ -219,15 +323,66 @@ body:not(.dark) .project-card {
   border: 1px solid #ddd;
 }
 
-/* ✅ Title overlay (you said keep this) */
+.project-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+  filter: saturate(1.1);
+}
+
+/* title overlay (keep) */
 .project-card .overlay {
   position: absolute;
   inset: auto 0 0;
   padding: 0.6rem 0.75rem;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
-  color: white;
+  background: linear-gradient(
+    to top,
+    rgba(2, 6, 23, 0.9),
+    rgba(2, 6, 23, 0)
+  );
+  color: #f9fafb;
   font-size: 0.9rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+  border-color: rgba(129, 140, 248, 0.8);
+}
+
+/* ----------------------
+   Contact
+------------------------- */
+
+.contact-box p {
+  font-size: 0.95rem;
+}
+
+.contact-box a {
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.contact-box a:hover {
+  text-decoration: underline;
+}
+
+/* ----------------------
+   Footer
+------------------------- */
+
+.footer {
+  text-align: center;
+  color: #9ca3af;
+  font-size: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+body:not(.dark) .footer {
+  color: #555;
 }
 
 /* ----------------------
@@ -242,6 +397,7 @@ body:not(.dark) .project-card {
   display: none;
   align-items: center;
   justify-content: center;
+  z-index: 30;
 }
 
 .modal.show {
@@ -253,8 +409,10 @@ body:not(.dark) .project-card {
   border-radius: 1rem;
   max-width: 640px;
   width: 92%;
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 1.75rem;
+  position: relative;
   border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
 }
 
 body:not(.dark) .modal-content {
@@ -263,18 +421,54 @@ body:not(.dark) .modal-content {
   border: 1px solid #ddd;
 }
 
+.modal-image {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  margin-bottom: 1rem;
+}
+
 .close-button {
   position: absolute;
   top: 0.6rem;
   right: 0.8rem;
+  border: none;
+  background: none;
+  color: #9ca3af;
   font-size: 1.4rem;
   cursor: pointer;
+  padding: 0.1rem;
+}
+
+.close-button:hover {
+  color: #e5e7eb;
+}
+
+#modal-title {
+  margin: 0.5rem 0 0.25rem;
+  font-size: 1.3rem;
+}
+
+#modal-description {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  color: #d1d5db;
+}
+
+body:not(.dark) #modal-description {
+  color: #333;
+}
+
+.modal-links {
+  margin-top: 0.5rem;
 }
 
 /* Finance list */
 .finance-list {
   list-style: none;
-  padding: 0;
+  padding-left: 0;
+  margin: 0;
 }
 
 .finance-list li {
@@ -290,11 +484,17 @@ body:not(.dark) .modal-content {
 /* Tasks */
 .task-list {
   list-style: none;
-  padding: 0;
+  padding-left: 0;
+  margin: 0;
+}
+
+.task-list li {
+  margin-bottom: 0.3rem;
 }
 
 .task-list a {
   color: #b48a78;
+  font-weight: 600;
   text-decoration: none;
 }
 
@@ -304,14 +504,15 @@ body:not(.dark) .modal-content {
 
 /* Back button */
 .back-button {
-  cursor: pointer;
   display: inline-block;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
   color: #b48a78;
+  font-size: 0.9rem;
 }
 
 /* ----------------------
-   Toggle
+   Theme toggle
 ------------------------- */
 
 .theme-toggle {
@@ -327,6 +528,7 @@ body:not(.dark) .modal-content {
   justify-content: space-between;
   padding: 0 6px;
   cursor: pointer;
+  z-index: 9999;
 }
 
 .theme-toggle .knob {
@@ -341,4 +543,28 @@ body:not(.dark) .modal-content {
 
 body.dark .theme-toggle .knob {
   left: 29px;
+}
+
+/* ----------------------
+   Responsive
+------------------------- */
+
+@media (max-width: 640px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .section-card {
+    padding: 1.6rem 1.2rem;
+  }
 }
