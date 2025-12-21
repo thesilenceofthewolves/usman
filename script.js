@@ -1,8 +1,5 @@
 console.log("script.js is running...");
 
-/* ----------------------
-   tsParticles
-------------------------- */
 tsParticles.load("tsparticles", {
   fpsLimit: 60,
   particles: {
@@ -28,9 +25,7 @@ tsParticles.load("tsparticles", {
   detectRetina: true
 });
 
-/* ----------------------
-   Filter Buttons
-------------------------- */
+/* FILTER BUTTONS */
 const filterButtons = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
 
@@ -51,9 +46,7 @@ filterButtons.forEach(button => {
   });
 });
 
-/* ----------------------
-   Modal System
-------------------------- */
+/* MODAL SYSTEM */
 const modal = document.getElementById("project-modal");
 const modalBody = document.getElementById("modal-body");
 const closeBtn = document.querySelector(".close-button");
@@ -112,7 +105,7 @@ const financeProjects = {
   }
 };
 
-/* Open category modal */
+/* OPEN CATEGORY MODAL */
 function openCategory(category) {
   modal.classList.add("show");
 
@@ -123,7 +116,7 @@ function openCategory(category) {
   }
 }
 
-/* Simple categories */
+/* Simple categories (Health, Sport, Fun) */
 function showSimpleCategory(category) {
   const titles = {
     health: "Health Projects",
@@ -143,7 +136,7 @@ function showSimpleCategory(category) {
   `;
 }
 
-/* Finance list view */
+/* FINANCE LIST VIEW */
 function showFinanceList() {
   modalBody.innerHTML = `
     <h2>Finance Projects</h2>
@@ -155,7 +148,7 @@ function showFinanceList() {
   `;
 }
 
-/* Finance project view */
+/* FINANCE PROJECT VIEW */
 window.openFinanceProject = function(name) {
   const project = financeProjects[name];
 
@@ -180,7 +173,7 @@ window.openFinanceProject = function(name) {
   `;
 };
 
-/* Click handlers for project cards */
+/* CLICK HANDLERS FOR PROJECT CARDS */
 document.querySelectorAll(".project-card").forEach(card => {
   card.addEventListener("click", () => {
     const category = card.getAttribute("data-category");
@@ -188,7 +181,7 @@ document.querySelectorAll(".project-card").forEach(card => {
   });
 });
 
-/* Close modal */
+/* CLOSE MODAL */
 closeBtn.addEventListener("click", () => {
   modal.classList.remove("show");
 });
@@ -197,9 +190,7 @@ modal.addEventListener("click", e => {
   if (e.target === modal) modal.classList.remove("show");
 });
 
-/* ----------------------
-   Dark / Light Mode Toggle
-------------------------- */
+/* DARK / LIGHT MODE TOGGLE */
 const toggle = document.createElement("div");
 toggle.className = "theme-toggle";
 toggle.innerHTML = `
