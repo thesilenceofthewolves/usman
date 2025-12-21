@@ -8,24 +8,9 @@ tsParticles.load("tsparticles", {
     shape: { type: "circle" },
     opacity: { value: 0.7 },
     size: { value: 3, random: { enable: true, minimumValue: 1 } },
-
-    // ✅ Stronger connecting lines
-    links: { 
-      enable: true,
-      distance: 130,
-      color: "#888888",
-      opacity: 0.8,
-      width: 1.5
-    },
-
-    move: { 
-      enable: true,
-      speed: 1.6,
-      outModes: { default: "bounce" }
-    }
+    links: { enable: true, distance: 130, color: "#888888", opacity: 0.8, width: 1.5 },
+    move: { enable: true, speed: 1.6, outModes: { default: "bounce" } }
   },
-
-  // ✅ Hover grab effect
   interactivity: {
     events: {
       onHover: { enable: true, mode: "grab" },
@@ -33,21 +18,14 @@ tsParticles.load("tsparticles", {
       resize: true
     },
     modes: {
-      grab: {
-        distance: 180,
-        links: { opacity: 1 }
-      },
+      grab: { distance: 180, links: { opacity: 1 } },
       push: { quantity: 4 }
     }
   },
-
   detectRetina: true
 });
 
-
-/* ---------------------------------------------------
-   FILTER BUTTONS
---------------------------------------------------- */
+/* FILTERS */
 const filterButtons = document.querySelectorAll('.filter-btn');
 const projectCards = document.querySelectorAll('.project-card');
 
@@ -59,79 +37,44 @@ filterButtons.forEach(button => {
     button.classList.add('active');
 
     projectCards.forEach(card => {
-      if (category === 'all' || card.getAttribute('data-category') === category) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
+      card.style.display =
+        category === 'all' || card.getAttribute('data-category') === category
+          ? 'block'
+          : 'none';
     });
   });
 });
 
-/* ---------------------------------------------------
-   MODAL SYSTEM
---------------------------------------------------- */
+/* MODAL */
 const modal = document.getElementById("project-modal");
 const modalBody = document.getElementById("modal-body");
 const closeBtn = document.querySelector(".close-button");
 
-/* Finance project structure */
 const financeProjects = {
   "British Airways": {
     description: "Customer insights and lounge demand analysis.",
     tasks: [
-      {
-        label: "Lounge Demand Analysis",
-        file: "BritishAirways_Task1_Lounge_Demand_Analysis.pdf",
-        tooltip: "Analysis of lounge usage patterns and demand forecasting."
-      },
-      {
-        label: "Customer Model",
-        file: "BritishAirways_Task2_Customer_Model.pdf",
-        tooltip: "Predictive model for customer segmentation and behavior."
-      }
+      { label: "Lounge Demand Analysis", file: "BritishAirways_Task1_Lounge_Demand_Analysis.pdf", tooltip: "Analysis of lounge usage patterns and demand forecasting." },
+      { label: "Customer Model", file: "BritishAirways_Task2_Customer_Model.pdf", tooltip: "Predictive model for customer segmentation and behavior." }
     ]
   },
   "Lloyds Banking Group": {
     description: "Customer behaviour and predictive modelling.",
     tasks: [
-      {
-        label: "Customer Analysis",
-        file: "Lloyds_Task1_Customer_Analysis.pdf",
-        tooltip: "Exploration of customer demographics and spending patterns."
-      },
-      {
-        label: "Predictive Model",
-        file: "Lloyds_Task2_Predictive_Model.pdf",
-        tooltip: "Machine learning model predicting customer churn."
-      }
+      { label: "Customer Analysis", file: "Lloyds_Task1_Customer_Analysis.pdf", tooltip: "Exploration of customer demographics and spending patterns." },
+      { label: "Predictive Model", file: "Lloyds_Task2_Predictive_Model.pdf", tooltip: "Machine learning model predicting customer churn." }
     ]
   },
   "Quantium": {
     description: "Retail analytics and client reporting.",
     tasks: [
-      {
-        label: "Transaction Analysis",
-        file: "Quantium_Task1_Transaction_Analysis.pdf",
-        tooltip: "Deep dive into customer transaction behaviour."
-      },
-      {
-        label: "Benchmark Store Analysis",
-        file: "Quantium_Task2_Benchmark_Store_Analysis.pdf",
-        tooltip: "Comparing store performance against benchmarks."
-      },
-      {
-        label: "Client Report",
-        file: "Quantium_Task3_Client_Report.pdf",
-        tooltip: "Final insights and recommendations for the client."
-      }
+      { label: "Transaction Analysis", file: "Quantium_Task1_Transaction_Analysis.pdf", tooltip: "Deep dive into customer transaction behaviour." },
+      { label: "Benchmark Store Analysis", file: "Quantium_Task2_Benchmark_Store_Analysis.pdf", tooltip: "Comparing store performance against benchmarks." },
+      { label: "Client Report", file: "Quantium_Task3_Client_Report.pdf", tooltip: "Final insights and recommendations for the client." }
     ]
   }
 };
 
-/* ---------------------------------------------------
-   OPEN CATEGORY MODAL
---------------------------------------------------- */
 function openCategory(category) {
   modal.classList.add("show");
 
@@ -142,7 +85,6 @@ function openCategory(category) {
   }
 }
 
-/* Simple categories (Health, Sport, Fun) */
 function showSimpleCategory(category) {
   const titles = {
     health: "Health Projects",
@@ -162,9 +104,6 @@ function showSimpleCategory(category) {
   `;
 }
 
-/* ---------------------------------------------------
-   FINANCE LIST VIEW
---------------------------------------------------- */
 function showFinanceList() {
   modalBody.innerHTML = `
     <h2>Finance Projects</h2>
@@ -176,9 +115,6 @@ function showFinanceList() {
   `;
 }
 
-/* ---------------------------------------------------
-   FINANCE PROJECT VIEW
---------------------------------------------------- */
 window.openFinanceProject = function(name) {
   const project = financeProjects[name];
 
@@ -203,39 +139,19 @@ window.openFinanceProject = function(name) {
   `;
 };
 
-/* ---------------------------------------------------
-   CLICK HANDLERS FOR PROJECT CARDS
---------------------------------------------------- */
 document.querySelectorAll(".project-card").forEach(card => {
   card.addEventListener("click", () => {
-    const category = card.getAttribute("data-category");
-    openCategory(category);
+    openCategory(card.getAttribute("data-category"));
   });
 });
 
-/* ---------------------------------------------------
-   CLOSE MODAL
---------------------------------------------------- */
-closeBtn.addEventListener("click", () => {
-  modal.classList.remove("show");
-});
+closeBtn.addEventListener("click", () => modal.classList.remove("show"));
+modal.addEventListener("click", e => { if (e.target === modal) modal.classList.remove("show"); });
 
-modal.addEventListener("click", e => {
-  if (e.target === modal) modal.classList.remove("show");
-});
-
-/* ---------------------------------------------------
-   DARK / LIGHT MODE TOGGLE
---------------------------------------------------- */
+/* DARK MODE */
 const toggle = document.createElement("div");
 toggle.className = "theme-toggle";
 toggle.innerHTML = `
   <span>☀️</span>
   <span>🌙</span>
-  <div class="knob"></div>
-`;
-document.body.appendChild(toggle);
-
-toggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-});
+  <
