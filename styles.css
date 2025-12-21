@@ -581,3 +581,6 @@ body.dark .theme-toggle .knob {
 #tsparticles canvas {
   background: transparent !important;
 }
+body.dark {
+  background: red !important;
+}
