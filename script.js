@@ -7,7 +7,7 @@ tsParticles.load("tsparticles", {
   fpsLimit: 60,
   background: {
     color: {
-      value: "#050816" // dark default; light mode will still look fine
+      value: "transparent" // dark default; light mode will still look fine
     }
   },
   particles: {
