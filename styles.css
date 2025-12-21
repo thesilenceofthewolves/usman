@@ -464,29 +464,5 @@ body {
     padding: 1.6rem 1.2rem;
   }
 }
-/* ----------------------
-   Light Mode Navbar (Brown Theme)
-------------------------- */
 
-body:not(.dark) .navbar {
-  background: #b48a78e6; /* warm brown with slight transparency */
-  backdrop-filter: blur(10px);
-}
-
-body:not(.dark) .nav-links a {
-  color: #2b1d18; /* deep brown text */
-}
-
-body:not(.dark) .dropdown-content {
-  background-color: #d9c2b8; /* soft beige */
-}
-
-body:not(.dark) .dropdown-content a {
-  color: #2b1d18;
-}
-
-body:not(.dark) .dropdown-content a:hover {
-  background-color: #b48a78;
-  color: white;
-}
 
