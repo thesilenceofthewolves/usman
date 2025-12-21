@@ -55,6 +55,7 @@ body.dark {
 #tsparticles,
 #tsparticles canvas {
   pointer-events: none !important;
+   z-index: -1 !important;
 }
 
 
