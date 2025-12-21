@@ -15,18 +15,18 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     sans-serif;
   color: #f5f5f5;
-  background-color: #050816; /* This stays for fallback */
+  background-color: #050816;
 }
 
 body {
   min-height: 100vh;
   position: relative;
-}
-
-/* ✅ FIXED PARTICLES BACKGROUND */
-body {
   background: transparent !important;
 }
+
+/* ----------------------
+   Particles
+------------------------- */
 
 #tsparticles {
   position: fixed;
@@ -54,7 +54,7 @@ body {
 }
 
 /* ----------------------
-   Navbar
+   NAVBAR — DARK MODE (your new design)
 ------------------------- */
 
 .navbar {
@@ -116,7 +116,23 @@ body {
   width: 100%;
 }
 
-/* Dropdown */
+/* ----------------------
+   NAVBAR — LIGHT MODE (from your old version)
+------------------------- */
+
+body:not(.dark) .navbar {
+  background: #ffffffd9;
+  backdrop-filter: blur(6px);
+}
+
+body:not(.dark) .nav-links a {
+  color: #444;
+}
+
+/* ----------------------
+   Dropdown
+------------------------- */
+
 .dropdown {
   position: relative;
 }
@@ -150,6 +166,20 @@ body {
   display: block;
 }
 
+/* ✅ LIGHT MODE DROPDOWN (old version) */
+body:not(.dark) .dropdown-content {
+  background: white;
+}
+
+body:not(.dark) .dropdown-content a {
+  color: #444;
+}
+
+body:not(.dark) .dropdown-content a:hover {
+  background: #b48a78;
+  color: white;
+}
+
 /* ----------------------
    Hero
 ------------------------- */
@@ -173,25 +203,8 @@ body {
   color: #d1d5db;
 }
 
-.social-icons {
-  display: flex;
-  justify-content: center;
-  gap: 1.25rem;
-}
-
-.social-icons a {
-  color: #e5e7eb;
-  font-size: 1.3rem;
-  transition: transform 0.15s ease, color 0.15s ease;
-}
-
-.social-icons a:hover {
-  transform: translateY(-2px);
-  color: #38bdf8;
-}
-
 /* ----------------------
-   Sections
+   Sections — DARK MODE
 ------------------------- */
 
 .section-card {
@@ -203,28 +216,11 @@ body {
   border: 1px solid rgba(148, 163, 184, 0.2);
 }
 
-.section-card h2 {
-  margin-top: 0;
-  margin-bottom: 0.75rem;
-  font-size: 1.5rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.section-card p {
-  margin: 0;
-  color: #e5e7eb;
-}
-
-/* About */
-.section-about {
-  text-align: center;
-}
-
-.section-about p {
-  max-width: 38rem;
-  margin: 0 auto;
-  line-height: 1.7;
+/* ✅ LIGHT MODE SECTION CARDS (old version) */
+body:not(.dark) .section-card {
+  background: #f7f7f7ee;
+  border-left: 4px solid #888;
+  color: #111;
 }
 
 /* ----------------------
@@ -245,26 +241,25 @@ body {
   margin-bottom: 1.5rem;
 }
 
+/* ✅ FILTER BUTTONS — brown accent stays */
 .filter-btn {
-  border: 1px solid rgba(148, 163, 184, 0.7);
+  border: 1px solid #b48a78;
   background: transparent;
-  color: #e5e7eb;
+  color: #b48a78;
   padding: 0.4rem 0.9rem;
-  border-radius: 999px;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.15s ease, color 0.15s ease,
-    border-color 0.15s ease;
 }
 
 .filter-btn.active,
 .filter-btn:hover {
-  background: linear-gradient(90deg, #38bdf8, #a855f7);
-  color: #050816;
-  border-color: transparent;
+  background: #b48a78;
+  color: white;
 }
+
+/* ----------------------
+   Project cards — DARK MODE
+------------------------- */
 
 .projects-grid {
   display: grid;
@@ -272,7 +267,6 @@ body {
   gap: 1.25rem;
 }
 
-/* Project cards */
 .project-card {
   position: relative;
   border-radius: 0.75rem;
@@ -292,57 +286,18 @@ body {
   filter: saturate(1.1);
 }
 
-.project-card .overlay {
-  position: absolute;
-  inset: auto 0 0;
-  padding: 0.6rem 0.75rem;
-  background: linear-gradient(
-    to top,
-    rgba(2, 6, 23, 0.9),
-    rgba(2, 6, 23, 0)
-  );
-  color: #f9fafb;
-  font-size: 0.9rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+/* ✅ LIGHT MODE PROJECT CARDS */
+body:not(.dark) .project-card {
+  background: white;
+  border: 1px solid #ddd;
 }
 
-.project-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
-  border-color: rgba(129, 140, 248, 0.8);
+body:not(.dark) .project-card .overlay {
+  background: rgba(0, 0, 0, 0.55);
 }
 
 /* ----------------------
-   Contact
-------------------------- */
-
-.contact-box p {
-  font-size: 0.95rem;
-}
-
-.contact-box a {
-  color: #38bdf8;
-  text-decoration: none;
-}
-
-.contact-box a:hover {
-  text-decoration: underline;
-}
-
-/* ----------------------
-   Footer
-------------------------- */
-
-.footer {
-  text-align: center;
-  color: #9ca3af;
-  font-size: 0.8rem;
-  margin-top: 1.5rem;
-}
-
-/* ----------------------
-   Modal
+   Modal — DARK MODE
 ------------------------- */
 
 .modal {
@@ -368,77 +323,63 @@ body {
   padding: 1.5rem 1.5rem 1.75rem;
   position: relative;
   border: 1px solid rgba(148, 163, 184, 0.4);
-  box-shadow: 0 22px 60px rgba(0, 0, 0, 0.7);
 }
 
-.modal-image {
-  width: 100%;
-  max-height: 220px;
-  object-fit: cover;
-  border-radius: 0.75rem;
-  margin-bottom: 1rem;
+/* ✅ LIGHT MODE MODAL */
+body:not(.dark) .modal-content {
+  background: white;
+  color: #111;
+  border: 1px solid #ddd;
 }
 
-.close-button {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.8rem;
-  border: none;
-  background: none;
-  color: #9ca3af;
-  font-size: 1.4rem;
+/* ----------------------
+   Brown accents (unchanged)
+------------------------- */
+
+.finance-list li:hover {
+  color: #b48a78;
+}
+
+.task-list li a {
+  color: #b48a78;
+}
+
+body.dark .task-list li a {
+  color: #d9b8a8;
+}
+
+/* ----------------------
+   Toggle Button
+------------------------- */
+
+.theme-toggle {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 55px;
+  height: 28px;
+  background: #ddd;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6px;
   cursor: pointer;
-  padding: 0.1rem;
+  z-index: 9999;
 }
 
-.close-button:hover {
-  color: #e5e7eb;
+.theme-toggle .knob {
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  position: absolute;
+  left: 4px;
+  transition: left 0.3s ease;
 }
 
-#modal-title {
-  margin: 0.5rem 0 0.25rem;
-  font-size: 1.3rem;
-}
-
-#modal-description {
-  margin: 0 0 0.75rem;
-  font-size: 0.95rem;
-  color: #d1d5db;
-}
-
-.modal-links {
-  margin-top: 0.5rem;
-}
-
-/* Sections inside modal (for finance PDFs) */
-.modal-section {
-  margin-bottom: 0.9rem;
-}
-
-.modal-section h3 {
-  margin: 0 0 0.35rem;
-  font-size: 1rem;
-  color: #e5e7eb;
-}
-
-.modal-section ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-
-.modal-section li {
-  margin-bottom: 0.25rem;
-}
-
-.modal-section a {
-  color: #38bdf8;
-  font-size: 0.92rem;
-  text-decoration: none;
-}
-
-.modal-section a:hover {
-  text-decoration: underline;
+body.dark .theme-toggle .knob {
+  left: 29px;
 }
 
 /* ----------------------
@@ -451,18 +392,4 @@ body {
     align-items: flex-start;
     gap: 0.4rem;
   }
-
-  .hero-title {
-    font-size: 2rem;
-  }
-
-  .hero-subtitle {
-    font-size: 0.95rem;
-  }
-
-  .section-card {
-    padding: 1.6rem 1.2rem;
-  }
 }
-
-
