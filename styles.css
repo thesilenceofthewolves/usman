@@ -464,3 +464,28 @@ body {
     padding: 1.6rem 1.2rem;
   }
 }
+/* Default: Dark mode */
+:root {
+  --bg: #050816;
+  --text: #f5f5f5;
+  --card-bg: rgba(15, 23, 42, 0.88);
+}
+
+/* Light mode */
+.light-mode {
+  --bg: #f5f5f5;
+  --text: #050816;
+  --card-bg: rgba(255, 255, 255, 0.8);
+}
+
+/* Apply variables */
+body {
+  background: var(--bg) !important;
+  color: var(--text);
+}
+
+.section-card,
+.about-plain,
+.contact-box {
+  background-color: var(--card-bg);
+}
