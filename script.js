@@ -5,13 +5,18 @@ console.log("script.js is running...");
 ------------------------- */
 tsParticles.load("tsparticles", {
   fpsLimit: 60,
+  background: {
+    color: {
+      value: "#050816" // dark default; light mode will still look fine
+    }
+  },
   particles: {
     number: { value: 70, density: { enable: true, area: 900 } },
-    color: { value: "#999999" },
+    color: { value: "#666666" }, // darker so visible on light
     shape: { type: "circle" },
     opacity: { value: 0.7 },
     size: { value: 3, random: { enable: true, minimumValue: 1 } },
-    links: { enable: true, distance: 130, color: "#888888", opacity: 0.8, width: 1.5 },
+    links: { enable: true, distance: 130, color: "#555555", opacity: 0.8, width: 1.5 },
     move: { enable: true, speed: 1.6, outModes: { default: "bounce" } }
   },
   interactivity: {
@@ -29,36 +34,37 @@ tsParticles.load("tsparticles", {
 });
 
 /* ----------------------
-   Filter Buttons
+   Category filters
 ------------------------- */
-const filterButtons = document.querySelectorAll('.filter-btn');
-const projectCards = document.querySelectorAll('.project-card');
+const filterButtons = document.querySelectorAll(".filter-btn");
+const projectCards = document.querySelectorAll(".project-card");
 
-filterButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    const category = button.getAttribute('data-category');
+filterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const category = button.getAttribute("data-category");
 
-    filterButtons.forEach(btn => btn.classList.remove('active'));
-    button.classList.add('active');
+    filterButtons.forEach((btn) => btn.classList.remove("active"));
+    button.classList.add("active");
 
-    projectCards.forEach(card => {
-      if (category === 'all' || card.getAttribute('data-category') === category) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
+    projectCards.forEach((card) => {
+      const cardCategory = card.getAttribute("data-category");
+      card.style.display =
+        category === "all" || cardCategory === category ? "block" : "none";
     });
   });
 });
 
 /* ----------------------
-   Modal System
+   Modal wiring (matches your HTML)
 ------------------------- */
 const modal = document.getElementById("project-modal");
-const modalBody = document.getElementById("modal-body");
-const closeBtn = document.querySelector(".close-button");
+const modalImage = document.getElementById("modal-image");
+const modalTitle = document.getElementById("modal-title");
+const modalDescription = document.getElementById("modal-description");
+const modalLinks = document.getElementById("modal-links");
+const modalClose = document.getElementById("modal-close");
 
-/* ✅ Finance Simulation Projects */
+/* ---- Finance simulation data ---- */
 const financeProjects = {
   "British Airways — Data Science Simulation": {
     description:
@@ -117,93 +123,130 @@ const financeProjects = {
   }
 };
 
-/* ✅ Open category modal */
-function openCategory(category) {
+/* ---- Open modal helper ---- */
+function openModal() {
   modal.classList.add("show");
-
-  if (category === "finance") {
-    showFinanceList();
-  } else {
-    showSimpleCategory(category);
-  }
+  modal.setAttribute("aria-hidden", "false");
 }
 
-/* ✅ Simple categories */
-function showSimpleCategory(category) {
-  const titles = {
-    health: "Health Projects",
-    sport: "Sport Projects",
-    fun: "Fun Projects"
-  };
+/* ---- Close modal helper ---- */
+function closeModal() {
+  modal.classList.remove("show");
+  modal.setAttribute("aria-hidden", "true");
+}
+
+/* ---- Simple category (health, sport, fun) ---- */
+function openSimpleCategory(card) {
+  const category = card.getAttribute("data-category");
+  const imageSrc = card.querySelector("img")?.src || "";
+  const titleText = card.querySelector(".overlay")?.textContent || "";
 
   const descriptions = {
     health: "Health data insights and clinical trends.",
-    sport: "Performance metrics and sports statistics.",
-    fun: "Creative fun analysis, games & trends."
+    sport: "Performance metrics, sports statistics and predictive insights.",
+    fun: "Creative analysis, experiments and fun data explorations."
   };
 
-  modalBody.innerHTML = `
-    <h2>${titles[category]}</h2>
-    <p>${descriptions[category]}</p>
-  `;
+  modalImage.style.display = imageSrc ? "block" : "none";
+  modalImage.src = imageSrc;
+  modalImage.alt = titleText || "Project image";
+
+  modalTitle.textContent = titleText || "Project";
+  modalDescription.textContent = descriptions[category] || "";
+  modalLinks.innerHTML = ""; // no extra links for these
+
+  openModal();
 }
 
-/* ✅ Finance list view */
-function showFinanceList() {
-  modalBody.innerHTML = `
-    <h2>Finance Simulation Projects</h2>
+/* ---- Finance: list of simulation projects ---- */
+function openFinanceList() {
+  modalImage.style.display = "none";
+  modalTitle.textContent = "Finance Simulation Projects";
+  modalDescription.textContent =
+    "A collection of simulation projects with real companies, focusing on business and financial analytics.";
+
+  modalLinks.innerHTML = `
     <ul class="finance-list">
       ${Object.keys(financeProjects)
-        .map(name => `<li onclick="openFinanceProject('${name}')">${name}</li>`)
-        .join("")}
-    </ul>
-  `;
-}
-
-/* ✅ Finance project view */
-window.openFinanceProject = function(name) {
-  const project = financeProjects[name];
-
-  modalBody.innerHTML = `
-    <span class="back-button" onclick="showFinanceList()">← Back to Finance Projects</span>
-    <h2>${name}</h2>
-    <p>${project.description}</p>
-
-    <h3>Tasks</h3>
-    <ul class="task-list">
-      ${project.tasks
         .map(
-          t => `
-        <li>
-          <a href="${t.file}" target="_blank" data-tooltip="${t.tooltip}">
-            ${t.label}
-          </a>
-        </li>`
+          (name) => `
+        <li data-project="${name}">${name}</li>
+      `
         )
         .join("")}
     </ul>
   `;
-};
 
-/* ✅ Click handlers for project cards */
-document.querySelectorAll(".project-card").forEach(card => {
+  // Add click handlers to each list item
+  modalLinks.querySelectorAll("li[data-project]").forEach((li) => {
+    li.addEventListener("click", () => {
+      const name = li.getAttribute("data-project");
+      openFinanceProject(name);
+    });
+  });
+
+  openModal();
+}
+
+/* ---- Finance: single project view with tasks ---- */
+function openFinanceProject(name) {
+  const project = financeProjects[name];
+  if (!project) return;
+
+  modalImage.style.display = "none";
+
+  modalTitle.textContent = name;
+  modalDescription.textContent = project.description;
+
+  modalLinks.innerHTML = `
+    <span class="back-button" id="finance-back">← Back to Finance Projects</span>
+    <h3>Tasks</h3>
+    <ul class="task-list">
+      ${project.tasks
+        .map(
+          (t) => `
+        <li>
+          <a href="${t.file}" target="_blank" title="${t.tooltip}">
+            ${t.label}
+          </a>
+        </li>
+      `
+        )
+        .join("")}
+    </ul>
+  `;
+
+  const backButton = document.getElementById("finance-back");
+  backButton.addEventListener("click", openFinanceList);
+
+  openModal();
+}
+
+/* ---- Wire cards to modal ---- */
+projectCards.forEach((card) => {
   card.addEventListener("click", () => {
     const category = card.getAttribute("data-category");
-    openCategory(category);
+
+    if (category === "finance") {
+      openFinanceList();
+    } else {
+      openSimpleCategory(card);
+    }
   });
 });
 
-/* ✅ Close modal */
-closeBtn.addEventListener("click", () => {
-  modal.classList.remove("show");
-});
+/* ---- Close modal events ---- */
+modalClose.addEventListener("click", closeModal);
 
-modal.addEventListener("click", e => {
-  if (e.target === modal) modal.classList.remove("show");
+modal.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    closeModal();
+  }
 });
 
 /* ----------------------
-   Dark / Light Mode Toggle
+   Light / Dark toggle
+   (optional, keeps your future flexibility)
 ------------------------- */
 const toggle = document.createElement("div");
 toggle.className = "theme-toggle";
@@ -213,6 +256,9 @@ toggle.innerHTML = `
   <div class="knob"></div>
 `;
 document.body.appendChild(toggle);
+
+// Start in dark mode (matching your current design)
+document.body.classList.add("dark");
 
 toggle.addEventListener("click", () => {
   document.body.classList.toggle("dark");
