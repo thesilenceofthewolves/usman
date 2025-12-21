@@ -43,22 +43,6 @@ body.dark {
   top: 0;
   z-index: 10;
   backdrop-filter: blur(6px);
-  transition: background 0.3s ease;
-}
-
-body.dark .navbar {
-  background: #222222d9;
-}
-
-.navbar .logo a {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #444;
-  text-decoration: none;
-}
-
-body.dark .navbar .logo a {
-  color: #eaeaea;
 }
 
 .nav-links {
@@ -71,15 +55,6 @@ body.dark .navbar .logo a {
   text-decoration: none;
   color: #444;
   font-weight: 600;
-  transition: all 0.2s ease;
-}
-
-body.dark .nav-links li a {
-  color: #eaeaea;
-}
-
-.nav-links li a:hover {
-  border-bottom: 2px solid #888;
 }
 
 /* Dropdown */
@@ -94,49 +69,12 @@ body.dark .nav-links li a {
   left: 0;
   background-color: white;
   min-width: 160px;
-  box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-  z-index: 1000;
   border-radius: 6px;
   padding: 0.5rem 0;
 }
 
-body.dark .nav-links li.dropdown .dropdown-content {
-  background-color: #333;
-}
-
-.nav-links li.dropdown .dropdown-content a {
-  color: #444;
-  padding: 0.5rem 1rem;
-  text-decoration: none;
-  display: block;
-}
-
-body.dark .nav-links li.dropdown .dropdown-content a {
-  color: #eaeaea;
-}
-
-.nav-links li.dropdown .dropdown-content a:hover {
-  background-color: #b48a78;
-  color: white;
-}
-
 .nav-links li.dropdown:hover .dropdown-content {
   display: block;
-}
-
-/* Social Icons */
-.social-icons a {
-  margin-left: 1rem;
-  font-size: 1.3rem;
-  color: #444;
-}
-
-body.dark .social-icons a {
-  color: #eaeaea;
-}
-
-.social-icons a:hover {
-  color: #b48a78;
 }
 
 /* Main Layout */
@@ -152,25 +90,6 @@ body.dark .social-icons a {
   margin: 3rem 0 2rem;
 }
 
-.hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  color: #222;
-}
-
-body.dark .hero h1 {
-  color: #f5f5f5;
-}
-
-.hero p {
-  margin-top: 0.5rem;
-  color: #888;
-}
-
-body.dark .hero p {
-  color: #ccc;
-}
-
 /* About */
 .about-plain {
   max-width: 700px;
@@ -178,11 +97,6 @@ body.dark .hero p {
   text-align: center;
   font-size: 1.1rem;
   line-height: 1.8;
-  color: #333;
-}
-
-body.dark .about-plain {
-  color: #eaeaea;
 }
 
 /* Section Cards */
@@ -192,21 +106,6 @@ body.dark .about-plain {
   border-left: 4px solid #888;
   margin-bottom: 2rem;
   border-radius: 6px;
-  transition: background 0.3s ease;
-}
-
-body.dark .section-card {
-  background: #2a2a2a;
-  border-left-color: #b48a78;
-}
-
-.section-card h2 {
-  margin-bottom: 1rem;
-  color: #222;
-}
-
-body.dark .section-card h2 {
-  color: #f5f5f5;
 }
 
 /* Portfolio */
@@ -215,31 +114,8 @@ body.dark .section-card h2 {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
   text-align: center;
-  transition: background 0.3s ease;
 }
 
-body.dark #portfolio {
-  background: #2a2a2a;
-}
-
-#portfolio h2 {
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 0.25rem;
-  font-size: 2rem;
-}
-
-#portfolio p.subtitle {
-  font-style: italic;
-  color: #666;
-}
-
-body.dark #portfolio p.subtitle {
-  color: #ccc;
-}
-
-/* Filter Buttons */
 .category-filters {
   margin-bottom: 1.5rem;
   display: flex;
@@ -255,23 +131,12 @@ body.dark #portfolio p.subtitle {
   padding: 0.4rem 0.9rem;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-.filter-btn:hover,
-.filter-btn.active {
+.filter-btn.active,
+.filter-btn:hover {
   background-color: #b48a78;
   color: white;
-}
-
-/* ✅ Scroll Anchors */
-#portfolio-health-anchor,
-#portfolio-finance-anchor,
-#portfolio-sport-anchor,
-#portfolio-fun-anchor {
-  position: relative;
-  top: -120px;
-  height: 0;
 }
 
 /* ✅ Smaller, cleaner grid */
@@ -291,10 +156,7 @@ body.dark #portfolio p.subtitle {
   background: white;
   box-shadow: 0 1px 5px rgb(0 0 0 / 0.1);
   transition: transform 0.25s ease;
-}
-
-body.dark .project-card {
-  background: #333;
+  scroll-margin-top: 120px; /* ✅ Fixes navbar overlap */
 }
 
 .project-card:hover {
@@ -307,7 +169,7 @@ body.dark .project-card {
   object-fit: cover;
 }
 
-/* Cleaner overlay */
+/* Overlay */
 .project-card::after {
   content: attr(data-description);
   position: absolute;
@@ -339,12 +201,6 @@ footer {
   margin-top: 3rem;
   padding: 2rem 1rem;
   border-top: 1px solid #ccc;
-  color: #666;
-}
-
-body.dark footer {
-  border-top-color: #555;
-  color: #ccc;
 }
 
 /* Modal */
@@ -369,112 +225,6 @@ body.dark footer {
   max-width: 600px;
   width: 90%;
   position: relative;
-  text-align: left;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  transition: background 0.3s ease;
-}
-
-body.dark .modal-content {
-  background: #2a2a2a;
-  color: #f5f5f5;
-}
-
-.close-button {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: #333;
-}
-
-body.dark .close-button {
-  color: #ddd;
-}
-
-.close-button:hover {
-  color: #b48a78;
-}
-
-/* Modal Body */
-#modal-body h2 {
-  margin-bottom: 0.5rem;
-}
-
-#modal-body p {
-  margin-bottom: 1rem;
-  line-height: 1.5;
-}
-
-/* Finance Project List */
-.finance-list {
-  list-style: none;
-  padding: 0;
-}
-
-.finance-list li {
-  padding: 0.6rem 0;
-  font-size: 1.1rem;
-  cursor: pointer;
-  border-bottom: 1px solid #ddd;
-}
-
-body.dark .finance-list li {
-  border-bottom-color: #555;
-}
-
-.finance-list li:hover {
-  color: #b48a78;
-}
-
-/* Task List */
-.task-list {
-  list-style: none;
-  padding: 0;
-}
-
-.task-list li {
-  margin-bottom: 0.6rem;
-  position: relative;
-}
-
-/* Tooltip */
-.task-list li a {
-  color: #b48a78;
-  font-weight: 600;
-  text-decoration: none;
-  position: relative;
-}
-
-.task-list li a:hover {
-  text-decoration: underline;
-}
-
-.task-list li a:hover::after {
-  content: attr(data-tooltip);
-  position: absolute;
-  left: 0;
-  top: 120%;
-  background: #333;
-  color: white;
-  padding: 0.4rem 0.6rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  white-space: nowrap;
-  z-index: 9999;
-}
-
-/* Back Button */
-.back-button {
-  display: inline-block;
-  margin-bottom: 1rem;
-  color: #b48a78;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.back-button:hover {
-  text-decoration: underline;
 }
 
 /* Dark/Light Toggle */
@@ -492,15 +242,6 @@ body.dark .finance-list li {
   padding: 0 6px;
   cursor: pointer;
   z-index: 9999;
-  transition: background 0.3s ease;
-}
-
-body.dark .theme-toggle {
-  background: #444;
-}
-
-.theme-toggle span {
-  font-size: 14px;
 }
 
 .theme-toggle .knob {
