@@ -581,6 +581,8 @@ body.dark .theme-toggle .knob {
 #tsparticles canvas {
   background: transparent !important;
 }
+/* FINAL DARK MODE FIX — MUST BE LAST */
 body.dark {
-  background: red !important;
+  background-color: #050816 !important;
+  color: #f5f5f5;
 }
