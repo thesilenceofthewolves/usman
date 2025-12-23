@@ -6,13 +6,11 @@ console.log("script.js is running...");
 tsParticles.load("tsparticles", {
   fpsLimit: 60,
   background: {
-    color: {
-      value: "transparent" // dark default; light mode will still look fine
-    }
+    color: { value: "transparent" }
   },
   particles: {
     number: { value: 70, density: { enable: true, area: 900 } },
-    color: { value: "#666666" }, // darker so visible on light
+    color: { value: "#666666" },
     shape: { type: "circle" },
     opacity: { value: 0.7 },
     size: { value: 3, random: { enable: true, minimumValue: 1 } },
@@ -55,7 +53,7 @@ filterButtons.forEach((button) => {
 });
 
 /* ----------------------
-   Modal wiring (matches your HTML)
+   Modal wiring
 ------------------------- */
 const modal = document.getElementById("project-modal");
 const modalImage = document.getElementById("modal-image");
@@ -64,7 +62,9 @@ const modalDescription = document.getElementById("modal-description");
 const modalLinks = document.getElementById("modal-links");
 const modalClose = document.getElementById("modal-close");
 
-/* ---- Finance simulation data ---- */
+/* ----------------------
+   Finance Projects
+------------------------- */
 const financeProjects = {
   "British Airways — Data Science Simulation": {
     description:
@@ -123,42 +123,26 @@ const financeProjects = {
   }
 };
 
-/* ---- Open modal helper ---- */
-function openModal() {
-  modal.classList.add("show");
-  modal.setAttribute("aria-hidden", "false");
-}
+/* ----------------------
+   FUN Projects (Baby Names etc.)
+------------------------- */
+const funProjects = {
+  "US Baby Names Analysis": {
+    description:
+      "A two-part data exploration of US baby name trends using the Social Security Administration dataset. Part I focuses on long-term popularity patterns, gender shifts, and cultural naming trends across more than a century of data. Part II dives deeper into the ‘lifespan’ of names — analysing rise-and-fall cycles, peak years, generational patterns, and the statistical behaviour of names over time.",
+    tasks: [
+      {
+        label: "Full Project PDF",
+        file: "Baby_Names_Analysis.pdf",
+        tooltip: "Download the complete analysis report."
+      }
+    ]
+  }
+};
 
-/* ---- Close modal helper ---- */
-function closeModal() {
-  modal.classList.remove("show");
-  modal.setAttribute("aria-hidden", "true");
-}
-
-/* ---- Simple category (health, sport, fun) ---- */
-function openSimpleCategory(card) {
-  const category = card.getAttribute("data-category");
-  const imageSrc = card.querySelector("img")?.src || "";
-  const titleText = card.querySelector(".overlay")?.textContent || "";
-
-  const descriptions = {
-    health: "Health data insights and clinical trends.",
-    sport: "Performance metrics, sports statistics and predictive insights.",
-    fun: "Creative analysis, experiments and fun data explorations."
-  };
-
-  modalImage.style.display = imageSrc ? "block" : "none";
-  modalImage.src = imageSrc;
-  modalImage.alt = titleText || "Project image";
-
-  modalTitle.textContent = titleText || "Project";
-  modalDescription.textContent = descriptions[category] || "";
-  modalLinks.innerHTML = ""; // no extra links for these
-
-  openModal();
-}
-
-/* ---- Finance: list of simulation projects ---- */
+/* ----------------------
+   Finance List
+------------------------- */
 function openFinanceList() {
   modalImage.style.display = "none";
   modalTitle.textContent = "Finance Simulation Projects";
@@ -168,33 +152,26 @@ function openFinanceList() {
   modalLinks.innerHTML = `
     <ul class="finance-list">
       ${Object.keys(financeProjects)
-        .map(
-          (name) => `
-        <li data-project="${name}">${name}</li>
-      `
-        )
+        .map((name) => `<li data-project="${name}">${name}</li>`)
         .join("")}
     </ul>
   `;
 
-  // Add click handlers to each list item
   modalLinks.querySelectorAll("li[data-project]").forEach((li) => {
-    li.addEventListener("click", () => {
-      const name = li.getAttribute("data-project");
-      openFinanceProject(name);
-    });
+    li.addEventListener("click", () => openFinanceProject(li.getAttribute("data-project")));
   });
 
   openModal();
 }
 
-/* ---- Finance: single project view with tasks ---- */
+/* ----------------------
+   Finance Project View
+------------------------- */
 function openFinanceProject(name) {
   const project = financeProjects[name];
   if (!project) return;
 
   modalImage.style.display = "none";
-
   modalTitle.textContent = name;
   modalDescription.textContent = project.description;
 
@@ -209,44 +186,121 @@ function openFinanceProject(name) {
           <a href="${t.file}" target="_blank" title="${t.tooltip}">
             ${t.label}
           </a>
-        </li>
-      `
+        </li>`
         )
         .join("")}
     </ul>
   `;
 
-  const backButton = document.getElementById("finance-back");
-  backButton.addEventListener("click", openFinanceList);
+  document.getElementById("finance-back").addEventListener("click", openFinanceList);
 
   openModal();
 }
 
-/* ---- Wire cards to modal ---- */
+/* ----------------------
+   FUN List
+------------------------- */
+function openFunList() {
+  modalImage.style.display = "none";
+  modalTitle.textContent = "Fun Projects";
+  modalDescription.textContent =
+    "A collection of creative and exploratory data projects.";
+
+  modalLinks.innerHTML = `
+    <ul class="fun-list">
+      ${Object.keys(funProjects)
+        .map((name) => `<li data-project="${name}">${name}</li>`)
+        .join("")}
+    </ul>
+  `;
+
+  modalLinks.querySelectorAll("li[data-project]").forEach((li) => {
+    li.addEventListener("click", () => openFunProject(li.getAttribute("data-project")));
+  });
+
+  openModal();
+}
+
+/* ----------------------
+   FUN Project View
+------------------------- */
+function openFunProject(name) {
+  const project = funProjects[name];
+  if (!project) return;
+
+  modalImage.style.display = "none";
+  modalTitle.textContent = name;
+  modalDescription.textContent = project.description;
+
+  modalLinks.innerHTML = `
+    <span class="back-button" id="fun-back">← Back to Fun Projects</span>
+    <h3>Tasks</h3>
+    <ul class="task-list">
+      ${project.tasks
+        .map(
+          (t) => `
+        <li>
+          <a href="${t.file}" target="_blank" title="${t.tooltip}">
+            ${t.label}
+          </a>
+        </li>`
+        )
+        .join("")}
+    </ul>
+  `;
+
+  document.getElementById("fun-back").addEventListener("click", openFunList);
+
+  openModal();
+}
+
+/* ----------------------
+   Simple Categories (Health, Sport)
+------------------------- */
+function openSimpleCategory(card) {
+  const imageSrc = card.querySelector("img")?.src || "";
+  const titleText = card.querySelector(".overlay")?.textContent || "";
+  const description = card.getAttribute("data-description") || "";
+
+  modalImage.style.display = imageSrc ? "block" : "none";
+  modalImage.src = imageSrc;
+  modalImage.alt = titleText;
+
+  modalTitle.textContent = titleText;
+  modalDescription.textContent = description;
+  modalLinks.innerHTML = "";
+
+  openModal();
+}
+
+/* ----------------------
+   Card Click Handler
+------------------------- */
 projectCards.forEach((card) => {
   card.addEventListener("click", () => {
     const category = card.getAttribute("data-category");
 
     if (category === "finance") {
       openFinanceList();
+    } else if (category === "fun") {
+      openFunList();
     } else {
       openSimpleCategory(card);
     }
   });
 });
 
-/* ---- Close modal events ---- */
-modalClose.addEventListener("click", closeModal);
+/* ----------------------
+   Close Modal
+------------------------- */
+modalClose.addEventListener("click", () => modal.classList.remove("show"));
 
 modal.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    closeModal();
-  }
+  if (e.target === modal) modal.classList.remove("show");
 });
 
 /* ----------------------
-   Light / Dark toggle
-   (optional, keeps your future flexibility)
+   Light / Dark Toggle
 ------------------------- */
 const toggle = document.createElement("div");
 toggle.className = "theme-toggle";
@@ -257,7 +311,6 @@ toggle.innerHTML = `
 `;
 document.body.appendChild(toggle);
 
-// Start in dark mode (matching your current design)
 document.body.classList.add("dark");
 
 toggle.addEventListener("click", () => {
