@@ -169,6 +169,32 @@ const financeProjects = {
 };
 
 /* =========================================================
+   Fun Projects
+========================================================= */
+
+const funProjects = {
+  "US Baby Names Analysis": {
+    description:
+      "A two-part analytical project exploring over a century of US baby name data. Part I focuses on long-term popularity trends, gender patterns, and cultural naming shifts. Part II provides a deeper analysis of name lifespans, examining rise-and-fall cycles, generational peaks, and long-term behavioural patterns across the dataset.",
+    tasks: [
+      {
+        label: "Part I — Trends & Patterns",
+        file: "Baby_Names_Part1.pdf",
+        tooltip: "Download Part I of the analysis."
+      },
+      {
+        label: "Part II — Lifespan & Cycles",
+        file: "Baby_Names_Part2.pdf",
+        tooltip: "Download Part II of the analysis."
+      }
+    ]
+  }
+};
+
+
+
+
+/* =========================================================
    Modal Helpers
 ========================================================= */
 function openModal() {
