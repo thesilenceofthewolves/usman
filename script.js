@@ -294,6 +294,70 @@ function openFinanceProject(name) {
 }
 
 /* =========================================================
+   Fun Modals
+========================================================= */
+function openFunList() {
+  modalImage.style.display = "none";
+  modalTitle.textContent = "Fun Projects";
+  modalDescription.textContent =
+    "A collection of creative and exploratory data projects.";
+
+  modalLinks.innerHTML = `
+    <ul class="fun-list">
+      ${Object.keys(funProjects)
+        .map(
+          (name) => `<li data-project="${name}">${name}</li>`
+        )
+        .join("")}
+    </ul>
+  `;
+
+  modalLinks.querySelectorAll("li[data-project]").forEach((li) => {
+    li.addEventListener("click", () => {
+      const name = li.getAttribute("data-project");
+      openFunProject(name);
+    });
+  });
+
+  openModal();
+}
+
+function openFunProject(name) {
+  const project = funProjects[name];
+  if (!project) return;
+
+  modalImage.style.display = "none";
+  modalTitle.textContent = name;
+  modalDescription.textContent = project.description;
+
+  modalLinks.innerHTML = `
+    <span class="back-button" id="fun-back">← Back to Fun Projects</span>
+    <h3>Tasks</h3>
+    <ul class="task-list">
+      ${project.tasks
+        .map(
+          (t) => `
+            <li>
+              <a href="${t.file}" target="_blank" title="${t.tooltip}">
+                ${t.label}
+              </a>
+            </li>
+          `
+        )
+        .join("")}
+    </ul>
+  `;
+
+  document
+    .getElementById("fun-back")
+    .addEventListener("click", openFunList);
+
+  openModal();
+}
+
+
+
+/* =========================================================
    Card Wiring
 ========================================================= */
 projectCards.forEach((card) => {
