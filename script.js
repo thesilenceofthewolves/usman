@@ -140,7 +140,7 @@ const financeProjects = {
 const funProjects = {
   "US Baby Names Analysis": {
     description:
-      "A two-part data exploration of US baby name trends using the Social Security Administration dataset. Part I focuses on long-term popularity patterns, gender shifts, and cultural naming trends across more than a century of data. Part II dives deeper into the ‘lifespan’ of names — analysing rise-and-fall cycles, peak years, generational patterns, and the statistical behaviour of names over time.",
+      "A two-part analytical project exploring over a century of US baby name data. Part I focuses on long-term popularity trends, gender patterns, and cultural naming shifts. Part II provides a deeper analysis of name lifespans, examining rise-and-fall cycles, generational peaks, and long-term behavioural patterns across the dataset.",
     tasks: [
       {
         label: "Full Project PDF",
@@ -155,6 +155,8 @@ const funProjects = {
    Finance List
 ------------------------- */
 function openFinanceList() {
+  openModal(); // FIX: open first
+
   modalImage.style.display = "none";
   modalTitle.textContent = "Finance Simulation Projects";
   modalDescription.textContent =
@@ -173,8 +175,6 @@ function openFinanceList() {
       openFinanceProject(li.getAttribute("data-project"))
     );
   });
-
-  openModal();
 }
 
 /* ----------------------
@@ -183,6 +183,8 @@ function openFinanceList() {
 function openFinanceProject(name) {
   const project = financeProjects[name];
   if (!project) return;
+
+  openModal(); // FIX
 
   modalImage.style.display = "none";
   modalTitle.textContent = name;
@@ -206,14 +208,14 @@ function openFinanceProject(name) {
   `;
 
   document.getElementById("finance-back").addEventListener("click", openFinanceList);
-
-  openModal();
 }
 
 /* ----------------------
-   FUN List
+   FUN List (FIXED)
 ------------------------- */
 function openFunList() {
+  openModal(); // FIX: open first
+
   modalImage.style.display = "none";
   modalTitle.textContent = "Fun Projects";
   modalDescription.textContent =
@@ -232,16 +234,16 @@ function openFunList() {
       openFunProject(li.getAttribute("data-project"))
     );
   });
-
-  openModal();
 }
 
 /* ----------------------
-   FUN Project View
+   FUN Project View (FIXED)
 ------------------------- */
 function openFunProject(name) {
   const project = funProjects[name];
   if (!project) return;
+
+  openModal(); // FIX
 
   modalImage.style.display = "none";
   modalTitle.textContent = name;
@@ -265,14 +267,14 @@ function openFunProject(name) {
   `;
 
   document.getElementById("fun-back").addEventListener("click", openFunList);
-
-  openModal();
 }
 
 /* ----------------------
    Simple Categories (Health, Sport)
 ------------------------- */
 function openSimpleCategory(card) {
+  openModal(); // FIX
+
   const imageSrc = card.querySelector("img")?.src || "";
   const titleText = card.querySelector(".overlay")?.textContent || "";
   const description = card.getAttribute("data-description") || "";
@@ -284,8 +286,6 @@ function openSimpleCategory(card) {
   modalTitle.textContent = titleText;
   modalDescription.textContent = description;
   modalLinks.innerHTML = "";
-
-  openModal();
 }
 
 /* ----------------------
