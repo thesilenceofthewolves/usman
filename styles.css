@@ -498,6 +498,24 @@ body:not(.dark) #modal-description {
   color: #b48a78;
 }
 
+/* Fun list (IDENTICAL to Finance list) */
+.fun-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.fun-list li {
+  padding: 0.6rem 0;
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
+}
+
+.fun-list li:hover {
+  color: #b48a78;
+}
+
+
 /* Tasks */
 .task-list {
   list-style: none;
