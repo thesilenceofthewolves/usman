@@ -155,7 +155,7 @@ const funProjects = {
    Finance List
 ------------------------- */
 function openFinanceList() {
-  openModal(); // FIX: open first
+  openModal();
 
   modalImage.style.display = "none";
   modalTitle.textContent = "Finance Simulation Projects";
@@ -163,9 +163,14 @@ function openFinanceList() {
     "A collection of simulation projects with real companies.";
 
   modalLinks.innerHTML = `
-    <ul class="finance-list">
+    <ul class="finance-list" style="list-style:none; padding-left:0;">
       ${Object.keys(financeProjects)
-        .map((name) => `<li data-project="${name}">${name}</li>`)
+        .map(
+          (name) => `
+        <li data-project="${name}" style="cursor:pointer; padding:8px 0; color:#ccc;">
+          ${name}
+        </li>`
+        )
         .join("")}
     </ul>
   `;
@@ -184,7 +189,7 @@ function openFinanceProject(name) {
   const project = financeProjects[name];
   if (!project) return;
 
-  openModal(); // FIX
+  openModal();
 
   modalImage.style.display = "none";
   modalTitle.textContent = name;
@@ -211,10 +216,10 @@ function openFinanceProject(name) {
 }
 
 /* ----------------------
-   FUN List (FIXED)
+   FUN List (MATCHES FINANCE)
 ------------------------- */
 function openFunList() {
-  openModal(); // FIX: open first
+  openModal();
 
   modalImage.style.display = "none";
   modalTitle.textContent = "Fun Projects";
@@ -222,9 +227,14 @@ function openFunList() {
     "A collection of creative and exploratory data projects.";
 
   modalLinks.innerHTML = `
-    <ul class="fun-list">
+    <ul class="fun-list" style="list-style:none; padding-left:0;">
       ${Object.keys(funProjects)
-        .map((name) => `<li data-project="${name}">${name}</li>`)
+        .map(
+          (name) => `
+        <li data-project="${name}" style="cursor:pointer; padding:8px 0; color:#ccc;">
+          ${name}
+        </li>`
+        )
         .join("")}
     </ul>
   `;
@@ -237,13 +247,13 @@ function openFunList() {
 }
 
 /* ----------------------
-   FUN Project View (FIXED)
+   FUN Project View (MATCHES FINANCE)
 ------------------------- */
 function openFunProject(name) {
   const project = funProjects[name];
   if (!project) return;
 
-  openModal(); // FIX
+  openModal();
 
   modalImage.style.display = "none";
   modalTitle.textContent = name;
@@ -273,7 +283,7 @@ function openFunProject(name) {
    Simple Categories (Health, Sport)
 ------------------------- */
 function openSimpleCategory(card) {
-  openModal(); // FIX
+  openModal();
 
   const imageSrc = card.querySelector("img")?.src || "";
   const titleText = card.querySelector(".overlay")?.textContent || "";
