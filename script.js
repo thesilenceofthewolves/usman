@@ -5,9 +5,7 @@ console.log("script.js is running...");
 ------------------------- */
 tsParticles.load("tsparticles", {
   fpsLimit: 60,
-  background: {
-    color: { value: "transparent" }
-  },
+  background: { color: { value: "transparent" } },
   particles: {
     number: { value: 70, density: { enable: true, area: 900 } },
     color: { value: "#666666" },
@@ -63,12 +61,25 @@ const modalLinks = document.getElementById("modal-links");
 const modalClose = document.getElementById("modal-close");
 
 /* ----------------------
+   Modal Helpers
+------------------------- */
+function openModal() {
+  modal.classList.add("show");
+  modal.setAttribute("aria-hidden", "false");
+}
+
+function closeModal() {
+  modal.classList.remove("show");
+  modal.setAttribute("aria-hidden", "true");
+}
+
+/* ----------------------
    Finance Projects
 ------------------------- */
 const financeProjects = {
   "British Airways — Data Science Simulation": {
     description:
-      "A data science simulation focused on understanding customer behaviour and improving lounge operations. The project involved analysing customer datasets, identifying usage patterns, and building insights to support operational decision‑making.",
+      "A data science simulation focused on understanding customer behaviour and improving lounge operations.",
     tasks: [
       {
         label: "Lounge Demand Analysis",
@@ -85,7 +96,7 @@ const financeProjects = {
 
   "Lloyds Banking Group — Data Science Simulation": {
     description:
-      "A simulation project centred on customer behaviour, financial product usage, and churn prediction. The goal was to analyse customer data, identify risk factors, and build a model to support retention strategies.",
+      "A simulation project centred on customer behaviour, financial product usage, and churn prediction.",
     tasks: [
       {
         label: "Customer Analysis",
@@ -102,7 +113,7 @@ const financeProjects = {
 
   "Quantium — Data Analytics Simulation": {
     description:
-      "A retail analytics simulation focused on customer purchasing behaviour and store performance. The project involved analysing transaction data, identifying trends, and preparing insights for a client presentation.",
+      "A retail analytics simulation focused on customer purchasing behaviour and store performance.",
     tasks: [
       {
         label: "Transaction Analysis",
@@ -147,7 +158,7 @@ function openFinanceList() {
   modalImage.style.display = "none";
   modalTitle.textContent = "Finance Simulation Projects";
   modalDescription.textContent =
-    "A collection of simulation projects with real companies, focusing on business and financial analytics.";
+    "A collection of simulation projects with real companies.";
 
   modalLinks.innerHTML = `
     <ul class="finance-list">
@@ -158,7 +169,9 @@ function openFinanceList() {
   `;
 
   modalLinks.querySelectorAll("li[data-project]").forEach((li) => {
-    li.addEventListener("click", () => openFinanceProject(li.getAttribute("data-project")));
+    li.addEventListener("click", () =>
+      openFinanceProject(li.getAttribute("data-project"))
+    );
   });
 
   openModal();
@@ -215,7 +228,9 @@ function openFunList() {
   `;
 
   modalLinks.querySelectorAll("li[data-project]").forEach((li) => {
-    li.addEventListener("click", () => openFunProject(li.getAttribute("data-project")));
+    li.addEventListener("click", () =>
+      openFunProject(li.getAttribute("data-project"))
+    );
   });
 
   openModal();
@@ -293,10 +308,10 @@ projectCards.forEach((card) => {
 /* ----------------------
    Close Modal
 ------------------------- */
-modalClose.addEventListener("click", () => modal.classList.remove("show"));
+modalClose.addEventListener("click", closeModal);
 
 modal.addEventListener("click", (e) => {
-  if (e.target === modal) modal.classList.remove("show");
+  if (e.target === modal) closeModal();
 });
 
 /* ----------------------
