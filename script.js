@@ -139,22 +139,22 @@ const financeProjects = {
 const funProjects = {
   "US Baby Names Analysis": {
     description:
-      "A multi-part analysis of US baby name trends, lifespans, and popularity cycles.",
+      "A multi-part analysis of US baby name trends, lifespans, and popularity cycles. GitHub: https://github.com/thesilenceofthewolves/BabyNameAnalysis",
     tasks: [
       {
         label: "Part I — Trends & Patterns",
         file: "Baby_Names_Part1.pdf",
-        tooltip: "Open the notebook in Google Colab"
+        tooltip: "Open the notebook in GitHub"
       },
        {
-        label: "Part I — Trends & Patterns",
+        label: "Part II — Trends & Patterns",
         file: "Baby_Names_Part1.pdf",
-        tooltip: "Open the notebook in Google Colab"
+        tooltip: "Open the notebook in GitHub"
          },
       {
         label: "Part III — Lifespan & Cycles",
-        file: "https://colab.research.google.com/github/thesilenceofthewolves/BabyNameAnalysis/blob/main/notebooks/NamesAnalysis3.ipynb",
-        tooltip: "Open the notebook in Google Colab"
+        file: "https://github.com/thesilenceofthewolves/BabyNameAnalysis/blob/main/notebooks/NamesAnalysis3.ipynb",
+        tooltip: "Open the notebook in GitHub"
       }
     ]
   }
