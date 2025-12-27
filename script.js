@@ -297,7 +297,7 @@ if (project.github) {
   githubButton = `
     <li>
       <a href="${project.github}" target="_blank" title="Open the project on GitHub">
-        View on GitHub
+        <u>Full project description and Tasks</u>
       </a>
     </li>
   `;
