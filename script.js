@@ -139,7 +139,8 @@ const financeProjects = {
 const funProjects = {
   "US Baby Names Analysis": {
     description:
-      'A multi-part analysis of US baby name trends, lifespans, and popularity cycles. <br><a" https://github.com/thesilenceofthewolves/BabyNameAnalysis" target" target="_blank">View on GitHub </a>',
+      "A multi-part analysis of US baby name trends, lifespans, and popularity cycles" ,
+   github: "https://github.com/thesilenceofthewolves/BabyNameAnalysis",
     tasks: [
       {
         label: "Part I — Trends & Patterns",
@@ -288,23 +289,35 @@ function openFunProject(name) {
   modalImage.style.display = "none";
   modalTitle.textContent = name;
   modalDescription.textContent = project.description;
-
-  modalLinks.innerHTML = `
-    <span class="back-button" id="fun-back">← Back</span>
-    <h3>Tasks</h3>
-    <ul class="task-list">
-      ${project.tasks
-        .map(
-          (t) => `
-        <li>
-          <a href="${t.file}" target="_blank" title="${t.tooltip}">
-            ${t.label}
-          </a>
-        </li>`
-        )
-        .join("")}
-    </ul>
+   
+/* link to get to github */
+   
+ let githubButton = "";
+if (project.github) {
+  githubButton = `
+    <li>
+      <a href="${project.github}" target="_blank" title="Open the project on GitHub">
+        View on GitHub
+      </a>
+    </li>
   `;
+}
+  
+  modalLinks.innerHTML = ` 
+  <span class="back-button" id="fun-back">← Back</span> 
+  <h3>Tasks</h3>
+  <ul class="task-list">
+  ${githubButton} 
+  ${project.tasks
+    .map( (t) => ` 
+    <li> 
+    <a href="${t.file}" target="_blank" title="${t.tooltip}">
+    ${t.label} </a> 
+    </li>`
+        ) 
+    .join("")}
+    </ul>
+    `;
 
   document
     .getElementById("fun-back")
