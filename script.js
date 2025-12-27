@@ -139,7 +139,7 @@ const financeProjects = {
 const funProjects = {
   "US Baby Names Analysis": {
     description:
-      "A multi-part analysis of US baby name trends, lifespans, and popularity cycles. GitHub: https://github.com/thesilenceofthewolves/BabyNameAnalysis",
+      'A multi-part analysis of US baby name trends, lifespans, and popularity cycles. <br><a" https://github.com/thesilenceofthewolves/BabyNameAnalysis" target" target="_blank">View on GitHub </a>',
     tasks: [
       {
         label: "Part I — Trends & Patterns",
